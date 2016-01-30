@@ -407,7 +407,7 @@
                     </view>
                     <connections>
                         <outlet property="chooseButton" destination="2O8-cM-Nop" id="u3M-qd-ygC"/>
-                        <segue destination="6uE-7O-xfC" kind="popover" identifier="detailSegue" popoverBehavior="t" preferredEdge="maxY" id="bkp-xa-udr"/>
+                        <segue destination="6uE-7O-xfC" kind="show" identifier="detailSegue" id="bkp-xa-udr"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -417,7 +417,7 @@
         <!--Detail View Controller-->
         <scene sceneID="E9f-2a-Ght">
             <objects>
-                <viewController id="6uE-7O-xfC" customClass="DetailViewController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="6uE-7O-xfC" customClass="DetailViewController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="FjT-s4-RGp">
                         <rect key="frame" x="0.0" y="0.0" width="729" height="488"/>
                         <autoresizingMask key="autoresizingMask"/>
