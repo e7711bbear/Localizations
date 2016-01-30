@@ -33,7 +33,7 @@ class MainViewController: NSViewController {
 		openPanel.canChooseFiles = false
 		openPanel.message = NSLocalizedString("Choose a directory", comment: "Open Panel Message to choose the xcode root directory")
 		openPanel.title = NSLocalizedString("Please choose a directory containing your Xcode project.", comment: "Open Panel Title to choose the xcode root directory")
-
+		
 		let returnValue = openPanel.runModal()
 		
 		if returnValue == NSModalResponseOK {
@@ -42,24 +42,46 @@ class MainViewController: NSViewController {
 				return
 			}
 			self.rootDirectory = openPanel.URL!
-			self.rootDirectory.startAccessingSecurityScopedResource()
+			// TODO: To be used if and when this app is to be sandboxed.
+			//			self.rootDirectory.startAccessingSecurityScopedResource()
 			
-			//bookmark
+			//			do {
+			//				try self.rootDirectory.bookmarkDataWithOptions(NSURLBookmarkCreationOptions.SecurityScopeAllowOnlyReadAccess, includingResourceValuesForKeys: nil, relativeToURL: nil)
 			
-			// search for localization files starting at root
-			
-			//sort paths
-			
-			//generate files with gentstrings
-			// generate files with ibtool
-			// build fresh list of generated files.
-			
-			// show detail ui
-			self.performSegueWithIdentifier("detailSegue", sender: sender)
-
+			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+				
+				// TODO: to be implemented to show what was found
+				// search for localization files starting at root
+				// sort paths
+				
+				// Get fresh generation of files
+				self.generateFreshFilesUsingGenstrings()
+				self.generateFreshFilesWithIBTool()
+				self.produceFreshListOfStringFiles()
+				
+				//generate files with gentstrings
+				// generate files with ibtool
+				// build fresh list of generated files.
+				
+				// show detail ui
+				//				self.performSegueWithIdentifier("detailSegue", sender: sender)
+			})
+			//			} catch {
+			//           // TODO: Implement error here if and when this app is to be sandboxed
+			//			}
 		}
-
 	}
-
+	
+	func generateFreshFilesUsingGenstrings() {
+		
+	}
+	
+	func generateFreshFilesWithIBTool() {
+		
+	}
+	
+	func produceFreshListOfStringFiles() {
+		
+	}
 }
 
