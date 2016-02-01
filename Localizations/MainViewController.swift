@@ -9,26 +9,26 @@
 import Cocoa
 
 class MainViewController: NSViewController {
-
+	
 	@IBOutlet weak var chooseButton: NSButton!
 	var rootDirectory: NSURL!
 	// TODO: Add here a random cache directory generator
-	let cacheDirectory = "/tmp/"
-
+	let cacheDirectory: NSString = "/tmp/"
+	
 	var xibFiles = [NSString]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		
 		// Do any additional setup after loading the view.
 	}
-
+	
 	override var representedObject: AnyObject? {
 		didSet {
-		// Update the view, if already loaded.
+			// Update the view, if already loaded.
 		}
 	}
-
+	
 	@IBAction func chooseXcodeFolder(sender: NSButton) {
 		let openPanel = NSOpenPanel()
 		
@@ -69,9 +69,9 @@ class MainViewController: NSViewController {
 				
 				// show detail ui
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
-				NSLog("show something")
+					NSLog("show something")
+					})
 				})
-			})
 			//			} catch {
 			//           // TODO: Implement error here if and when this app is to be sandboxed
 			//			}
@@ -80,26 +80,26 @@ class MainViewController: NSViewController {
 	
 	func generateFreshFilesUsingGenstrings() {
 		let commandString = "/usr/bin/genstrings -o \(self.cacheDirectory) `find \(self.rootDirectory.path!) -name '*.[hm]'`"
-
+		
 		system(commandString)
 	}
 	
 	func generateFreshFilesWithIBTool() {
 		//find . -name '*.xib'
 		// ibtool --generate-strings-file MainMenu.strings MainMenu.xib
-
+		
 		self.xibFiles.removeAll()
 		self.findAllXibFiles(self.rootDirectory.path!)
 		
 		for filePath in self.xibFiles {
 			
-		//		NSArray *filePathComponents = [filePath pathComponents];
+			//		NSArray *filePathComponents = [filePath pathComponents];
 			let pathExtension = filePath.pathExtension
 			let fileName = filePath.lastPathComponent
 			let stringFileName = fileName.stringByReplacingOccurrencesOfString(pathExtension, withString: "strings")
-
+			
 			let commandString = "ibtool --generate-strings-file \(self.cacheDirectory)\(stringFileName) \(filePath)"
-		
+			
 			system(commandString)
 		}
 	}
@@ -138,7 +138,7 @@ class MainViewController: NSViewController {
 					if xibRange != nil && self.xibFiles.contains(elementPath) == false {
 						self.xibFiles.append(elementPath)
 					}
-				}				
+				}
 			}
 		} catch {
 			// TODO: Error Handling here
@@ -146,7 +146,51 @@ class MainViewController: NSViewController {
 	}
 	
 	func produceFreshListOfStringFiles() {
+		//		NSString *cacheDir = LACacheDir;
 		
+		//		[self.freshlyGeneratedFiles removeAllObjects];
+		
+		let fileManager = NSFileManager.defaultManager()
+		do {
+			let content = try fileManager.contentsOfDirectoryAtPath(self.cacheDirectory as String)
+			
+			for element in content {
+				let elementPath = cacheDirectory.stringByAppendingPathComponent(element)
+				var isDirectory:ObjCBool = false
+				
+				fileManager.fileExistsAtPath(elementPath, isDirectory: &isDirectory)
+				
+				if !isDirectory {
+					let stringsRange = element.rangeOfString(".strings")
+					if stringsRange != nil {
+						// files - we are only interested in localizations files.
+						//TODO: Create a custom object here.
+						var newElement = [String:AnyObject]()
+
+						newElement["file_name"] = element
+						var fileContent = ""
+						
+						do {
+							fileContent = try NSString(contentsOfFile: elementPath, encoding: NSUTF8StringEncoding) as String
+						} catch {
+							do {
+								fileContent = try NSString(contentsOfFile: elementPath, encoding: NSUTF16StringEncoding) as String
+							} catch {
+								//TODO: Eventually retry with even more encoding.
+							}
+						}
+						
+						newElement["file_content"] = fileContent
+
+						// TODO : I am here now.
+						// Split the content here
+						// Add the new element to a new list
+					}
+				}
+			}
+		} catch {
+			// TODO: Error handling
+		}
 	}
 }
 
