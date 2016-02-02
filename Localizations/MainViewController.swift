@@ -17,6 +17,8 @@ class MainViewController: NSViewController {
 	
 	var xibFiles = [NSString]()
 	
+	var freshlyGeneratedFiles = [[String:AnyObject]]()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -148,7 +150,7 @@ class MainViewController: NSViewController {
 	func produceFreshListOfStringFiles() {
 		//		NSString *cacheDir = LACacheDir;
 		
-		//		[self.freshlyGeneratedFiles removeAllObjects];
+		self.freshlyGeneratedFiles.removeAll()
 		
 		let fileManager = NSFileManager.defaultManager()
 		do {
@@ -182,15 +184,36 @@ class MainViewController: NSViewController {
 						
 						newElement["file_content"] = fileContent
 
-						// TODO : I am here now.
-						// Split the content here
-						// Add the new element to a new list
+						var splitContent = [[String:AnyObject]]()
+
+						let lines = fileContent.componentsSeparatedByString("\n")
+						var comments = ""
+						
+						for line in lines {
+							if line.characters.count == 0 || line.characters.first ==  "\"" { // Comment line or blank lines
+								comments.appendContentsOf(line)
+								comments.appendContentsOf("\n")
+							} else { // line with key
+								var keyValue = self.splitStringLine(line)
+
+								keyValue["comments"] = comments
+							splitContent.append(keyValue)
+							comments = ""
+							}
+						}
+						newElement["file_split_content"] = splitContent
+						self.freshlyGeneratedFiles.append(newElement)
 					}
 				}
 			}
 		} catch {
 			// TODO: Error handling
 		}
+	}
+	
+	func splitStringLine(line: String) -> [String: AnyObject] {
+		// TODO: Implem
+		return [String:AnyObject]()
 	}
 }
 
