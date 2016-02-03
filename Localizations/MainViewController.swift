@@ -212,8 +212,80 @@ class MainViewController: NSViewController {
 	}
 	
 	func splitStringLine(line: String) -> [String: AnyObject] {
-		// TODO: Implem
-		return [String:AnyObject]()
+		var foundFirstQuote = false
+		var foundSecondQuote = false
+		var foundThirdQuote = false
+		var foundLastQuote = false
+		var ignoreNextCharacter = false
+		
+		var key = ""
+		var value = ""
+		
+		for index in 0..<line.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) {
+			let character = line[line.startIndex.advancedBy(index)]
+
+			if character == "\\" {
+			if !ignoreNextCharacter {
+			ignoreNextCharacter = true
+			continue
+			}
+			}
+			
+			if !foundFirstQuote	{
+				if !ignoreNextCharacter {
+					if character == "\"" {
+					foundFirstQuote = true
+					ignoreNextCharacter = false
+						continue
+					}
+				}
+			} else {
+				if !foundSecondQuote {
+					if !ignoreNextCharacter {
+						if character == "\"" {
+							foundSecondQuote = true
+							ignoreNextCharacter = false
+							continue
+						}
+					} else {
+						key += "\\"
+					}
+					
+					key += "\(character)"
+				} else {
+					if !foundThirdQuote {
+						if character == " " || character == "=" {
+							ignoreNextCharacter = false
+							continue
+						}
+						if character == "\"" {
+							foundThirdQuote = true
+							ignoreNextCharacter = false
+							continue
+						}
+					} else {
+						if !foundLastQuote {
+							if !ignoreNextCharacter {
+								if character == "\"" {
+								foundSecondQuote = true
+								ignoreNextCharacter = false
+								break
+								}
+							} else {
+								value += "\\"
+							}
+							
+							value += "\(character)"
+							
+						} else {
+							break
+						}
+					}
+				}
+			}
+			ignoreNextCharacter = false
+		}
+		return ["key" : key, "value" : value]
 	}
 }
 
