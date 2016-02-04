@@ -184,7 +184,7 @@ class MainViewController: NSViewController {
 						
 						newElement["file_content"] = fileContent
 
-						var splitContent = [[String:AnyObject]]()
+						var splitContent = [Translation]()
 
 						let lines = fileContent.componentsSeparatedByString("\n")
 						var comments = ""
@@ -194,10 +194,10 @@ class MainViewController: NSViewController {
 								comments.appendContentsOf(line)
 								comments.appendContentsOf("\n")
 							} else { // line with key
-								var keyValue = self.splitStringLine(line)
+								let translation = self.splitStringLine(line)
 
-								keyValue["comments"] = comments
-							splitContent.append(keyValue)
+								translation.comments = comments
+							splitContent.append(translation)
 							comments = ""
 							}
 						}
@@ -211,11 +211,11 @@ class MainViewController: NSViewController {
 		}
 	}
 	
-	func splitStringLine(line: String) -> [String: AnyObject] {
+	func splitStringLine(line: String) -> Translation {
 		var foundFirstQuote = false
 		var foundSecondQuote = false
 		var foundThirdQuote = false
-		var foundLastQuote = false
+		let foundLastQuote = false
 		var ignoreNextCharacter = false
 		
 		var key = ""
@@ -285,7 +285,8 @@ class MainViewController: NSViewController {
 			}
 			ignoreNextCharacter = false
 		}
-		return ["key" : key, "value" : value]
+		
+		return Translation(key: key, value: value, comments: "")
 	}
 }
 

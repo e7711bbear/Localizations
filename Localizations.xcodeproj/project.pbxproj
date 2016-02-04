@@ -13,6 +13,7 @@
 		89F071721C5AE60500E75780 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89F071701C5AE60500E75780 /* Main.storyboard */; };
 		89F0717D1C5AE60500E75780 /* LocalizationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0717C1C5AE60500E75780 /* LocalizationsTests.swift */; };
 		89F071881C5AE60500E75780 /* LocalizationsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F071871C5AE60500E75780 /* LocalizationsUITests.swift */; };
+		89F071A21C62EA2F00E75780 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F071A11C62EA2F00E75780 /* Translation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		89F071831C5AE60500E75780 /* LocalizationsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizationsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F071871C5AE60500E75780 /* LocalizationsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationsUITests.swift; sourceTree = "<group>"; };
 		89F071891C5AE60500E75780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89F071A11C62EA2F00E75780 /* Translation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				89F0716A1C5AE60500E75780 /* AppDelegate.swift */,
 				89F0716C1C5AE60500E75780 /* MainViewController.swift */,
+				89F071A01C62EA0F00E75780 /* Model */,
 				89F0716E1C5AE60500E75780 /* Assets.xcassets */,
 				89F071701C5AE60500E75780 /* Main.storyboard */,
 				89F071731C5AE60500E75780 /* Info.plist */,
@@ -120,6 +123,14 @@
 				89F071891C5AE60500E75780 /* Info.plist */,
 			);
 			path = LocalizationsUITests;
+			sourceTree = "<group>";
+		};
+		89F071A01C62EA0F00E75780 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				89F071A11C62EA2F00E75780 /* Translation.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +283,7 @@
 			files = (
 				89F0716D1C5AE60500E75780 /* MainViewController.swift in Sources */,
 				89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */,
+				89F071A21C62EA2F00E75780 /* Translation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
