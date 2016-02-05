@@ -14,6 +14,7 @@
 		89F0717D1C5AE60500E75780 /* LocalizationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0717C1C5AE60500E75780 /* LocalizationsTests.swift */; };
 		89F071881C5AE60500E75780 /* LocalizationsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F071871C5AE60500E75780 /* LocalizationsUITests.swift */; };
 		89F071A21C62EA2F00E75780 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F071A11C62EA2F00E75780 /* Translation.swift */; };
+		89F071A41C64246600E75780 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F071A31C64246600E75780 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		89F071871C5AE60500E75780 /* LocalizationsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationsUITests.swift; sourceTree = "<group>"; };
 		89F071891C5AE60500E75780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89F071A11C62EA2F00E75780 /* Translation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		89F071A31C64246600E75780 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		89F071A01C62EA0F00E75780 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				89F071A31C64246600E75780 /* File.swift */,
 				89F071A11C62EA2F00E75780 /* Translation.swift */,
 			);
 			name = Model;
@@ -282,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89F0716D1C5AE60500E75780 /* MainViewController.swift in Sources */,
+				89F071A41C64246600E75780 /* File.swift in Sources */,
 				89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */,
 				89F071A21C62EA2F00E75780 /* Translation.swift in Sources */,
 			);

@@ -17,7 +17,7 @@ class MainViewController: NSViewController {
 	
 	var xibFiles = [NSString]()
 	
-	var freshlyGeneratedFiles = [[String:AnyObject]]()
+	var freshlyGeneratedFiles = [File]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -166,10 +166,9 @@ class MainViewController: NSViewController {
 					let stringsRange = element.rangeOfString(".strings")
 					if stringsRange != nil {
 						// files - we are only interested in localizations files.
-						//TODO: Create a custom object here.
-						var newElement = [String:AnyObject]()
+						var newFile = File()
 
-						newElement["file_name"] = element
+						newFile.name = element
 						var fileContent = ""
 						
 						do {
@@ -182,9 +181,7 @@ class MainViewController: NSViewController {
 							}
 						}
 						
-						newElement["file_content"] = fileContent
-
-						var splitContent = [Translation]()
+						newFile.rawContent = fileContent
 
 						let lines = fileContent.componentsSeparatedByString("\n")
 						var comments = ""
@@ -197,12 +194,11 @@ class MainViewController: NSViewController {
 								let translation = self.splitStringLine(line)
 
 								translation.comments = comments
-							splitContent.append(translation)
+							newFile.translations.append(translation)
 							comments = ""
 							}
 						}
-						newElement["file_split_content"] = splitContent
-						self.freshlyGeneratedFiles.append(newElement)
+						self.freshlyGeneratedFiles.append(newFile)
 					}
 				}
 			}
