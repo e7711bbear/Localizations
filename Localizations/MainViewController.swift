@@ -71,7 +71,7 @@ class MainViewController: NSViewController {
 				
 				// show detail ui
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
-					NSLog("show something")
+					self.performSegueWithIdentifier("detailSegue", sender: self)
 					})
 				})
 			//			} catch {

@@ -26,7 +26,7 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016 Arnaud Thiercelin. All rights reserved.</string>
-	<key>NSMainStoryboardFile</key>
+	<key>NSMainNibFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
