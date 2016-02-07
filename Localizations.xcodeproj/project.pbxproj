@@ -12,6 +12,10 @@
 		893BB53E1C679A4400F26792 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 893BB53D1C679A4400F26792 /* MainViewController.xib */; };
 		893BB5401C679A6600F26792 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 893BB53F1C679A6600F26792 /* DetailViewController.xib */; };
 		893BB5421C679C0E00F26792 /* ATBasicAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */; };
+		893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5431C67C38C00F26792 /* FileDataSource.swift */; };
+		893BB5461C67C3D900F26792 /* TranslationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5451C67C3D900F26792 /* TranslationDataSource.swift */; };
+		893BB5481C67C93C00F26792 /* FileCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5471C67C93C00F26792 /* FileCellView.swift */; };
+		893BB54A1C67C94A00F26792 /* TranslationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5491C67C94A00F26792 /* TranslationCellView.swift */; };
 		89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0716A1C5AE60500E75780 /* AppDelegate.swift */; };
 		89F0716D1C5AE60500E75780 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0716C1C5AE60500E75780 /* MainViewController.swift */; };
 		89F0716F1C5AE60500E75780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F0716E1C5AE60500E75780 /* Assets.xcassets */; };
@@ -44,6 +48,10 @@
 		893BB53D1C679A4400F26792 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		893BB53F1C679A6600F26792 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATBasicAnimator.swift; sourceTree = "<group>"; };
+		893BB5431C67C38C00F26792 /* FileDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDataSource.swift; sourceTree = "<group>"; };
+		893BB5451C67C3D900F26792 /* TranslationDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationDataSource.swift; sourceTree = "<group>"; };
+		893BB5471C67C93C00F26792 /* FileCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCellView.swift; sourceTree = "<group>"; };
+		893BB5491C67C94A00F26792 /* TranslationCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationCellView.swift; sourceTree = "<group>"; };
 		89F071671C5AE60500E75780 /* Localizations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Localizations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F0716A1C5AE60500E75780 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89F0716C1C5AE60500E75780 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +106,10 @@
 			children = (
 				893BB5331C66BD6700F26792 /* DetailViewController.swift */,
 				893BB53F1C679A6600F26792 /* DetailViewController.xib */,
+				893BB5431C67C38C00F26792 /* FileDataSource.swift */,
+				893BB5451C67C3D900F26792 /* TranslationDataSource.swift */,
+				893BB5471C67C93C00F26792 /* FileCellView.swift */,
+				893BB5491C67C94A00F26792 /* TranslationCellView.swift */,
 			);
 			name = Details;
 			sourceTree = "<group>";
@@ -314,9 +326,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				893BB5461C67C3D900F26792 /* TranslationDataSource.swift in Sources */,
 				893BB5421C679C0E00F26792 /* ATBasicAnimator.swift in Sources */,
+				893BB54A1C67C94A00F26792 /* TranslationCellView.swift in Sources */,
+				893BB5481C67C93C00F26792 /* FileCellView.swift in Sources */,
 				89F0716D1C5AE60500E75780 /* MainViewController.swift in Sources */,
 				89F071A41C64246600E75780 /* File.swift in Sources */,
+				893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */,
 				893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */,
 				89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */,
 				89F071A21C62EA2F00E75780 /* Translation.swift in Sources */,

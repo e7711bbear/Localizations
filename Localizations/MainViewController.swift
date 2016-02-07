@@ -66,17 +66,15 @@ class MainViewController: NSViewController {
 				self.generateFreshFilesWithIBTool()
 				self.produceFreshListOfStringFiles()
 				
-				//generate files with gentstrings
-				// generate files with ibtool
-				// build fresh list of generated files.
-				
 				// show detail ui
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
-					self.performSegueWithIdentifier("detailSegue", sender: self)
+					self.appDelegate.detailViewController.filesDataSource.files.appendContentsOf(self.freshlyGeneratedFiles)
+					self.presentViewController(self.appDelegate.detailViewController, animator: ATBasicAnimator())
+					
 					})
 				})
 			//			} catch {
-			//           // TODO: Implement error here if and when this app is to be sandboxed
+			//           // TODO: Implement error here if and when this app is sandboxed
 			//			}
 		}
 	}

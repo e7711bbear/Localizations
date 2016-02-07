@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainViewController" customModule="Localizations" customModuleProvider="target">
             <connections>
+                <outlet property="chooseButton" destination="wia-qi-KZJ" id="saz-AI-4Xj"/>
                 <outlet property="view" destination="lze-pG-NXr" id="eRJ-X7-UEI"/>
             </connections>
         </customObject>
@@ -30,6 +31,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="chooseXcodeFolder:" target="-2" id="9ms-uY-8ie"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>
