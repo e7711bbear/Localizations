@@ -11,16 +11,24 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
-
+	@IBOutlet weak var mainWindow: NSWindow!
+	
+	var mainViewController: MainViewController!
+	var detailViewController: DetailViewController!
+	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
-		// Insert code here to initialize your application
+		
+		self.mainViewController = MainViewController(nibName: nil, bundle: nil)
+		self.detailViewController = DetailViewController(nibName: nil, bundle: nil)
+		
+		let basicAnimator = ATBasicAnimator()
+		
+		basicAnimator.addSubviewAsFullSize(self.mainWindow.contentView!, subView: self.mainViewController.view)
+		
 	}
 
 	func applicationWillTerminate(aNotification: NSNotification) {
 		// Insert code here to tear down your application
 	}
 
-
 }
-

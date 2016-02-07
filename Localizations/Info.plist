@@ -27,7 +27,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016 Arnaud Thiercelin. All rights reserved.</string>
 	<key>NSMainNibFile</key>
-	<string>Main</string>
+	<string>MainWindow</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

@@ -10,7 +10,10 @@ import Cocoa
 
 class MainViewController: NSViewController {
 	
+	weak var appDelegate: AppDelegate! = NSApplication.sharedApplication().delegate as! AppDelegate
+	
 	@IBOutlet weak var chooseButton: NSButton!
+	
 	var rootDirectory: NSURL!
 	// TODO: Add here a random cache directory generator
 	let cacheDirectory: NSString = "/tmp/"
@@ -18,11 +21,9 @@ class MainViewController: NSViewController {
 	var xibFiles = [NSString]()
 	
 	var freshlyGeneratedFiles = [File]()
-	
+		
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		// Do any additional setup after loading the view.
 	}
 	
 	override var representedObject: AnyObject? {
