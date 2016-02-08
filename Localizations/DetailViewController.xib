@@ -108,13 +108,13 @@
                             <rect key="frame" x="241" y="0.0" width="488" height="488"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="71" horizontalPageScroll="10" verticalLineScroll="71" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRu-Bc-9f1">
+                                <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="68" horizontalPageScroll="10" verticalLineScroll="68" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRu-Bc-9f1">
                                     <rect key="frame" x="0.0" y="0.0" width="521" height="488"/>
                                     <clipView key="contentView" id="TRu-Cm-8kw">
                                         <rect key="frame" x="1" y="0.0" width="519" height="472"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="69" rowSizeStyle="automatic" headerView="v6F-pZ-21T" viewBased="YES" id="ew4-wG-jWs">
+                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="66" rowSizeStyle="automatic" headerView="v6F-pZ-21T" viewBased="YES" id="ew4-wG-jWs">
                                                 <rect key="frame" x="0.0" y="0.0" width="522" height="449"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -135,11 +135,11 @@
                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         <prototypeCellViews>
                                                             <tableCellView identifier="translationCell" id="QLX-d0-omz" customClass="TranslationCellView" customModule="Localizations" customModuleProvider="target">
-                                                                <rect key="frame" x="1" y="1" width="519" height="69"/>
+                                                                <rect key="frame" x="1" y="1" width="519" height="66"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="snf-Re-Dbh">
-                                                                        <rect key="frame" x="3" y="47" width="513" height="17"/>
+                                                                        <rect key="frame" x="3" y="44" width="513" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="17" id="vwb-dU-8BC"/>
                                                                         </constraints>
@@ -149,23 +149,23 @@
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OPA-HQ-2sp">
-                                                                        <rect key="frame" x="3" y="0.0" width="513" height="17"/>
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OPA-HQ-2sp">
+                                                                        <rect key="frame" x="5" y="0.0" width="509" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="dve-mV-2We"/>
                                                                         </constraints>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Comment" drawsBackground="YES" id="e7W-oc-bOv">
-                                                                            <font key="font" metaFont="systemUltraLight" size="13"/>
+                                                                            <font key="font" metaFont="systemLight" size="13"/>
                                                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <color key="backgroundColor" name="windowFrameColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Xe7-qf-Mwz">
-                                                                        <rect key="frame" x="3" y="25" width="513" height="17"/>
-                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="value" id="xiI-9M-m5B">
-                                                                            <font key="font" metaFont="system"/>
-                                                                            <color key="textColor" red="0.1537074447" green="0.92620444300000004" blue="0.16596215959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <rect key="frame" x="5" y="22" width="509" height="17"/>
+                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="value" drawsBackground="YES" id="xiI-9M-m5B">
+                                                                            <font key="font" metaFont="systemSemibold" size="13"/>
+                                                                            <color key="textColor" red="0.033351681482868288" green="0.76035748106060608" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
                                                                 </subviews>
@@ -180,7 +180,7 @@
                                                                     <constraint firstItem="Xe7-qf-Mwz" firstAttribute="height" secondItem="snf-Re-Dbh" secondAttribute="height" id="bmG-ji-qu8"/>
                                                                     <constraint firstItem="snf-Re-Dbh" firstAttribute="top" secondItem="QLX-d0-omz" secondAttribute="top" constant="5" id="isE-nh-pjG"/>
                                                                     <constraint firstItem="snf-Re-Dbh" firstAttribute="leading" secondItem="QLX-d0-omz" secondAttribute="leading" constant="5" id="oGu-oj-8nw"/>
-                                                                    <constraint firstItem="OPA-HQ-2sp" firstAttribute="top" secondItem="Xe7-qf-Mwz" secondAttribute="bottom" constant="8" id="zb7-gJ-OdJ"/>
+                                                                    <constraint firstItem="OPA-HQ-2sp" firstAttribute="top" secondItem="Xe7-qf-Mwz" secondAttribute="bottom" constant="5" id="zb7-gJ-OdJ"/>
                                                                 </constraints>
                                                                 <connections>
                                                                     <outlet property="comments" destination="OPA-HQ-2sp" id="Pyw-hH-XQ7"/>

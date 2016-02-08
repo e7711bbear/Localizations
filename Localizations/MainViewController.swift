@@ -19,6 +19,7 @@ class MainViewController: NSViewController {
 	let cacheDirectory: NSString = "/tmp/"
 	
 	var xibFiles = [NSString]()
+	var stringFiles = [NSString]()
 	
 	var freshlyGeneratedFiles = [File]()
 		
@@ -57,9 +58,9 @@ class MainViewController: NSViewController {
 			
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { [unowned self] () -> Void in
 				
-				// TODO: to be implemented to show what was found
-				// search for localization files starting at root
-				// sort paths
+				// Browsing the existing files
+				self.findStringFiles(self.rootDirectory!.path!)
+				self.sortFoundStringFiles()
 				
 				// Get fresh generation of files
 				self.generateFreshFilesUsingGenstrings()
@@ -79,6 +80,53 @@ class MainViewController: NSViewController {
 		}
 	}
 	
+	// MARK: - Methods collecting existing localization data from .string files.
+	func findStringFiles(startPath: NSString) {
+		//NOTE: Could be replaced by fts_open from libc (man)
+		
+		let fileManager = NSFileManager.defaultManager()
+		do {
+			let content = try fileManager.contentsOfDirectoryAtPath(startPath as String)
+			
+			for element in content {
+				let elementPath = startPath.stringByAppendingPathComponent(element)
+				var isDirectory: ObjCBool = false
+				
+				fileManager.fileExistsAtPath(elementPath, isDirectory: &isDirectory)
+				if isDirectory {
+					// Skipping Directories that can't be open
+					if fileManager.isExecutableFileAtPath(elementPath) {
+						continue
+					}
+					
+					// Skipping Hidden Folders
+					let dotRange = element.rangeOfString(".")
+					if dotRange != nil && dotRange!.first! == element.startIndex {
+						continue
+					}
+					
+					// We open the folder and continue the process.
+					self.findStringFiles(elementPath)
+				}
+				else // files - we are only interested in localizations files.
+				{
+					let xibRange = element.rangeOfString(".strings")
+					
+					if xibRange != nil && self.stringFiles.contains(elementPath) == false {
+						self.stringFiles.append(elementPath)
+					}
+				}
+			}
+		} catch {
+			// TODO: error handling
+		}
+	}
+	
+	func sortFoundStringFiles() {
+		
+	}
+	
+	// MARK: - Methods building fresh localization data from source
 	func generateFreshFilesUsingGenstrings() {
 		let commandString = "/usr/bin/genstrings -o \(self.cacheDirectory) `find \(self.rootDirectory.path!) -name '*.[hm]'`"
 		
