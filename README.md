@@ -4,3 +4,7 @@ Localizations is an OS X app that manages your Xcode project localization files 
 
 Starting from a root folder - typically the project folder - it collects existing localizations data, re-generate new data using genstrings and ibtool, compute a diff and upon request, publishes the changes.
 
+**Currently the app is still under development.**
+
+#Thanks
+[Sebastien Del Grosso](http://sebastiendelgrosso.myportfolio.com) - For the app icon.
