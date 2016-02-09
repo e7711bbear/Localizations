@@ -21,6 +21,9 @@ class MainViewController: NSViewController {
 	var xibFiles = [NSString]()
 	var stringFiles = [NSString]()
 	
+	var localizations = [NSString]()
+	
+	var existingFiles = [File]()
 	var freshlyGeneratedFiles = [File]()
 		
 	override func viewDidLoad() {
@@ -123,7 +126,48 @@ class MainViewController: NSViewController {
 	}
 	
 	func sortFoundStringFiles() {
+		self.existingFiles.removeAll()
+		self.localizations.removeAll()
+		self.localizations.append("Base.lproj")
 		
+		for path in self.stringFiles {
+			let components = path.pathComponents
+			let componentsCount = components.count
+			let folder = components[componentsCount - 2]
+			let file = components[componentsCount - 1]
+
+			var fileContent = ""
+			
+			do {
+				fileContent = try NSString(contentsOfFile: path as String, encoding: NSUTF8StringEncoding) as String
+			} catch {
+				do {
+					fileContent = try NSString(contentsOfFile: path as String, encoding: NSUTF16StringEncoding) as String
+				} catch {
+					//TODO: Eventually retry with even more encoding.
+				}
+			}
+			let newFile = File()
+			
+			newFile.name = file
+			newFile.path = path as String
+			newFile.folder = folder
+			newFile.rawContent = fileContent
+
+			var localizationIsAlreadyRegistered = false
+			
+			for localization in self.localizations {
+				if localization.isEqualToString(folder) {
+					localizationIsAlreadyRegistered = true
+					break
+				}
+			}
+			
+			if localizationIsAlreadyRegistered == false {
+				self.localizations.append(folder)
+			}
+			self.existingFiles.append(newFile)
+		}
 	}
 	
 	// MARK: - Methods building fresh localization data from source

@@ -111,11 +111,11 @@
                                 <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="68" horizontalPageScroll="10" verticalLineScroll="68" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRu-Bc-9f1">
                                     <rect key="frame" x="0.0" y="0.0" width="521" height="488"/>
                                     <clipView key="contentView" id="TRu-Cm-8kw">
-                                        <rect key="frame" x="1" y="0.0" width="519" height="472"/>
+                                        <rect key="frame" x="1" y="0.0" width="519" height="487"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="66" rowSizeStyle="automatic" headerView="v6F-pZ-21T" viewBased="YES" id="ew4-wG-jWs">
-                                                <rect key="frame" x="0.0" y="0.0" width="522" height="449"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="522" height="464"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -196,7 +196,7 @@
                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </clipView>
                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="VOH-19-dcN">
-                                        <rect key="frame" x="1" y="472" width="519" height="15"/>
+                                        <rect key="frame" x="1" y="471" width="519" height="16"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="th1-xy-d5O">

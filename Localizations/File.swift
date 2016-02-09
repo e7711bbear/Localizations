@@ -10,6 +10,8 @@ import Cocoa
 
 class File: NSObject {
 	var name = ""
+	var folder = ""
+	var path = ""
 	var rawContent = ""
 	var translations = [Translation] ()
 }
