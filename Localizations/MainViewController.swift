@@ -98,7 +98,7 @@ class MainViewController: NSViewController {
 				fileManager.fileExistsAtPath(elementPath, isDirectory: &isDirectory)
 				if isDirectory {
 					// Skipping Directories that can't be open
-					if fileManager.isExecutableFileAtPath(elementPath) {
+					if !fileManager.isExecutableFileAtPath(elementPath) {
 						continue
 					}
 					
@@ -113,9 +113,9 @@ class MainViewController: NSViewController {
 				}
 				else // files - we are only interested in localizations files.
 				{
-					let xibRange = element.rangeOfString(".strings")
+					let stringsRange = element.rangeOfString(".strings")
 					
-					if xibRange != nil && self.stringFiles.contains(elementPath) == false {
+					if stringsRange != nil && self.stringFiles.contains(elementPath) == false {
 						self.stringFiles.append(elementPath)
 					}
 				}
@@ -211,7 +211,7 @@ class MainViewController: NSViewController {
 				fileManager.fileExistsAtPath(elementPath, isDirectory: &isDirectory)
 				if isDirectory {
 					// Skipping Directories that can't be open
-					if fileManager.isExecutableFileAtPath(elementPath) {
+					if !fileManager.isExecutableFileAtPath(elementPath) {
 						continue
 					}
 					
