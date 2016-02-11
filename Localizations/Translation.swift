@@ -9,9 +9,17 @@
 import Cocoa
 
 class Translation: NSObject {
+	enum State {
+		case Edit // Something Changed
+		case New // This translation is new
+		case Obselete // This translation is no longer used
+		case None // Nothing has changed
+	}
+	
 	var key: String = ""
 	var value: String = ""
 	var comments: String = ""
+	var state = State.None
 	
 	convenience init(key: String, value: String, comments: String) {
 		self.init()

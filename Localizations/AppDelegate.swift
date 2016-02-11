@@ -31,4 +31,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		// Insert code here to tear down your application
 	}
 
+	@IBAction func new(sender: AnyObject) {
+		self.mainViewController.startFresh()
+	}
+	
+	@IBAction func save(sender: AnyObject) {
+		self.detailViewController.publish()
+	}
+	
 }

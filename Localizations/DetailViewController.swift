@@ -26,6 +26,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate {
 		self.translationsTableView.setDataSource(self.translationsDataSource)
 	}
 	
+	// MARK: Table View funcs
 	func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		switch tableView {
 		case self.filesTableView:
@@ -83,5 +84,18 @@ class DetailViewController: NSViewController, NSTableViewDelegate {
 		self.translationsDataSource.translations.appendContentsOf(selectedFile.translations)
 		self.translationsTableView.performSelectorOnMainThread("reloadData", withObject: nil, waitUntilDone: true)
 		
+	}
+	
+	// MARK: - Saving / Publishing
+	
+	func publish() {
+		let fileManager = NSFileManager.defaultManager()
+
+		guard self.appDelegate.mainViewController.rootDirectory != nil else {
+			// TODO: Error handling here.
+			return
+		}
+		
+		//TODO: implementation
 	}
 }

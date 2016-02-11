@@ -25,7 +25,8 @@ class MainViewController: NSViewController {
 	
 	var existingFiles = [File]()
 	var freshlyGeneratedFiles = [File]()
-		
+	var combinedFiles = [File]()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
@@ -35,6 +36,11 @@ class MainViewController: NSViewController {
 			// Update the view, if already loaded.
 		}
 	}
+	
+	func startFresh() {
+		self.dismissViewController(self.appDelegate.detailViewController)
+	}
+	
 	
 	@IBAction func chooseXcodeFolder(sender: NSButton) {
 		let openPanel = NSOpenPanel()
@@ -70,6 +76,7 @@ class MainViewController: NSViewController {
 				self.generateFreshFilesWithIBTool()
 				self.produceFreshListOfStringFiles()
 				
+				self.compareAndCombine()
 				// show detail ui
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
 					self.appDelegate.detailViewController.filesDataSource.files.appendContentsOf(self.freshlyGeneratedFiles)
@@ -295,6 +302,115 @@ class MainViewController: NSViewController {
 			}
 		} catch {
 			// TODO: Error handling
+		}
+	}
+	
+	func compareAndCombine() {
+		self.combinedFiles.removeAll()
+		
+		// starting by comparing fresh vs existing for diff
+		for newFile in self.freshlyGeneratedFiles {
+			var found = false
+			var matchingFile: File!
+
+			for existingFile in self.existingFiles {
+
+				// Testing presence
+				if newFile.path == existingFile.path {
+					found = true
+					matchingFile = existingFile
+					break
+				}
+			}
+			
+			let combinedFile = File()
+			combinedFile.name = newFile.name
+			combinedFile.path = newFile.path
+			combinedFile.folder = newFile.folder
+			combinedFile.rawContent = newFile.rawContent
+			
+			if found == false {
+				combinedFile.state = .New
+				
+				// TODO: Make sure copy is done here
+				combinedFile.translations = newFile.translations
+			} else {
+				//We search for the diff
+				for newTranslation in newFile.translations {
+					var found = false
+					var matchingTranslation: Translation!
+					
+					for existingTranslation in matchingFile.translations {
+						if newTranslation.key == existingTranslation.key {
+							found = true
+							matchingTranslation = existingTranslation
+							break
+						}
+					}
+					let combinedTranslation = Translation()
+					
+					combinedTranslation.key = newTranslation.key
+					combinedTranslation.value = newTranslation.value
+					combinedTranslation.comments = newTranslation.comments
+					
+					if found {
+						if newTranslation.value != matchingTranslation.value {
+							combinedTranslation.state = .Edit
+						}
+					} else {
+						combinedTranslation.state = .New
+					}
+					combinedFile.translations.append(combinedTranslation)
+				}
+				
+				// We search for the obselete translations
+				for existingTranslation in matchingFile.translations {
+					var found = false
+					
+					for newTranslation in newFile.translations {
+						if newTranslation.key == existingTranslation.key {
+							found = true
+							break
+						}
+					}
+					
+					if found == false {
+						let combinedTranslation = Translation()
+						
+						combinedTranslation.key = existingTranslation.key
+						combinedTranslation.value = existingTranslation.value
+						combinedTranslation.comments = existingTranslation.comments
+						combinedTranslation.state = .Obselete
+						combinedFile.translations.append(combinedTranslation)
+					}
+				}
+			}
+		}
+		
+		// then comparing existing vs fresh for obselete files
+		for existingFile in self.existingFiles {
+			var found = false
+			
+			for newFile in self.freshlyGeneratedFiles {
+				if newFile.path == existingFile.path {
+					found = true
+				}
+			}
+			
+			if found == false {
+				let combinedFile = File()
+
+				combinedFile.name = existingFile.name
+				combinedFile.path = existingFile.path
+				combinedFile.folder = existingFile.folder
+				combinedFile.rawContent = existingFile.rawContent
+				combinedFile.state = .Obselete
+				combinedFile.translations = existingFile.translations
+				
+				for translation in combinedFile.translations {
+					translation.state = .Obselete
+				}
+			}
 		}
 	}
 	

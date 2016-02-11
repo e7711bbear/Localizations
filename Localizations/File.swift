@@ -9,6 +9,14 @@
 import Cocoa
 
 class File: NSObject {
+	enum State {
+		case New
+		case Edit
+		case Obselete
+		case None
+	}
+	
+	var state = State.None
 	var name = ""
 	var folder = ""
 	var path = ""
