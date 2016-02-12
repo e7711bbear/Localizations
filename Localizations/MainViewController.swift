@@ -18,14 +18,14 @@ class MainViewController: NSViewController {
 	// TODO: Add here a random cache directory generator
 	let cacheDirectory: NSString = "/tmp/"
 	
-	var xibFiles = [NSString]()
-	var stringFiles = [NSString]()
+	lazy var xibFiles = [NSString]()
+	lazy var stringFiles = [NSString]()
 	
-	var localizations = [NSString]()
+	lazy var localizations = [NSString]()
 	
-	var existingFiles = [File]()
-	var freshlyGeneratedFiles = [File]()
-	var combinedFiles = [File]()
+	lazy var existingFiles = [File]()
+	lazy var freshlyGeneratedFiles = [File]()
+	lazy var combinedFiles = [File]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -332,7 +332,7 @@ class MainViewController: NSViewController {
 			if found == false {
 				combinedFile.state = .New
 				
-				// TODO: Make sure copy is done here
+				// TODO: Make an actual copy here
 				combinedFile.translations = newFile.translations
 			} else {
 				//We search for the diff
@@ -385,6 +385,8 @@ class MainViewController: NSViewController {
 					}
 				}
 			}
+			
+			self.combinedFiles.append(combinedFile)
 		}
 		
 		// then comparing existing vs fresh for obselete files
@@ -410,6 +412,7 @@ class MainViewController: NSViewController {
 				for translation in combinedFile.translations {
 					translation.state = .Obselete
 				}
+				self.combinedFiles.append(combinedFile)
 			}
 		}
 	}
