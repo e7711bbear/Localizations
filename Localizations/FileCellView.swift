@@ -11,6 +11,7 @@ import Cocoa
 class FileCellView: NSTableCellView {
 
 	@IBOutlet weak var fileName: NSTextField!
+	@IBOutlet weak var folder: NSTextField!
 	
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)

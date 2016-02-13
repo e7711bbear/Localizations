@@ -26,4 +26,14 @@ class FileDataSource: NSObject, NSTableViewDataSource {
 		// TODO: add assert of row being valid
 		return files[row].name
 	}
+	
+	func folder(row: Int) -> String {
+		// TODO: add assert
+		return files[row].folder
+	}
+	
+	func state(row: Int) -> File.State {
+		// TODO: add assert
+		return files[row].state
+	}
 }

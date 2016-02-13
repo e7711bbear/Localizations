@@ -57,6 +57,23 @@ class DetailViewController: NSViewController, NSTableViewDelegate {
 		let rowView = self.filesTableView.makeViewWithIdentifier("fileCell", owner: self) as! FileCellView
 		
 		rowView.fileName.stringValue = self.filesDataSource.fileName(row)
+		rowView.folder.stringValue = self.filesDataSource.folder(row)
+		
+		let state = self.filesDataSource.state(row)
+		
+		// TODO: Replace this below with something a little more sexy.
+		rowView.wantsLayer = true
+		
+		switch state {
+		case .Obselete:
+			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 0.0, blue: 0.0, alpha: 0.5).CGColor
+		case .New:
+			rowView.layer?.backgroundColor = NSColor(calibratedRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.5).CGColor
+		case .Edit:
+			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 1.0, blue: 0.0, alpha: 0.5).CGColor // yellow
+		default:
+			rowView.layer?.backgroundColor = nil
+		}
 		
 		return rowView
 	}
@@ -64,9 +81,25 @@ class DetailViewController: NSViewController, NSTableViewDelegate {
 	func produceTranslationCell(row: Int) -> TranslationCellView {
 		let rowView = self.translationsTableView.makeViewWithIdentifier("translationCell", owner: self) as! TranslationCellView
 		
-		rowView.key.stringValue = self.translationsDataSource.translationKey(row)
-		rowView.value.stringValue = self.translationsDataSource.translationValue(row)
-		rowView.comments.stringValue = self.translationsDataSource.translationComments(row)
+		rowView.key.stringValue = self.translationsDataSource.key(row)
+		rowView.value.stringValue = self.translationsDataSource.value(row)
+		rowView.comments.stringValue = self.translationsDataSource.comments(row)
+		
+		let state = self.translationsDataSource.state(row)
+		
+		// TODO: Replace this below with something a little more sexy.
+		rowView.wantsLayer = true
+		
+		switch state {
+		case .Obselete:
+			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 0.0, blue: 0.0, alpha: 0.5).CGColor
+		case .New:
+			rowView.layer?.backgroundColor = NSColor(calibratedRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.5).CGColor
+		case .Edit:
+			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 1.0, blue: 0.0, alpha: 0.5).CGColor // yellow
+		default:
+			rowView.layer?.backgroundColor = nil
+		}
 		
 		return rowView
 	}

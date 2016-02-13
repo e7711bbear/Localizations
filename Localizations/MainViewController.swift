@@ -79,7 +79,7 @@ class MainViewController: NSViewController {
 				self.compareAndCombine()
 				// show detail ui
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
-					self.appDelegate.detailViewController.filesDataSource.files.appendContentsOf(self.freshlyGeneratedFiles)
+					self.appDelegate.detailViewController.filesDataSource.files.appendContentsOf(self.combinedFiles)
 					self.presentViewController(self.appDelegate.detailViewController, animator: ATBasicAnimator())
 					
 					})

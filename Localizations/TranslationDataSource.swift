@@ -16,18 +16,23 @@ class TranslationDataSource: NSObject, NSTableViewDataSource {
 		return self.translations.count
 	}
 	
-	func translationKey(row: Int) -> String {
+	func key(row: Int) -> String {
 		//TODO: Asserts
 		return translations[row].key
 	}
 	
-	func translationValue(row: Int) -> String {
+	func value(row: Int) -> String {
 		//TODO: Asserts
 		return translations[row].value
 	}
 	
-	func translationComments(row: Int) -> String {
+	func comments(row: Int) -> String {
 		//TODO: Asserts
 		return translations[row].comments
+	}
+	
+	func state(row: Int) -> Translation.State {
+		// TODO: asserts
+		return translations[row].state
 	}
 }
