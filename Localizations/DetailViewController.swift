@@ -119,16 +119,4 @@ class DetailViewController: NSViewController, NSTableViewDelegate {
 		
 	}
 	
-	// MARK: - Saving / Publishing
-	
-	func publish() {
-		let fileManager = NSFileManager.defaultManager()
-
-		guard self.appDelegate.mainViewController.rootDirectory != nil else {
-			// TODO: Error handling here.
-			return
-		}
-		
-		//TODO: implementation
-	}
 }
