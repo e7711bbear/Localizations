@@ -302,6 +302,8 @@ class MainViewController: NSViewController {
 						var newFile = File()
 
 						newFile.name = element
+						// TODO: it'll be great here to ready the conf of the xcode proj and deduce what is the default language.
+						newFile.folder = "Base.lproj"
 						var fileContent = ""
 						
 						do {
@@ -334,9 +336,10 @@ class MainViewController: NSViewController {
 			var matchingFile: File!
 
 			for existingFile in self.existingFiles {
-
+				
 				// Testing presence
-				if newFile.path == existingFile.path {
+				if newFile.name == existingFile.name &&
+					newFile.folder == existingFile.folder {
 					found = true
 					matchingFile = existingFile
 					break
@@ -417,7 +420,8 @@ class MainViewController: NSViewController {
 			var found = false
 			
 			for newFile in self.freshlyGeneratedFiles {
-				if newFile.path == existingFile.path {
+				if newFile.name == existingFile.name &&
+				newFile.folder == existingFile.folder {
 					found = true
 				}
 			}

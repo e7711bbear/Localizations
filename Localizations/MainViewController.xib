@@ -38,9 +38,11 @@
             </subviews>
             <constraints>
                 <constraint firstItem="wia-qi-KZJ" firstAttribute="centerY" secondItem="lze-pG-NXr" secondAttribute="centerY" id="1EL-cj-vjt"/>
+                <constraint firstItem="lwv-xn-XM8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lze-pG-NXr" secondAttribute="leading" constant="50" id="Lwm-SZ-I9P"/>
                 <constraint firstItem="wia-qi-KZJ" firstAttribute="centerX" secondItem="lwv-xn-XM8" secondAttribute="centerX" id="YaI-oE-BTM"/>
                 <constraint firstItem="lwv-xn-XM8" firstAttribute="centerX" secondItem="lze-pG-NXr" secondAttribute="centerX" id="Zx4-Vc-sjR"/>
                 <constraint firstItem="wia-qi-KZJ" firstAttribute="top" secondItem="lwv-xn-XM8" secondAttribute="bottom" constant="8" id="rx8-SW-SIB"/>
+                <constraint firstItem="lwv-xn-XM8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="lze-pG-NXr" secondAttribute="top" constant="50" id="wEu-Ii-sbh"/>
             </constraints>
             <point key="canvasLocation" x="496" y="65.5"/>
         </view>
