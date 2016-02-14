@@ -15,8 +15,33 @@ class MainViewController: NSViewController {
 	@IBOutlet weak var chooseButton: NSButton!
 	
 	var rootDirectory: NSURL!
-	// TODO: Add here a random cache directory generator
-	let cacheDirectory: NSString = "/tmp/"
+
+	private var _cacheDirectory: String!
+	
+	var cacheDirectory: NSString {
+		get {
+			if _cacheDirectory == nil {
+				// Randomize
+				let size = 12
+				let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+				let randomFolderName = NSMutableString(capacity: size)
+				for _ in 0..<size {
+					randomFolderName.appendFormat("%c", letters.characterAtIndex(Int(arc4random_uniform(UInt32(letters.length)))))
+				}
+				
+				_cacheDirectory = "/tmp/\(randomFolderName)"
+				
+				// Make Folder if not already existing
+				let fileManager = NSFileManager.defaultManager()
+				
+				// TODO: handle errors other than "can't create because already there"
+				try! fileManager.createDirectoryAtPath(_cacheDirectory, withIntermediateDirectories: true, attributes: nil)
+				
+				
+			}
+			return _cacheDirectory
+		}
+	}
 	
 	lazy var xibFiles = [NSString]()
 	lazy var stringFiles = [NSString]()
@@ -38,6 +63,14 @@ class MainViewController: NSViewController {
 	}
 	
 	func startFresh() {
+		self._cacheDirectory = nil
+		// TODO: Add remove files from folder too
+		self.xibFiles.removeAll()
+		self.stringFiles.removeAll()
+		self.localizations.removeAll()
+		self.existingFiles.removeAll()
+		self.freshlyGeneratedFiles.removeAll()
+		self.combinedFiles.removeAll()
 		self.dismissViewController(self.appDelegate.detailViewController)
 	}
 	
@@ -160,7 +193,7 @@ class MainViewController: NSViewController {
 			newFile.path = path as String
 			newFile.folder = folder
 			newFile.rawContent = fileContent
-
+			newFile.translations = self.parseTranslations(newFile.rawContent)
 			var localizationIsAlreadyRegistered = false
 			
 			for localization in self.localizations {
@@ -181,6 +214,8 @@ class MainViewController: NSViewController {
 	func generateFreshFilesUsingGenstrings() {
 		let commandString = "/usr/bin/genstrings -o \(self.cacheDirectory) `find \(self.rootDirectory.path!) -name '*.[hm]'`"
 		
+		NSLog("Running: \(commandString)")
+		
 		system(commandString)
 	}
 	
@@ -200,6 +235,8 @@ class MainViewController: NSViewController {
 			
 			let commandString = "ibtool --generate-strings-file \(self.cacheDirectory)\(stringFileName) \(filePath)"
 			
+			NSLog("Running: \(commandString)")
+
 			system(commandString)
 		}
 	}
@@ -246,8 +283,6 @@ class MainViewController: NSViewController {
 	}
 	
 	func produceFreshListOfStringFiles() {
-		//		NSString *cacheDir = LACacheDir;
-		
 		self.freshlyGeneratedFiles.removeAll()
 		
 		let fileManager = NSFileManager.defaultManager()
@@ -280,22 +315,7 @@ class MainViewController: NSViewController {
 						}
 						
 						newFile.rawContent = fileContent
-
-						let lines = fileContent.componentsSeparatedByString("\n")
-						var comments = ""
-						
-						for line in lines {
-							if line.characters.count == 0 || line.characters.first !=  "\"" { // Comment line or blank lines
-								comments.appendContentsOf(line)
-								comments.appendContentsOf("\n")
-							} else { // line with key
-								let translation = self.splitStringLine(line)
-
-								translation.comments = comments
-							newFile.translations.append(translation)
-							comments = ""
-							}
-						}
+						newFile.translations = self.parseTranslations(fileContent)
 						self.freshlyGeneratedFiles.append(newFile)
 					}
 				}
@@ -334,6 +354,9 @@ class MainViewController: NSViewController {
 				
 				// TODO: Make an actual copy here
 				combinedFile.translations = newFile.translations
+				for translation in combinedFile.translations {
+					translation.state = .New
+				}
 			} else {
 				//We search for the diff
 				for newTranslation in newFile.translations {
@@ -407,6 +430,7 @@ class MainViewController: NSViewController {
 				combinedFile.folder = existingFile.folder
 				combinedFile.rawContent = existingFile.rawContent
 				combinedFile.state = .Obselete
+				
 				combinedFile.translations = existingFile.translations
 				
 				for translation in combinedFile.translations {
@@ -415,6 +439,26 @@ class MainViewController: NSViewController {
 				self.combinedFiles.append(combinedFile)
 			}
 		}
+	}
+	
+	func parseTranslations(rawContent: String) -> [Translation] {
+		let lines = rawContent.componentsSeparatedByString("\n")
+		var translations = [Translation]()
+		var comments = ""
+		
+		for line in lines {
+			if line.characters.count == 0 || line.characters.first !=  "\"" { // Comment line or blank lines
+				comments.appendContentsOf(line)
+				comments.appendContentsOf("\n")
+			} else { // line with key
+				let translation = self.splitStringLine(line)
+				
+				translation.comments = comments
+				translations.append(translation)
+				comments = ""
+			}
+		}
+		return translations
 	}
 	
 	func splitStringLine(line: String) -> Translation {
