@@ -85,7 +85,6 @@ class MainViewController: NSViewController {
 		self.dismissViewController(self.appDelegate.detailViewController)
 	}
 	
-	
 	@IBAction func chooseXcodeFolder(sender: NSButton) {
 		let openPanel = NSOpenPanel()
 		

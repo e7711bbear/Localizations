@@ -33,8 +33,6 @@ extension DetailViewController {
 	}
 	
 	func createFile(file: File) {
-		let fileManager = NSFileManager.defaultManager()
-
 		let fileContent = self.writableContent(file)
 		do {
 			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
@@ -44,8 +42,6 @@ extension DetailViewController {
 	}
 	
 	func editFile(file: File) {
-		let fileManager = NSFileManager.defaultManager()
-
 		let fileContent = self.writableContent(file)
 		do {
 			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
