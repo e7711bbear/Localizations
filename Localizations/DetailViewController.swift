@@ -8,14 +8,19 @@
 
 import Cocoa
 
-class DetailViewController: NSViewController, NSTableViewDelegate {
+class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDelegate {
 
 	weak var appDelegate: AppDelegate! = NSApplication.sharedApplication().delegate as! AppDelegate
 
-	@IBOutlet weak var filesTableView: NSTableView!
+	@IBOutlet var filesTableView: NSTableView!
 	var filesDataSource = FileDataSource()
-	@IBOutlet weak var translationsTableView: NSTableView!
+	
+	@IBOutlet var tabView: NSTabView!
+	
+	@IBOutlet var translationsTableView: NSTableView!
 	var translationsDataSource = TranslationDataSource()
+	
+	@IBOutlet var rawContentView: NSTextView!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,6 +122,13 @@ class DetailViewController: NSViewController, NSTableViewDelegate {
 		self.translationsDataSource.translations.appendContentsOf(selectedFile.translations)
 		self.translationsTableView.performSelectorOnMainThread("reloadData", withObject: nil, waitUntilDone: true)
 		
+		self.rawContentView.string = selectedFile.rawContent
+	}
+	
+	// MARK: - TabView Delegate
+	
+	func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
+		self.prepareTranslationsForDisplay()
 	}
 	
 }

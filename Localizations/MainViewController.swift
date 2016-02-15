@@ -12,7 +12,7 @@ class MainViewController: NSViewController {
 	
 	weak var appDelegate: AppDelegate! = NSApplication.sharedApplication().delegate as! AppDelegate
 	
-	@IBOutlet weak var chooseButton: NSButton!
+	@IBOutlet var chooseButton: NSButton!
 	
 	var rootDirectory: NSURL!
 
