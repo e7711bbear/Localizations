@@ -46,7 +46,6 @@ extension DetailViewController {
 	func editFile(file: File) {
 		let fileManager = NSFileManager.defaultManager()
 
-		might need to erase first here
 		let fileContent = self.writableContent(file)
 		do {
 			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)

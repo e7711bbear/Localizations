@@ -18,7 +18,7 @@ class MainViewController: NSViewController {
 
 	private var _cacheDirectory: String!
 	
-	var cacheDirectory: NSString {
+	var cacheDirectory: NSString! {
 		get {
 			if _cacheDirectory == nil {
 				// Randomize
@@ -40,6 +40,18 @@ class MainViewController: NSViewController {
 				
 			}
 			return _cacheDirectory
+		}
+		set {
+			if newValue == nil {
+				let fileManager = NSFileManager.defaultManager()
+				
+				do {
+					try fileManager.removeItemAtPath(_cacheDirectory)
+				} catch {
+					NSLog("Failed to trash the cache directory \(_cacheDirectory)")
+				}
+			}
+			_cacheDirectory = newValue as String
 		}
 	}
 	
@@ -63,8 +75,7 @@ class MainViewController: NSViewController {
 	}
 	
 	func startFresh() {
-		self._cacheDirectory = nil
-		// TODO: Add remove files from folder too
+		self.cacheDirectory = nil
 		self.xibFiles.removeAll()
 		self.stringFiles.removeAll()
 		self.localizations.removeAll()
@@ -227,8 +238,6 @@ class MainViewController: NSViewController {
 		self.findAllXibFiles(self.rootDirectory.path!)
 		
 		for filePath in self.xibFiles {
-			
-			//		NSArray *filePathComponents = [filePath pathComponents];
 			let pathExtension = filePath.pathExtension
 			let fileName = filePath.lastPathComponent
 			let stringFileName = fileName.stringByReplacingOccurrencesOfString(pathExtension, withString: "strings")
