@@ -17,15 +17,15 @@ extension DetailViewController {
 			switch translation.state {
 			case .New:
 				returnableString += "/* \(translation.comments) */ \n"
-				returnableString += "\"\(translation.key)\" = \"\(translation.value)\"  /* NEW */\n"
+				returnableString += "\"\(translation.key)\" = \"\(translation.value)\";  /* NEW */\n"
 			case .Edit:
 				returnableString += "/* \(translation.comments) */ \n"
-				returnableString += "\"\(translation.key)\" = \"\(translation.value)\"  /* EDITED */\n"
+				returnableString += "\"\(translation.key)\" = \"\(translation.value)\";  /* EDITED */\n"
 			case .Obselete:
 				continue
 			default:
 				returnableString += "/* \(translation.comments) */ \n"
-				returnableString += "\"\(translation.key)\" = \"\(translation.value)\"\n"
+				returnableString += "\"\(translation.key)\" = \"\(translation.value)\";\n"
 			}
 		}
 		

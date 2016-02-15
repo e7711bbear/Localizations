@@ -16,7 +16,10 @@ extension MainViewController {
 		var comments = ""
 		
 		for line in lines {
-			if line.characters.count == 0 || line.characters.first !=  "\"" { // Comment line or blank lines
+			if line.characters.count == 0 {
+				continue
+			}
+			if line.characters.first !=  "\"" { // Comment line or blank lines
 				comments.appendContentsOf(line)
 				comments.appendContentsOf("\n")
 			} else { // line with key
