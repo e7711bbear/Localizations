@@ -10,16 +10,59 @@ import Foundation
 
 extension DetailViewController {
 	
-	func createFile(file: File) {
+	func writableContent(file: File) -> String {
+		var returnableString = ""
 		
+		for translation in file.translations {
+			switch translation.state {
+			case .New:
+				returnableString += "/* \(translation.comments) */ \n"
+				returnableString += "\"\(translation.key)\" = \"\(translation.value)\"  /* NEW */\n"
+			case .Edit:
+				returnableString += "/* \(translation.comments) */ \n"
+				returnableString += "\"\(translation.key)\" = \"\(translation.value)\"  /* EDITED */\n"
+			case .Obselete:
+				continue
+			default:
+				returnableString += "/* \(translation.comments) */ \n"
+				returnableString += "\"\(translation.key)\" = \"\(translation.value)\"\n"
+			}
+		}
+		
+		return returnableString
+	}
+	
+	func createFile(file: File) {
+		let fileManager = NSFileManager.defaultManager()
+
+		let fileContent = self.writableContent(file)
+		do {
+			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
+		} catch {
+			// TODO: Error handling
+		}
 	}
 	
 	func editFile(file: File) {
-		
+		let fileManager = NSFileManager.defaultManager()
+
+		might need to erase first here
+		let fileContent = self.writableContent(file)
+		do {
+			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
+		} catch {
+			// TODO: Error handling
+		}
 	}
 	
 	func deleteFile(file: File) {
-		
+		let fileManager = NSFileManager.defaultManager()
+
+		do {
+			try fileManager.removeItemAtPath(file.path)
+		} catch {
+			// TODO: Error Handling
+		}
 	}
 	
 	func publish() {

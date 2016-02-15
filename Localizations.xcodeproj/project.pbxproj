@@ -19,6 +19,7 @@
 		89A294131C68441F003B76D6 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 89A294111C68441F003B76D6 /* LICENSE.md */; };
 		89A294141C68441F003B76D6 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 89A294121C68441F003B76D6 /* README.md */; };
 		89A294161C7149ED003B76D6 /* DetailViewController+Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A294151C7149ED003B76D6 /* DetailViewController+Save.swift */; };
+		89A294181C714E41003B76D6 /* MainViewController+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A294171C714E41003B76D6 /* MainViewController+Parser.swift */; };
 		89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0716A1C5AE60500E75780 /* AppDelegate.swift */; };
 		89F0716D1C5AE60500E75780 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0716C1C5AE60500E75780 /* MainViewController.swift */; };
 		89F0716F1C5AE60500E75780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F0716E1C5AE60500E75780 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		89A294111C68441F003B76D6 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		89A294121C68441F003B76D6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		89A294151C7149ED003B76D6 /* DetailViewController+Save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailViewController+Save.swift"; sourceTree = "<group>"; };
+		89A294171C714E41003B76D6 /* MainViewController+Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+Parser.swift"; sourceTree = "<group>"; };
 		89F071671C5AE60500E75780 /* Localizations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Localizations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F0716A1C5AE60500E75780 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89F0716C1C5AE60500E75780 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				89F0716C1C5AE60500E75780 /* MainViewController.swift */,
+				89A294171C714E41003B76D6 /* MainViewController+Parser.swift */,
 				893BB53D1C679A4400F26792 /* MainViewController.xib */,
 			);
 			name = MainController;
@@ -345,6 +348,7 @@
 				89A294161C7149ED003B76D6 /* DetailViewController+Save.swift in Sources */,
 				893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */,
 				893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */,
+				89A294181C714E41003B76D6 /* MainViewController+Parser.swift in Sources */,
 				89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */,
 				89F071A21C62EA2F00E75780 /* Translation.swift in Sources */,
 				89A294131C68441F003B76D6 /* LICENSE.md in Sources */,
