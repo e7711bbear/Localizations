@@ -16,7 +16,7 @@ class MainViewController: NSViewController {
 	
 	var rootDirectory: NSURL!
 
-	private var _cacheDirectory: String!
+	private var _cacheDirectory: NSString?
 	
 	var cacheDirectory: NSString! {
 		get {
@@ -35,23 +35,21 @@ class MainViewController: NSViewController {
 				let fileManager = NSFileManager.defaultManager()
 				
 				// TODO: handle errors other than "can't create because already there"
-				try! fileManager.createDirectoryAtPath(_cacheDirectory, withIntermediateDirectories: true, attributes: nil)
-				
-				
+				try! fileManager.createDirectoryAtPath(_cacheDirectory! as String, withIntermediateDirectories: true, attributes: nil)
 			}
 			return _cacheDirectory
 		}
 		set {
-			if newValue == nil {
+			if newValue == nil && _cacheDirectory != nil {
 				let fileManager = NSFileManager.defaultManager()
 				
 				do {
-					try fileManager.removeItemAtPath(_cacheDirectory)
+					try fileManager.removeItemAtPath(_cacheDirectory! as String)
 				} catch {
 					NSLog("Failed to trash the cache directory \(_cacheDirectory)")
 				}
 			}
-			_cacheDirectory = newValue as String
+			self._cacheDirectory = newValue
 		}
 	}
 	
@@ -74,6 +72,9 @@ class MainViewController: NSViewController {
 		}
 	}
 	
+	override func viewDidAppear() {
+	}
+	
 	func startFresh() {
 		self.cacheDirectory = nil
 		self.xibFiles.removeAll()
@@ -83,6 +84,8 @@ class MainViewController: NSViewController {
 		self.freshlyGeneratedFiles.removeAll()
 		self.combinedFiles.removeAll()
 		self.dismissViewController(self.appDelegate.detailViewController)
+		self.appDelegate.newMenuItem.enabled = false
+		self.appDelegate.saveMenuItem.enabled = false
 	}
 	
 	@IBAction func chooseXcodeFolder(sender: NSButton) {
@@ -124,7 +127,8 @@ class MainViewController: NSViewController {
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
 					self.appDelegate.detailViewController.filesDataSource.files.appendContentsOf(self.combinedFiles)
 					self.presentViewController(self.appDelegate.detailViewController, animator: ATBasicAnimator())
-					
+					self.appDelegate.newMenuItem.enabled = true
+					self.appDelegate.saveMenuItem.enabled = true
 					})
 				})
 			//			} catch {

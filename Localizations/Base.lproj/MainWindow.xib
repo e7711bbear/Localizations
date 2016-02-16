@@ -15,10 +15,12 @@
         <customObject id="Ueu-6M-pTv" userLabel="AppDelegate" customClass="AppDelegate" customModule="Localizations" customModuleProvider="target">
             <connections>
                 <outlet property="mainWindow" destination="F0z-JX-Cv5" id="3qr-cv-Eqr"/>
+                <outlet property="newMenuItem" destination="Was-JA-tGl" id="Rs8-84-q9m"/>
+                <outlet property="saveMenuItem" destination="pxx-59-PXV" id="Zl2-M5-o2v"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+        <menu title="Main Menu" systemMenu="main" autoenablesItems="NO" id="AYu-sK-qS6">
             <items>
                 <menuItem title="NewApplication" id="1Xt-HY-uBw">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -66,15 +68,15 @@
                 </menuItem>
                 <menuItem title="File" id="dMs-cI-mzQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="File" id="bib-Uj-vzu">
+                    <menu key="submenu" title="File" autoenablesItems="NO" id="bib-Uj-vzu">
                         <items>
-                            <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
+                            <menuItem title="New" enabled="NO" keyEquivalent="n" id="Was-JA-tGl">
                                 <connections>
                                     <action selector="new:" target="Ueu-6M-pTv" id="G5b-To-Ipa"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
-                            <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
+                            <menuItem title="Save…" enabled="NO" keyEquivalent="s" id="pxx-59-PXV">
                                 <connections>
                                     <action selector="save:" target="Ueu-6M-pTv" id="2Fl-36-nMV"/>
                                 </connections>

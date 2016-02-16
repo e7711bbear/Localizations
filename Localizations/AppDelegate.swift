@@ -11,7 +11,10 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-	@IBOutlet weak var mainWindow: NSWindow!
+	@IBOutlet var mainWindow: NSWindow!
+	
+	@IBOutlet var newMenuItem: NSMenuItem!
+	@IBOutlet var saveMenuItem: NSMenuItem!
 	
 	var mainViewController: MainViewController!
 	var detailViewController: DetailViewController!
