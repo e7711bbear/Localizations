@@ -245,7 +245,7 @@ class MainViewController: NSViewController {
 			let fileName = filePath.lastPathComponent
 			let stringFileName = fileName.stringByReplacingOccurrencesOfString(pathExtension, withString: "strings")
 			
-			let commandString = "ibtool --generate-strings-file \(self.cacheDirectory)\(stringFileName) \(filePath)"
+			let commandString = "ibtool --generate-strings-file \(self.cacheDirectory)/\(stringFileName) \(filePath)"
 			
 			NSLog("Running: \(commandString)")
 
