@@ -53,7 +53,7 @@ class MainViewController: NSViewController {
 		}
 	}
 	
-	lazy var xibFiles = [NSString]()
+	lazy var ibFiles = [NSString]()
 	lazy var stringFiles = [NSString]()
 	
 	lazy var localizations = [NSString]()
@@ -77,7 +77,7 @@ class MainViewController: NSViewController {
 	
 	func startFresh() {
 		self.cacheDirectory = nil
-		self.xibFiles.removeAll()
+		self.ibFiles.removeAll()
 		self.stringFiles.removeAll()
 		self.localizations.removeAll()
 		self.existingFiles.removeAll()
@@ -226,7 +226,7 @@ class MainViewController: NSViewController {
 	
 	// MARK: - Methods building fresh localization data from source
 	func generateFreshFilesUsingGenstrings() {
-		let commandString = "/usr/bin/genstrings -o \(self.cacheDirectory) `find \(self.rootDirectory.path!) -name '*.[hm]'`"
+		let commandString = "/usr/bin/genstrings -o \(self.cacheDirectory) `find \(self.rootDirectory.path!) -name '*.[hm]' -o -name '*.swift'`"
 		
 		NSLog("Running: \(commandString)")
 		
@@ -237,10 +237,10 @@ class MainViewController: NSViewController {
 		//find . -name '*.xib'
 		// ibtool --generate-strings-file MainMenu.strings MainMenu.xib
 		
-		self.xibFiles.removeAll()
-		self.findAllXibFiles(self.rootDirectory.path!)
+		self.ibFiles.removeAll()
+		self.findAllIBFiles(self.rootDirectory.path!)
 		
-		for filePath in self.xibFiles {
+		for filePath in self.ibFiles {
 			let pathExtension = filePath.pathExtension
 			let fileName = filePath.lastPathComponent
 			let stringFileName = fileName.stringByReplacingOccurrencesOfString(pathExtension, withString: "strings")
@@ -253,7 +253,7 @@ class MainViewController: NSViewController {
 		}
 	}
 	
-	func findAllXibFiles(startPath: NSString) {
+	func findAllIBFiles(startPath: NSString) {
 		//NOTE: Could be replaced by fts_open from libc (man)
 		
 		let fileManager = NSFileManager.defaultManager()
@@ -278,14 +278,16 @@ class MainViewController: NSViewController {
 					}
 					
 					// We "open" the folder and continue the process.
-					self.findAllXibFiles(elementPath)
+					self.findAllIBFiles(elementPath)
 				}
 				else // files - we are only interested in localizations files.
 				{
 					let xibRange = element.rangeOfString(".xib")
+					let storyboardRange = element.rangeOfString(".storyboard")
 					
-					if xibRange != nil && self.xibFiles.contains(elementPath) == false {
-						self.xibFiles.append(elementPath)
+					if (xibRange != nil || storyboardRange != nil) &&
+						self.ibFiles.contains(elementPath) == false {
+						self.ibFiles.append(elementPath)
 					}
 				}
 			}
