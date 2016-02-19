@@ -53,6 +53,12 @@ class MainViewController: NSViewController {
 		}
 	}
 	
+	// TODO: Move this to an xcodefile model
+	var pbxprojPath = ""
+	var pbxprojContent = ""
+	var devRegion = ""
+	lazy var knownRegions = [String]()
+	
 	lazy var ibFiles = [NSString]()
 	lazy var stringFiles = [NSString]()
 	
@@ -113,6 +119,9 @@ class MainViewController: NSViewController {
 			
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { [unowned self] () -> Void in
 				
+				// Find the xcode pbxproj.
+				self.findPbxproj(self.rootDirectory!.path!)
+				
 				// Browsing the existing files
 				self.findStringFiles(self.rootDirectory!.path!)
 				self.sortFoundStringFiles()
@@ -138,6 +147,95 @@ class MainViewController: NSViewController {
 	}
 	
 	// MARK: - Methods collecting existing localization data from .string files.
+	
+	func findPbxproj(startPath: NSString) {
+		let fileManager = NSFileManager.defaultManager()
+		
+		do {
+			let content = try fileManager.contentsOfDirectoryAtPath(startPath as String)
+			
+			for element in content {
+				let elementPath = startPath.stringByAppendingPathComponent(element)
+				var isDirectory: ObjCBool = false
+				
+				fileManager.fileExistsAtPath(elementPath, isDirectory: &isDirectory)
+				if isDirectory {
+					// Skipping Directories that can't be open
+					if !fileManager.isExecutableFileAtPath(elementPath) {
+						continue
+					}
+					
+					// Skipping Hidden Folders
+					let dotRange = element.rangeOfString(".")
+					if dotRange != nil && dotRange!.first! == element.startIndex {
+						continue
+					}
+					
+					// We open the folder and continue the process.
+					self.findPbxproj(elementPath)
+				}
+				else // files - we are only interested in localizations files.
+				{
+					let stringsRange = element.rangeOfString(".pbxproj")
+					
+					if stringsRange != nil {
+						if self.pbxprojPath == "" {
+							self.pbxprojPath = elementPath
+							self.readPbxproj()
+						} else {
+							NSLog("Error: Found multiple pbxproj - \(elementPath)")
+							//TODO: Implement critical error here as we have multiple xcode project under the folder.
+							// We could offer to choose manually or crash directly.
+						}
+					}
+				}
+			}
+		} catch {
+			// TODO: error handling
+		}
+	}
+	
+	func readPbxproj() {
+		do {
+			self.pbxprojContent = try NSString(contentsOfFile: self.pbxprojPath as String, encoding: NSUTF8StringEncoding) as String
+		} catch {
+			do {
+				self.pbxprojContent = try NSString(contentsOfFile: self.pbxprojPath as String, encoding: NSUTF16StringEncoding) as String
+			} catch {
+				//TODO: Eventually retry with even more encoding.
+			}
+		}
+		
+		guard self.pbxprojContent != "" else {
+			NSLog("Can't proceed with reading the pbxproj file (\(self.pbxprojPath)), because it's empty.")
+			return
+		}
+		let lines = self.pbxprojContent.componentsSeparatedByString("\n")
+		
+		for line in lines {
+			if line.characters.count == 0 {
+				continue
+			}
+			
+			if self.devRegion == "" {
+				let devRegionRange = line.rangeOfString("")
+				
+				if devRegionRange != nil {
+//					self.devRegion
+					here finish.
+				}
+			}
+			if self.knownRegions.count == 0 {
+				let knownRegion = line.rangeOfString("")
+				
+				if knownRegions != nil {
+//					self.knownRegions
+					here finish
+				}
+			}
+		}
+	}
+	
 	func findStringFiles(startPath: NSString) {
 		//NOTE: Could be replaced by fts_open from libc (man)
 		
