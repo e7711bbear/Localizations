@@ -196,6 +196,9 @@ class MainViewController: NSViewController {
 	}
 	
 	func readPbxproj() {
+		self.knownRegions.removeAll()
+		self.devRegion = ""
+		
 		do {
 			self.pbxprojContent = try NSString(contentsOfFile: self.pbxprojPath as String, encoding: NSUTF8StringEncoding) as String
 		} catch {
@@ -218,23 +221,61 @@ class MainViewController: NSViewController {
 			}
 			
 			if self.devRegion == "" {
-				let devRegionRange = line.rangeOfString("")
+				let devRegionRange = line.rangeOfString("developmentRegion")
 				
 				if devRegionRange != nil {
-//					self.devRegion
-					here finish.
+					let foundDevRegion = self.parseDevRegion(line)
+					
+					if foundDevRegion != nil {
+						self.devRegion = foundDevRegion!
+					} else {
+						// TODO: Recovery here
+					}
 				}
 			}
 			if self.knownRegions.count == 0 {
-				let knownRegion = line.rangeOfString("")
+				let knownRegionRange = line.rangeOfString("knownRegions")
 				
-				if knownRegions != nil {
-//					self.knownRegions
-					here finish
+				if knownRegionRange != nil {
+					let startingIndex =	lines.indexOf(line)
+					
+					let foundRegions = self.parseKnownRegions(lines, startingIndex: startingIndex!)
+					
+					// TODO: Eventually add here a test on the qty returned.
+					self.knownRegions.appendContentsOf(foundRegions)
 				}
 			}
 		}
 	}
+	
+	func parseDevRegion(line: String) -> String? {
+		let lineParts = line.componentsSeparatedByString("=")
+		var cleanedString = lineParts[1].stringByReplacingOccurrencesOfString(" ", withString: "")
+		cleanedString = cleanedString.stringByReplacingOccurrencesOfString(";", withString: "")
+		
+		return cleanedString
+	}
+	
+	func parseKnownRegions(lines: [String], startingIndex: Int) -> [String] {
+		var foundRegions = [String]()
+		
+		for index in startingIndex+1..<lines.count {
+			let line = lines[index]
+			
+			if line.rangeOfString(");") == nil { // we are in a line of a region
+				var cleanedLine = line.stringByReplacingOccurrencesOfString(" ", withString: "")
+				cleanedLine = cleanedLine.stringByReplacingOccurrencesOfString("\t", withString: "")
+				cleanedLine = cleanedLine.stringByReplacingOccurrencesOfString(",", withString: "")
+				
+				foundRegions.append(cleanedLine)
+			} else {
+				break
+			}
+		}
+		
+		return foundRegions
+	}
+	
 	
 	func findStringFiles(startPath: NSString) {
 		//NOTE: Could be replaced by fts_open from libc (man)
