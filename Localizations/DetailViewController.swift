@@ -71,21 +71,21 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		rowView.fileName.stringValue = file.name
 		rowView.folder.stringValue = file.folder
 		
-		let state = file.state
+//		let state = file.state
 		
 		// TODO: Replace this below with something a little more sexy.
-		rowView.wantsLayer = true
+//		rowView.wantsLayer = true
 		
-		switch state {
-		case .Obselete:
-			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 0.0, blue: 0.0, alpha: 0.2).CGColor
-		case .New:
-			rowView.layer?.backgroundColor = NSColor(calibratedRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.2).CGColor
-		case .Edit:
-			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 1.0, blue: 0.0, alpha: 0.2).CGColor // yellow
-		default:
-			rowView.layer?.backgroundColor = nil
-		}
+//		switch state {
+//		case .Obselete:
+//			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 0.0, blue: 0.0, alpha: 0.2).CGColor
+//		case .New:
+//			rowView.layer?.backgroundColor = NSColor(calibratedRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.2).CGColor
+//		case .Edit:
+//			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 1.0, blue: 0.0, alpha: 0.2).CGColor // yellow
+//		default:
+//			rowView.layer?.backgroundColor = nil
+//		}
 		
 		return rowView
 	}

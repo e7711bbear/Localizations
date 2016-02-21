@@ -34,7 +34,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="srX-Xh-AcF" id="wQt-BA-zvg">
-                                                <rect key="frame" x="0.0" y="0.0" width="238" height="413"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="238" height="0.0"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -283,17 +283,17 @@
                                                     <scrollView misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBv-TA-pjS">
                                                         <rect key="frame" x="0.0" y="-5" width="350" height="385"/>
                                                         <clipView key="contentView" id="yFv-qs-1tv">
-                                                            <rect key="frame" x="1" y="1" width="348" height="383"/>
+                                                            <rect key="frame" x="1" y="1" width="348" height="378"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="oBk-MU-ioK">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="348" height="383"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="348" height="378"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <size key="minSize" width="348" height="383"/>
+                                                                    <size key="minSize" width="348" height="378"/>
                                                                     <size key="maxSize" width="463" height="10000000"/>
                                                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <size key="minSize" width="348" height="383"/>
+                                                                    <size key="minSize" width="348" height="378"/>
                                                                     <size key="maxSize" width="463" height="10000000"/>
                                                                 </textView>
                                                             </subviews>
@@ -304,7 +304,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="UUw-GZ-D17">
-                                                            <rect key="frame" x="333" y="1" width="16" height="383"/>
+                                                            <rect key="frame" x="333" y="1" width="16" height="378"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                     </scrollView>
