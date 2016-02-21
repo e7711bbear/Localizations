@@ -22,4 +22,17 @@ class File: NSObject {
 	var path = ""
 	var rawContent = ""
 	var translations = [Translation] ()
+
+	var languageCode: String {
+		get {
+			let folderParts = folder.componentsSeparatedByString(".")
+			
+			if folderParts.count > 0 {
+				return folderParts[0]
+			}
+			return ""
+		}
+	}
+	
+	// TODO: Description & Debug Description
 }

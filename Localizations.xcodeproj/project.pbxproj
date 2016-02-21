@@ -106,6 +106,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		892C2B761C796E9B00CB7E7D /* Cell Views */ = {
+			isa = PBXGroup;
+			children = (
+				892C2B721C782B1C00CB7E7D /* RegionCellView.swift */,
+				893BB5471C67C93C00F26792 /* FileCellView.swift */,
+				893BB5491C67C94A00F26792 /* TranslationCellView.swift */,
+			);
+			name = "Cell Views";
+			sourceTree = "<group>";
+		};
 		893BB5311C66BD4400F26792 /* MainController */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,9 +134,7 @@
 				893BB53F1C679A6600F26792 /* DetailViewController.xib */,
 				893BB5431C67C38C00F26792 /* FileDataSource.swift */,
 				893BB5451C67C3D900F26792 /* TranslationDataSource.swift */,
-				892C2B721C782B1C00CB7E7D /* RegionCellView.swift */,
-				893BB5471C67C93C00F26792 /* FileCellView.swift */,
-				893BB5491C67C94A00F26792 /* TranslationCellView.swift */,
+				892C2B761C796E9B00CB7E7D /* Cell Views */,
 			);
 			name = Details;
 			sourceTree = "<group>";
