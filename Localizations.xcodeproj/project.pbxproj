@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		892C2B711C78282100CB7E7D /* xcode-project_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 892C2B701C78282100CB7E7D /* xcode-project_Icon.icns */; };
+		892C2B731C782B1C00CB7E7D /* RegionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892C2B721C782B1C00CB7E7D /* RegionCellView.swift */; };
+		892C2B751C782BA100CB7E7D /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892C2B741C782BA100CB7E7D /* Region.swift */; };
 		893BB5301C66B21000F26792 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 893BB52E1C66B21000F26792 /* MainWindow.xib */; };
 		893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5331C66BD6700F26792 /* DetailViewController.swift */; };
 		893BB53E1C679A4400F26792 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 893BB53D1C679A4400F26792 /* MainViewController.xib */; };
@@ -47,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		892C2B701C78282100CB7E7D /* xcode-project_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "xcode-project_Icon.icns"; sourceTree = "<group>"; };
+		892C2B721C782B1C00CB7E7D /* RegionCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionCellView.swift; sourceTree = "<group>"; };
+		892C2B741C782BA100CB7E7D /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		893BB52F1C66B21000F26792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		893BB5331C66BD6700F26792 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		893BB53D1C679A4400F26792 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 				893BB53F1C679A6600F26792 /* DetailViewController.xib */,
 				893BB5431C67C38C00F26792 /* FileDataSource.swift */,
 				893BB5451C67C3D900F26792 /* TranslationDataSource.swift */,
+				892C2B721C782B1C00CB7E7D /* RegionCellView.swift */,
 				893BB5471C67C93C00F26792 /* FileCellView.swift */,
 				893BB5491C67C94A00F26792 /* TranslationCellView.swift */,
 			);
@@ -149,6 +156,7 @@
 		89F071691C5AE60500E75780 /* Localizations */ = {
 			isa = PBXGroup;
 			children = (
+				892C2B701C78282100CB7E7D /* xcode-project_Icon.icns */,
 				89F0716A1C5AE60500E75780 /* AppDelegate.swift */,
 				893BB52E1C66B21000F26792 /* MainWindow.xib */,
 				893BB5311C66BD4400F26792 /* MainController */,
@@ -182,6 +190,7 @@
 		89F071A01C62EA0F00E75780 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				892C2B741C782BA100CB7E7D /* Region.swift */,
 				89F071A31C64246600E75780 /* File.swift */,
 				89F071A11C62EA2F00E75780 /* Translation.swift */,
 			);
@@ -293,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				892C2B711C78282100CB7E7D /* xcode-project_Icon.icns in Resources */,
 				893BB5401C679A6600F26792 /* DetailViewController.xib in Resources */,
 				89F0716F1C5AE60500E75780 /* Assets.xcassets in Resources */,
 				893BB53E1C679A4400F26792 /* MainViewController.xib in Resources */,
@@ -340,6 +350,7 @@
 			files = (
 				893BB5461C67C3D900F26792 /* TranslationDataSource.swift in Sources */,
 				893BB5421C679C0E00F26792 /* ATBasicAnimator.swift in Sources */,
+				892C2B731C782B1C00CB7E7D /* RegionCellView.swift in Sources */,
 				893BB54A1C67C94A00F26792 /* TranslationCellView.swift in Sources */,
 				893BB5481C67C93C00F26792 /* FileCellView.swift in Sources */,
 				89F0716D1C5AE60500E75780 /* MainViewController.swift in Sources */,
@@ -348,6 +359,7 @@
 				89A294161C7149ED003B76D6 /* DetailViewController+Save.swift in Sources */,
 				893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */,
 				893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */,
+				892C2B751C782BA100CB7E7D /* Region.swift in Sources */,
 				89A294181C714E41003B76D6 /* MainViewController+Parser.swift in Sources */,
 				89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */,
 				89F071A21C62EA2F00E75780 /* Translation.swift in Sources */,

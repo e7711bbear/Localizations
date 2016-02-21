@@ -42,4 +42,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		self.detailViewController.publish()
 	}
 	
+	@IBAction func projectInfo(sender: AnyObject) {
+		
+	}
+	
 }

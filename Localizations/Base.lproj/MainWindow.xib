@@ -632,7 +632,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="858" height="483"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
+            <toolbar key="toolbar" implicitIdentifier="0EBE126D-1BF6-497D-930C-9AA5486A9177" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="IBG-5v-sn7">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="251E8C91-1536-4DA0-A14F-727E3212AEAD" explicitItemIdentifier="projectInfo" label="Project Info" paletteLabel="Project Info" tag="-1" image="xcode-project_Icon" id="B7M-jb-Jt5">
+                        <connections>
+                            <action selector="projectInfo:" target="Ueu-6M-pTv" id="Y5P-nO-aYh"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="60FD38BE-CB44-4200-BC2A-B0B341DC271A" explicitItemIdentifier="save" label="Save" paletteLabel="Save" tag="-1" image="NSFolder" id="8EQ-j9-b4C">
+                        <connections>
+                            <action selector="save:" target="Ueu-6M-pTv" id="MIq-pf-Kv5"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="ANd-T1-tLF"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="2yz-Z5-ZPG"/>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="B7M-jb-Jt5"/>
+                    <toolbarItem reference="2yz-Z5-ZPG"/>
+                    <toolbarItem reference="8EQ-j9-b4C"/>
+                </defaultToolbarItems>
+            </toolbar>
             <point key="canvasLocation" x="-290" y="699.5"/>
         </window>
     </objects>
+    <resources>
+        <image name="NSFolder" width="32" height="32"/>
+        <image name="xcode-project_Icon" width="512" height="512"/>
+    </resources>
 </document>

@@ -8,11 +8,11 @@
 
 import Cocoa
 
-class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDelegate {
+class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDelegate, NSOutlineViewDelegate {
 
 	weak var appDelegate: AppDelegate! = NSApplication.sharedApplication().delegate as! AppDelegate
 
-	@IBOutlet var filesTableView: NSTableView!
+	@IBOutlet var filesOutlineView: NSOutlineView!
 	var filesDataSource = FileDataSource()
 	
 	@IBOutlet var tabView: NSTabView!
@@ -25,17 +25,26 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.filesTableView.setDelegate(self)
-		self.filesTableView.setDataSource(self.filesDataSource)
+		self.filesOutlineView.setDelegate(self)
+		self.filesOutlineView.setDataSource(self.filesDataSource)
 		self.translationsTableView.setDelegate(self)
 		self.translationsTableView.setDataSource(self.translationsDataSource)
 	}
 	
-	// MARK: Table View funcs
+	// MARK: OutlineView funcs
+	func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
+		if item is Region {
+			return self.produceRegionCell(item as! Region)
+		} else if item is File {
+			return self.produceFileCell(item as! File)
+		}
+		// We should never end here.
+		return nil
+	}
+	
+	// MARK: TableView funcs
 	func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		switch tableView {
-		case self.filesTableView:
-			return self.produceFileCell(row)
 		case self.translationsTableView:
 			return self.produceTranslationCell(row)
 		default:
@@ -43,28 +52,26 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		}
 	}
 	
-	func tableViewSelectionDidChange(notification: NSNotification) {
-		let tableView = notification.object as? NSTableView
 
-		guard tableView != nil else {
-			return
-		}
-
-		switch tableView! {
-		case self.filesTableView:
-			self.prepareTranslationsForDisplay()
-		default:
-			return
-		}
+	// MARK: - Cell production
+	
+	func produceRegionCell(region: Region) -> RegionCellView {
+		let rowView = self.filesOutlineView.makeViewWithIdentifier("regionCell", owner: self) as! RegionCellView
+		
+		rowView.name.stringValue = region.label
+		rowView.code.stringValue = region.code
+		// TODO: Add here visuals to show status of containing files.
+		
+		return rowView
 	}
 	
-	func produceFileCell(row: Int) -> FileCellView {
-		let rowView = self.filesTableView.makeViewWithIdentifier("fileCell", owner: self) as! FileCellView
+	func produceFileCell(file: File) -> FileCellView {
+		let rowView = self.filesOutlineView.makeViewWithIdentifier("fileCell", owner: self) as! FileCellView
 		
-		rowView.fileName.stringValue = self.filesDataSource.fileName(row)
-		rowView.folder.stringValue = self.filesDataSource.folder(row)
+		rowView.fileName.stringValue = file.name
+		rowView.folder.stringValue = file.folder
 		
-		let state = self.filesDataSource.state(row)
+		let state = file.state
 		
 		// TODO: Replace this below with something a little more sexy.
 		rowView.wantsLayer = true
@@ -110,13 +117,18 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	}
 	
 	func prepareTranslationsForDisplay() {
-		let fileSelectedIndex = self.filesTableView.selectedRow
+		let fileSelectedIndex = self.filesOutlineView.selectedRow
 		
 		guard fileSelectedIndex != -1 else {
 			return
 		}
 		
-		let selectedFile = self.filesDataSource.file(fileSelectedIndex)
+		let selectedItem = self.filesOutlineView.itemAtRow(fileSelectedIndex)
+		
+		guard selectedItem is File else {
+			return
+		}
+		let selectedFile = selectedItem as! File
 		
 		self.translationsDataSource.translations.removeAll()
 		self.translationsDataSource.translations.appendContentsOf(selectedFile.translations)

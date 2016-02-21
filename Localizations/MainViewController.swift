@@ -134,7 +134,7 @@ class MainViewController: NSViewController {
 				self.compareAndCombine()
 				// show detail ui
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
-					self.appDelegate.detailViewController.filesDataSource.files.appendContentsOf(self.combinedFiles)
+					self.appDelegate.detailViewController.filesDataSource.buildDatasource(self.devRegion, knownRegions:self.knownRegions, combinedFiles: self.combinedFiles)
 					self.presentViewController(self.appDelegate.detailViewController, animator: ATBasicAnimator())
 					self.appDelegate.newMenuItem.enabled = true
 					self.appDelegate.saveMenuItem.enabled = true

@@ -8,32 +8,28 @@
 
 import Cocoa
 
-class FileDataSource: NSObject, NSTableViewDataSource {
+class FileDataSource: NSObject, NSOutlineViewDataSource {
 
-	var files = [File]()
+	var region = [Region]()
 	
-	func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-		return files.count
+	func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+		if item == nil {
+			return self.region.count
+		} else {
+			return (item as! Region).files.count
+		}
 	}
-	
-	func file(row: Int) -> File {
-		// TODO: add asserts here.
+
+	func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+		if item == nil {
+			return self.region[index]
+		} else {
+			return (item as! Region).files[index]
+		}
+	}
+
+	func buildDatasource(devRegion: String, knownRegions: [String], combinedFiles: [File]) {
 		
-		return self.files[row]
 	}
 	
-	func fileName(row: Int) -> String {
-		// TODO: add assert of row being valid
-		return files[row].name
-	}
-	
-	func folder(row: Int) -> String {
-		// TODO: add assert
-		return files[row].folder
-	}
-	
-	func state(row: Int) -> File.State {
-		// TODO: add assert
-		return files[row].state
-	}
 }
