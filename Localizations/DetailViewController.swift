@@ -31,7 +31,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		self.translationsTableView.setDataSource(self.translationsDataSource)
 	}
 	
-	// MARK: OutlineView funcs
+	// MARK: OutlineView Delegate
 	func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
 		if item is Region {
 			return self.produceRegionCell(item as! Region)
@@ -61,7 +61,11 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		}
 	}
 	
-	// MARK: TableView funcs
+	func outlineViewSelectionDidChange(notification: NSNotification) {
+		self.prepareTranslationsForDisplay()
+	}
+	
+	// MARK: TableView Delegate
 	func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		switch tableView {
 		case self.translationsTableView:
@@ -70,7 +74,11 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 			return nil
 		}
 	}
-	
+
+	// MARK: TabView Delegate
+	func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
+		self.prepareTranslationsForDisplay()
+	}
 
 	// MARK: - Cell production
 	
@@ -84,7 +92,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	}
 	
 	func backgroundColorForRegionCellView(region: Region) -> NSColor {
-		return NSColor(calibratedWhite: 0.8, alpha: 1.0)
+		return NSColor(calibratedWhite: 0.9, alpha: 1.0)
 	}
 
 	
@@ -160,10 +168,5 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		self.rawContentView.string = selectedFile.rawContent
 	}
 	
-	// MARK: - TabView Delegate
-	
-	func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
-		self.prepareTranslationsForDisplay()
-	}
 	
 }
