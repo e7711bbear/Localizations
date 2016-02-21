@@ -70,30 +70,27 @@
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="fKz-mE-1iU">
-                                                                        <rect key="frame" x="3" y="33" width="209" height="17"/>
+                                                                        <rect key="frame" x="3" y="26" width="49" height="19"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Name" id="1VQ-li-TTE">
-                                                                            <font key="font" metaFont="system"/>
+                                                                            <font key="font" metaFont="systemBold" size="16"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bAh-nr-hdz">
-                                                                        <rect key="frame" x="3" y="8" width="209" height="17"/>
+                                                                        <rect key="frame" x="8" y="6" width="37" height="17"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Code" id="mRX-WI-pPP">
-                                                                            <font key="font" metaFont="system"/>
+                                                                            <font key="font" metaFont="systemUltraLight" size="13"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="fKz-mE-1iU" secondAttribute="trailing" constant="5" id="0Lb-hg-CZv"/>
-                                                                    <constraint firstItem="fKz-mE-1iU" firstAttribute="top" secondItem="xH8-CG-UbU" secondAttribute="top" id="7BF-CO-vPi"/>
-                                                                    <constraint firstItem="bAh-nr-hdz" firstAttribute="leading" secondItem="fKz-mE-1iU" secondAttribute="leading" id="CU8-DC-9Ct"/>
+                                                                    <constraint firstItem="fKz-mE-1iU" firstAttribute="top" secondItem="xH8-CG-UbU" secondAttribute="top" constant="5" id="7BF-CO-vPi"/>
+                                                                    <constraint firstItem="bAh-nr-hdz" firstAttribute="leading" secondItem="fKz-mE-1iU" secondAttribute="leading" constant="5" id="CU8-DC-9Ct"/>
                                                                     <constraint firstItem="fKz-mE-1iU" firstAttribute="leading" secondItem="xH8-CG-UbU" secondAttribute="leading" constant="5" id="HyX-an-hIT"/>
-                                                                    <constraint firstItem="bAh-nr-hdz" firstAttribute="trailing" secondItem="fKz-mE-1iU" secondAttribute="trailing" id="J6S-b3-ujI"/>
-                                                                    <constraint firstItem="bAh-nr-hdz" firstAttribute="top" secondItem="fKz-mE-1iU" secondAttribute="bottom" constant="8" id="YBO-ZP-6pB"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="bAh-nr-hdz" secondAttribute="bottom" constant="8" id="i0R-TS-Hnc"/>
+                                                                    <constraint firstItem="bAh-nr-hdz" firstAttribute="top" secondItem="fKz-mE-1iU" secondAttribute="bottom" constant="3" id="YBO-ZP-6pB"/>
                                                                 </constraints>
                                                                 <connections>
                                                                     <outlet property="code" destination="bAh-nr-hdz" id="b8d-wh-M2Q"/>
@@ -105,30 +102,27 @@
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jON-h6-HAh">
-                                                                        <rect key="frame" x="3" y="33" width="209" height="17"/>
+                                                                        <rect key="frame" x="8" y="26" width="74" height="19"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="File Name" id="wgO-j6-fQi">
-                                                                            <font key="font" metaFont="system"/>
+                                                                            <font key="font" metaFont="systemMedium" size="15"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="eyw-9y-ibA">
-                                                                        <rect key="frame" x="3" y="8" width="209" height="17"/>
+                                                                        <rect key="frame" x="13" y="5" width="42" height="17"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Folder" id="Nub-yu-yNS">
-                                                                            <font key="font" metaFont="system"/>
+                                                                            <font key="font" metaFont="systemThin" size="13"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="jON-h6-HAh" firstAttribute="leading" secondItem="X0f-KL-LJx" secondAttribute="leading" constant="5" id="Gkb-Zi-Azf"/>
-                                                                    <constraint firstItem="eyw-9y-ibA" firstAttribute="top" secondItem="jON-h6-HAh" secondAttribute="bottom" constant="8" id="HX4-Vz-9Ow"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="jON-h6-HAh" secondAttribute="trailing" constant="5" id="eW2-K3-DWa"/>
-                                                                    <constraint firstItem="jON-h6-HAh" firstAttribute="top" secondItem="X0f-KL-LJx" secondAttribute="top" id="ecc-Zn-nvG"/>
-                                                                    <constraint firstItem="eyw-9y-ibA" firstAttribute="trailing" secondItem="jON-h6-HAh" secondAttribute="trailing" id="fOi-l1-7lv"/>
-                                                                    <constraint firstItem="eyw-9y-ibA" firstAttribute="leading" secondItem="jON-h6-HAh" secondAttribute="leading" id="ggd-gd-5kR"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="eyw-9y-ibA" secondAttribute="bottom" constant="8" id="uSU-Fn-s7h"/>
+                                                                    <constraint firstItem="jON-h6-HAh" firstAttribute="leading" secondItem="X0f-KL-LJx" secondAttribute="leading" constant="10" id="Gkb-Zi-Azf"/>
+                                                                    <constraint firstItem="eyw-9y-ibA" firstAttribute="top" secondItem="jON-h6-HAh" secondAttribute="bottom" constant="4" id="HX4-Vz-9Ow"/>
+                                                                    <constraint firstItem="jON-h6-HAh" firstAttribute="top" secondItem="X0f-KL-LJx" secondAttribute="top" constant="5" id="ecc-Zn-nvG"/>
+                                                                    <constraint firstItem="eyw-9y-ibA" firstAttribute="leading" secondItem="jON-h6-HAh" secondAttribute="leading" constant="5" id="ggd-gd-5kR"/>
                                                                 </constraints>
                                                                 <connections>
                                                                     <outlet property="fileName" destination="jON-h6-HAh" id="a6T-BQ-aaa"/>
