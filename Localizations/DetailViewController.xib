@@ -157,6 +157,7 @@
                                 <constraint firstAttribute="bottom" secondItem="Fb2-TG-ViQ" secondAttribute="bottom" id="Oov-JL-AF5"/>
                                 <constraint firstItem="Fb2-TG-ViQ" firstAttribute="leading" secondItem="D9e-3p-RVZ" secondAttribute="leading" id="Xcg-6S-qeV"/>
                                 <constraint firstAttribute="trailing" secondItem="Fb2-TG-ViQ" secondAttribute="trailing" id="dJt-ki-z8m"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="pRa-oY-3gB"/>
                             </constraints>
                         </customView>
                         <customView misplaced="YES" id="7JA-OS-ni9">

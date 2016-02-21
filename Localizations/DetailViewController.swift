@@ -42,6 +42,25 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		return nil
 	}
 	
+	func outlineView(outlineView: NSOutlineView, didAddRowView rowView: NSTableRowView, forRow row: Int) {
+		switch outlineView {
+		case self.filesOutlineView:
+			let item = self.filesOutlineView.itemAtRow(row)
+			
+			switch item {
+			case is Region:
+				rowView.backgroundColor = self.backgroundColorForRegionCellView(item as! Region)
+			case is File:
+				rowView.backgroundColor = self.backgroundColorForFileCellView(item as! File)
+			default:
+				break
+			}
+			
+		default:
+			break
+		}
+	}
+	
 	// MARK: TableView funcs
 	func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		switch tableView {
@@ -60,10 +79,14 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		
 		rowView.name.stringValue = region.label
 		rowView.code.stringValue = region.code
-		// TODO: Add here visuals to show status of containing files.
 		
 		return rowView
 	}
+	
+	func backgroundColorForRegionCellView(region: Region) -> NSColor {
+		return NSColor(calibratedWhite: 0.8, alpha: 1.0)
+	}
+
 	
 	func produceFileCell(file: File) -> FileCellView {
 		let rowView = self.filesOutlineView.makeViewWithIdentifier("fileCell", owner: self) as! FileCellView
@@ -71,23 +94,23 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		rowView.fileName.stringValue = file.name
 		rowView.folder.stringValue = file.folder
 		
-//		let state = file.state
-		
-		// TODO: Replace this below with something a little more sexy.
-//		rowView.wantsLayer = true
-		
-//		switch state {
-//		case .Obselete:
-//			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 0.0, blue: 0.0, alpha: 0.2).CGColor
-//		case .New:
-//			rowView.layer?.backgroundColor = NSColor(calibratedRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.2).CGColor
-//		case .Edit:
-//			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 1.0, blue: 0.0, alpha: 0.2).CGColor // yellow
-//		default:
-//			rowView.layer?.backgroundColor = nil
-//		}
-		
 		return rowView
+	}
+	
+	func backgroundColorForFileCellView(file: File) -> NSColor {
+		let state = file.state
+		
+		switch state {
+		case .Obselete:
+			return NSColor(calibratedRed: 1.0, green: 0.0, blue: 0.0, alpha: 0.2)
+		case .New:
+			return NSColor(calibratedRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.2)
+		case .Edit:
+			return NSColor(calibratedRed: 1.0, green: 1.0, blue: 0.0, alpha: 0.2) // yellow
+		default:
+			break
+		}
+		return NSColor.whiteColor()
 	}
 	
 	func produceTranslationCell(row: Int) -> TranslationCellView {
