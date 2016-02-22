@@ -2,11 +2,16 @@
 
 Localizations is an OS X app that manages your Xcode project localization files (.strings).
 
-Starting from a root folder - typically the project folder - it collects existing localizations data, re-generate new data using genstrings and ibtool, compute a diff and upon request, publishes the changes.
+It focuses on keeping .strings files in sync with the code (NSLocalizedString) and the UI files (storyboards & xib). 
+
+It is the missing link that prevents obsolete keys to persists in .strings files and newly introduced to be missed.
 
 You will find Localizations particularly useful when working on a new version of your app or when adding a full new language to your app.
 
 The removal of obselete translations strings will save you money in translations costs.
+ 
+## How it works
+Starting from a root folder - typically the project folder - it collects existing localizations data, re-generate new data using genstrings and ibtool, compute a diff and upon request, publishes the changes.
 
 ## Intentions & License
 When it comes to handle your string files, Xcode has been leaving a void which is yet to be filled.

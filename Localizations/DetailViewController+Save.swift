@@ -35,8 +35,11 @@ extension DetailViewController {
 	func createFile(file: File) {
 		let fileContent = self.writableContent(file)
 		do {
+			
+			
 			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
 		} catch {
+			NSLog("Error creating file \(file) - \(error)")
 			// TODO: Error handling
 		}
 	}
@@ -46,6 +49,7 @@ extension DetailViewController {
 		do {
 			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
 		} catch {
+			NSLog("Error editing file \(file) - \(error)")
 			// TODO: Error handling
 		}
 	}
@@ -56,6 +60,7 @@ extension DetailViewController {
 		do {
 			try fileManager.removeItemAtPath(file.path)
 		} catch {
+			NSLog("Error deleting file \(file) - \(error)")
 			// TODO: Error Handling
 		}
 	}
