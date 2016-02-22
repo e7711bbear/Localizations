@@ -16,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		892C2B771C7AAB3600CB7E7D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		892C2B781C7AAB3600CB7E7D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		89A294221C73ED00003B76D6 /* LocalizedSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalizedSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A294251C73ED00003B76D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89A294271C73ED00003B76D6 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				89A2942C1C73ED00003B76D6 /* Base */,
+				892C2B771C7AAB3600CB7E7D /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				89A294311C73ED00003B76D6 /* Base */,
+				892C2B781C7AAB3600CB7E7D /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -288,6 +292,7 @@
 				89A294381C73ED00003B76D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

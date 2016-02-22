@@ -24,7 +24,7 @@ class DetailViewController: UIViewController {
 		// Update the user interface for the detail item.
 		if let detail = self.detailItem {
 		    if let label = self.detailDescriptionLabel {
-		        label.text = detail.description
+		        label.text = NSLocalizedString("Detail Message: ", comment: "Prefix used before the detail text in the detail view") + detail.description
 		    }
 		}
 	}
