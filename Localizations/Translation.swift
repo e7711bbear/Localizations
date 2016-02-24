@@ -37,10 +37,8 @@ class Translation: NSObject {
 	
 	override var debugDescription: String {
 		get {
-			let returnableString = "\(comments)\n" +
+			return "\(comments)\n" +
 			"\(self.key) = \(self.value)\n"
-			
-			return returnableString
 		}
 	}
 }

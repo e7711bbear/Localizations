@@ -47,7 +47,7 @@ class Region: NSObject {
 		xcodeRegions.append(XcodeRegion(languageCode: "et", languageName: "Estonian", lproj: []))
 		xcodeRegions.append(XcodeRegion(languageCode: "tl", languageName: "Filipino", lproj: []))
 		xcodeRegions.append(XcodeRegion(languageCode: "fi", languageName: "Finnish", lproj: ["fi"]))
-		xcodeRegions.append(XcodeRegion(languageCode: "fr", languageName: "French", lproj: ["fr"]))
+		xcodeRegions.append(XcodeRegion(languageCode: "fr", languageName: "French", lproj: ["French"]))
 		xcodeRegions.append(XcodeRegion(languageCode: "gl", languageName: "Galician", lproj: []))
 		xcodeRegions.append(XcodeRegion(languageCode: "ka", languageName: "Georgian", lproj: []))
 		xcodeRegions.append(XcodeRegion(languageCode: "de", languageName: "German", lproj: ["de"]))
@@ -102,7 +102,7 @@ class Region: NSObject {
 	class func regionMatchingString(string: String) -> Region? {
 		for xcodeRegion in self.defaultXcodeRegions {
 			if xcodeRegion.languageName == string ||
-			xcodeRegion.languageName == string ||
+			xcodeRegion.languageCode == string ||
 				xcodeRegion.lproj.contains(string) {
 					let newRegion = Region()
 					newRegion.label = xcodeRegion.languageName
@@ -114,5 +114,18 @@ class Region: NSObject {
 		return nil
 	}
 	
-	// TODO: Description & Debug Description
+	override var description: String {
+		get {
+			return self.debugDescription
+		}
+	}
+	
+	override var debugDescription: String {
+		get {
+			return "Label: \(self.label)\n" +
+				"Code: \(self.code)\n" +
+				"File Count: \(self.files.count)\n"
+		}
+	}
+
 }

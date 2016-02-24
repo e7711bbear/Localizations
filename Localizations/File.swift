@@ -34,5 +34,19 @@ class File: NSObject {
 		}
 	}
 	
-	// TODO: Description & Debug Description
+	override var description: String {
+		get {
+			return self.debugDescription
+		}
+	}
+	
+	override var debugDescription: String {
+		get {
+			return "Name: \(self.name)\n" +
+			"Folder: \(self.folder)\n" +
+			"Path: \(self.path)\n" +
+			"State: \(self.state)\n"
+		}
+	}
+
 }
