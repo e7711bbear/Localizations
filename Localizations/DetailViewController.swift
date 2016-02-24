@@ -22,6 +22,12 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	
 	@IBOutlet var rawContentView: NSTextView!
 	
+	// Save Outlets - Maybe place in another controller (save?).
+	@IBOutlet var saveWindow: NSWindow!
+	@IBOutlet var saveWindowTableView: NSTableView!
+	@IBOutlet var saveWindowCancelButton: NSButton!
+	@IBOutlet var saveWindowProceedButton: NSButton!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		

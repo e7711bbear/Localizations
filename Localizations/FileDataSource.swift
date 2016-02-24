@@ -57,7 +57,9 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 				// Assign files with their respective region
 				if let region = self.regionWithCode(file.languageCode) {
 					region.files.append(file)
-				} else {
+				} else { 
+					// TODO: if region is not empty, add region & add file
+					
 					NSLog("Missing Region for file \(file)")
 				}
 			} else {

@@ -10,6 +10,51 @@ import Foundation
 
 extension DetailViewController {
 	
+	@IBAction func cancel(sender:AnyObject) {
+		self.saveWindow.close()
+	}
+	
+	@IBAction func proceed(sender: AnyObject) {
+		let fileManager = NSFileManager.defaultManager()
+		
+		guard self.appDelegate.mainViewController.rootDirectory != nil else {
+			// TODO: Error handling here.
+			return
+		}
+		
+		//TODO: implementation
+		
+		var isDirectory: ObjCBool = false
+		
+		// Sandboxing
+		//		self.appDelegate.mainViewController.rootDirectory.startAccessingSecurityScopedResource()
+		
+		if fileManager.fileExistsAtPath(self.appDelegate.mainViewController.rootDirectory!.path!, isDirectory: &isDirectory) {
+			if isDirectory {
+				// TODO: Alert here -- about to publish
+				
+				// If yes at alert ->
+				
+				for file in self.appDelegate.mainViewController.combinedFiles {
+					// FIXME:					here we need to change.
+					switch file.state {
+					case .New:
+						self.createFile(file)
+					case .Edit:
+						self.editFile(file)
+					case .Obselete:
+						self.deleteFile(file)
+					default:
+						continue
+					}
+				}
+			}
+		}
+		// Sandboxing
+		// self.appDelegate.mainViewController.rootDirectory.stopAccessingSecurityScopedResource()
+
+	}
+	
 	func writableContent(file: File) -> String {
 		var returnableString = ""
 		
@@ -77,43 +122,10 @@ extension DetailViewController {
 	}
 	
 	func publish() {
-		let fileManager = NSFileManager.defaultManager()
-		
-		guard self.appDelegate.mainViewController.rootDirectory != nil else {
-			// TODO: Error handling here.
-			return
+		// TODO: Add here the populating of the tableview.
+		self.appDelegate.mainWindow.beginSheet(self.saveWindow) { (modalResponse) -> Void in
+			
 		}
-		
-		//TODO: implementation
-		
-		var isDirectory: ObjCBool = false
-		
-		// Sandboxing
-		//		self.appDelegate.mainViewController.rootDirectory.startAccessingSecurityScopedResource()
-		
-		if fileManager.fileExistsAtPath(self.appDelegate.mainViewController.rootDirectory!.path!, isDirectory: &isDirectory) {
-			if isDirectory {
-				// TODO: Alert here -- about to publish
-				
-				// If yes at alert ->
-				
-				for file in self.appDelegate.mainViewController.combinedFiles {
-// FIXME:					here we need to change.
-					switch file.state {
-					case .New:
-						self.createFile(file)
-					case .Edit:
-						self.editFile(file)
-					case .Obselete:
-						self.deleteFile(file)
-					default:
-						continue
-					}
-				}
-			}
-		}
-		// Sandboxing
-		// self.appDelegate.mainViewController.rootDirectory.stopAccessingSecurityScopedResource()
 	}
 
 }
