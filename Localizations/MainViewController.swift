@@ -507,7 +507,8 @@ class MainViewController: NSViewController {
 			
 			if found == false {
 				combinedFile.state = .New
-				
+				combinedFile.path = "\((self.pbxprojPath as NSString).stringByDeletingLastPathComponent)/\(newFile.folder)/\(newFile.name)"
+
 				// TODO: Make an actual copy here
 				combinedFile.translations = newFile.translations
 				for translation in combinedFile.translations {

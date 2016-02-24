@@ -38,6 +38,10 @@ extension DetailViewController {
 			#if DEBUG
 				NSLog("Creating file at \(file.path)")
 			#endif
+			let fileManager = NSFileManager.defaultManager()
+			try fileManager.createDirectoryAtPath((file.path as NSString).stringByDeletingLastPathComponent,
+				withIntermediateDirectories: true,
+				attributes: nil)
 			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
 		} catch {
 			NSLog("Error creating file \(file) - \(error)")
