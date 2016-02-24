@@ -44,7 +44,7 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 		return nil
 	}
 	
-	func buildDatasource(devRegion: String, knownRegions: [String], combinedFiles: [File]) {
+	func buildDatasource(projectRoot: String, devRegion: String, knownRegions: [String], combinedFiles: [File]) {
 		// Build regions based on devRegion & knownRegions
 		for knownRegion in knownRegions {
 			if let matchingRegion = Region.regionMatchingString(knownRegion) {
@@ -66,6 +66,9 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 					let newFile = file.mutableCopy() as! File
 					
 					newFile.folder = "\(region.code).lproj"
+					newFile.path = "\(projectRoot)/\(newFile.folder)/\(newFile.name)"
+					
+					
 					region.files.append(newFile)
 				}
 			}

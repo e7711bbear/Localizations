@@ -134,7 +134,7 @@ class MainViewController: NSViewController {
 				self.compareAndCombine()
 				// show detail ui
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
-					self.appDelegate.detailViewController.filesDataSource.buildDatasource(self.devRegion, knownRegions:self.knownRegions, combinedFiles: self.combinedFiles)
+					self.appDelegate.detailViewController.filesDataSource.buildDatasource((self.pbxprojPath as NSString).stringByDeletingLastPathComponent, devRegion: self.devRegion, knownRegions:self.knownRegions, combinedFiles: self.combinedFiles)
 					self.presentViewController(self.appDelegate.detailViewController, animator: ATBasicAnimator())
 					self.appDelegate.newMenuItem.enabled = true
 					self.appDelegate.saveMenuItem.enabled = true
@@ -365,7 +365,7 @@ class MainViewController: NSViewController {
 	
 	// MARK: - Methods building fresh localization data from source
 	func generateFreshFilesUsingGenstrings() {
-		let commandString = "/usr/bin/genstrings -o \(self.cacheDirectory) `find \(self.rootDirectory.path!) -name '*.[hm]' -o -name '*.swift'`"
+		let commandString = "/usr/bin/genstrings -o \"\(self.cacheDirectory)\" `find \"\(self.rootDirectory.path!)\" -name '*.[hm]' -o -name '*.swift'`"
 		
 		NSLog("Running: \(commandString)")
 		
@@ -384,7 +384,7 @@ class MainViewController: NSViewController {
 			let fileName = filePath.lastPathComponent
 			let stringFileName = fileName.stringByReplacingOccurrencesOfString(pathExtension, withString: "strings")
 			
-			let commandString = "ibtool --generate-strings-file \(self.cacheDirectory)/\(stringFileName) \(filePath)"
+			let commandString = "ibtool --generate-strings-file \"\(self.cacheDirectory)/\(stringFileName)\" \"\(filePath)\""
 			
 			NSLog("Running: \(commandString)")
 

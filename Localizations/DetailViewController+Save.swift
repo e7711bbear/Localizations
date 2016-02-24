@@ -35,8 +35,9 @@ extension DetailViewController {
 	func createFile(file: File) {
 		let fileContent = self.writableContent(file)
 		do {
-			
-			
+			#if DEBUG
+				NSLog("Creating file at \(file.path)")
+			#endif
 			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
 		} catch {
 			NSLog("Error creating file \(file) - \(error)")
@@ -47,6 +48,9 @@ extension DetailViewController {
 	func editFile(file: File) {
 		let fileContent = self.writableContent(file)
 		do {
+			#if DEBUG
+				NSLog("Editing file at \(file.path)")
+			#endif
 			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
 		} catch {
 			NSLog("Error editing file \(file) - \(error)")
@@ -58,6 +62,9 @@ extension DetailViewController {
 		let fileManager = NSFileManager.defaultManager()
 
 		do {
+			#if DEBUG
+				NSLog("Deleting file at \(file.path)")
+			#endif
 			try fileManager.removeItemAtPath(file.path)
 		} catch {
 			NSLog("Error deleting file \(file) - \(error)")
@@ -87,6 +94,7 @@ extension DetailViewController {
 				// If yes at alert ->
 				
 				for file in self.appDelegate.mainViewController.combinedFiles {
+// FIXME:					here we need to change.
 					switch file.state {
 					case .New:
 						self.createFile(file)
