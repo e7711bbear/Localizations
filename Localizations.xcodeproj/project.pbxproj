@@ -14,6 +14,8 @@
 		8939527E1C82224A00D35895 /* SaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939527C1C82224A00D35895 /* SaveViewController.swift */; };
 		893952811C82228F00D35895 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893952801C82228F00D35895 /* Main.storyboard */; };
 		893952BA1C82290000D35895 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952B91C82290000D35895 /* MainWindowController.swift */; };
+		893952BE1C822B3000D35895 /* ProjectInfoWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952BD1C822B3000D35895 /* ProjectInfoWindowController.swift */; };
+		893952C01C822B4500D35895 /* ProjectInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952BF1C822B4500D35895 /* ProjectInfoViewController.swift */; };
 		893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5331C66BD6700F26792 /* DetailViewController.swift */; };
 		893BB5421C679C0E00F26792 /* ATBasicAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */; };
 		893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5431C67C38C00F26792 /* FileDataSource.swift */; };
@@ -58,6 +60,8 @@
 		8939527C1C82224A00D35895 /* SaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveViewController.swift; sourceTree = "<group>"; };
 		893952801C82228F00D35895 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		893952B91C82290000D35895 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		893952BD1C822B3000D35895 /* ProjectInfoWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectInfoWindowController.swift; sourceTree = "<group>"; };
+		893952BF1C822B4500D35895 /* ProjectInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewController.swift; sourceTree = "<group>"; };
 		893BB5331C66BD6700F26792 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATBasicAnimator.swift; sourceTree = "<group>"; };
 		893BB5431C67C38C00F26792 /* FileDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDataSource.swift; sourceTree = "<group>"; };
@@ -136,17 +140,27 @@
 			name = "Choose Project";
 			sourceTree = "<group>";
 		};
+		893952BC1C822AFB00D35895 /* Project Info */ = {
+			isa = PBXGroup;
+			children = (
+				893952BD1C822B3000D35895 /* ProjectInfoWindowController.swift */,
+				893952BF1C822B4500D35895 /* ProjectInfoViewController.swift */,
+			);
+			name = "Project Info";
+			sourceTree = "<group>";
+		};
 		893BB5311C66BD4400F26792 /* MainWindow */ = {
 			isa = PBXGroup;
 			children = (
 				893952B91C82290000D35895 /* MainWindowController.swift */,
 				893952BB1C82290B00D35895 /* Choose Project */,
-				893BB5321C66BD4D00F26792 /* Details */,
+				893BB5321C66BD4D00F26792 /* Project Details */,
+				893952BC1C822AFB00D35895 /* Project Info */,
 			);
 			name = MainWindow;
 			sourceTree = "<group>";
 		};
-		893BB5321C66BD4D00F26792 /* Details */ = {
+		893BB5321C66BD4D00F26792 /* Project Details */ = {
 			isa = PBXGroup;
 			children = (
 				893BB5331C66BD6700F26792 /* DetailViewController.swift */,
@@ -156,7 +170,7 @@
 				892C2B761C796E9B00CB7E7D /* Cell Views */,
 				893952771C820AA400D35895 /* Save */,
 			);
-			name = Details;
+			name = "Project Details";
 			sourceTree = "<group>";
 		};
 		89F0715E1C5AE60500E75780 = {
@@ -383,9 +397,11 @@
 				8939527A1C820AFB00D35895 /* SaveWindowController.swift in Sources */,
 				89F071A41C64246600E75780 /* File.swift in Sources */,
 				89A294141C68441F003B76D6 /* README.md in Sources */,
+				893952C01C822B4500D35895 /* ProjectInfoViewController.swift in Sources */,
 				89A294161C7149ED003B76D6 /* DetailViewController+Save.swift in Sources */,
 				893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */,
 				893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */,
+				893952BE1C822B3000D35895 /* ProjectInfoWindowController.swift in Sources */,
 				892C2B751C782BA100CB7E7D /* Region.swift in Sources */,
 				8939527E1C82224A00D35895 /* SaveViewController.swift in Sources */,
 				89A294181C714E41003B76D6 /* ChooseProjectController+Parser.swift in Sources */,

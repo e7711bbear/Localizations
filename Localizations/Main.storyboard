@@ -417,10 +417,10 @@
             </objects>
             <point key="canvasLocation" x="1236.5" y="617"/>
         </scene>
-        <!--Window Controller-->
+        <!--Main Window Controller-->
         <scene sceneID="XwA-lc-CQ0">
             <objects>
-                <windowController id="g4y-L9-yHU" customClass="MainWindowController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="g4y-L9-yHU" userLabel="Main Window Controller" customClass="MainWindowController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="rU0-y7-hRM">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -448,10 +448,10 @@
             </objects>
             <point key="canvasLocation" x="526" y="820"/>
         </scene>
-        <!--Window Controller-->
+        <!--Save Window Controller-->
         <scene sceneID="zVe-fA-ZOq">
             <objects>
-                <windowController id="t4f-im-pl4" customClass="SaveWindowController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="t4f-im-pl4" userLabel="Save Window Controller" customClass="SaveWindowController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qo4-7a-lUp">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -624,6 +624,37 @@ Gw
                 <customObject id="wdx-VB-o2R" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3080.5" y="902"/>
+        </scene>
+        <!--Project Info Window Controller-->
+        <scene sceneID="sj1-Uk-hlE">
+            <objects>
+                <windowController id="sQe-F5-7Ma" userLabel="Project Info Window Controller" customClass="ProjectInfoWindowController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Zq4-jb-uHK">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                    </window>
+                    <connections>
+                        <segue destination="vSA-QM-Yec" kind="relationship" relationship="window.shadowedContentViewController" id="inJ-mo-hKc"/>
+                    </connections>
+                </windowController>
+                <customObject id="zRU-wa-J46" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="553" y="1236"/>
+        </scene>
+        <!--Project Info View Controller-->
+        <scene sceneID="BTz-GT-jGf">
+            <objects>
+                <viewController id="vSA-QM-Yec" customClass="ProjectInfoViewController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Btf-FN-sxJ">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="rzW-pX-9N0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="553" y="1797"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="n5m-qf-f8e">

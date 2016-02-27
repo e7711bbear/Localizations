@@ -37,15 +37,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBAction func new(sender: AnyObject) {
 		self.chooseProjectViewController.startFresh()
 	}
-
-	// TODO: Move these to the upcoming window controller
-
-	@IBAction func save(sender: AnyObject) {
-		self.detailViewController.publish()
-	}
-	
-	@IBAction func projectInfo(sender: AnyObject) {
-		
-	}
 	
 }
