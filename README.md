@@ -1,4 +1,4 @@
-#Localizations 0.1
+#Localizations 0.2
 
 Localizations is an OS X app that manages your Xcode project localization files (.strings).
 

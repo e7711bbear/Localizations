@@ -398,6 +398,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="chooseXcodeFolder:" target="wVC-6E-25g" id="d1N-rv-ooZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -410,6 +413,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chooseButton" destination="Ndr-K8-IEK" id="btK-8p-1NM"/>
                         <segue destination="Ag8-AY-zSf" kind="show" identifier="detailsSegue" id="l4J-0Q-07e"/>
                     </connections>
                 </viewController>
@@ -451,24 +455,6 @@
                 <customObject id="yec-uK-LbD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="526" y="820"/>
-        </scene>
-        <!--Save Window Controller-->
-        <scene sceneID="zVe-fA-ZOq">
-            <objects>
-                <windowController id="t4f-im-pl4" userLabel="Save Window Controller" customClass="SaveWindowController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qo4-7a-lUp">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                    </window>
-                    <connections>
-                        <segue destination="Ana-nO-eCh" kind="relationship" relationship="window.shadowedContentViewController" id="qAe-KK-LZJ"/>
-                    </connections>
-                </windowController>
-                <customObject id="iYd-5b-JXF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2372" y="931"/>
         </scene>
         <!--Save View Controller-->
         <scene sceneID="H6m-8y-NAW">

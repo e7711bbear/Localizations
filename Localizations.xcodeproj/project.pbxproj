@@ -10,7 +10,6 @@
 		892C2B711C78282100CB7E7D /* xcode-project_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 892C2B701C78282100CB7E7D /* xcode-project_Icon.icns */; };
 		892C2B731C782B1C00CB7E7D /* RegionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892C2B721C782B1C00CB7E7D /* RegionCellView.swift */; };
 		892C2B751C782BA100CB7E7D /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892C2B741C782BA100CB7E7D /* Region.swift */; };
-		8939527A1C820AFB00D35895 /* SaveWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952781C820AFB00D35895 /* SaveWindowController.swift */; };
 		8939527E1C82224A00D35895 /* SaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939527C1C82224A00D35895 /* SaveViewController.swift */; };
 		893952811C82228F00D35895 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893952801C82228F00D35895 /* Main.storyboard */; };
 		893952BA1C82290000D35895 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952B91C82290000D35895 /* MainWindowController.swift */; };
@@ -55,7 +54,6 @@
 		892C2B701C78282100CB7E7D /* xcode-project_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "xcode-project_Icon.icns"; sourceTree = "<group>"; };
 		892C2B721C782B1C00CB7E7D /* RegionCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionCellView.swift; sourceTree = "<group>"; };
 		892C2B741C782BA100CB7E7D /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
-		893952781C820AFB00D35895 /* SaveWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveWindowController.swift; sourceTree = "<group>"; };
 		8939527C1C82224A00D35895 /* SaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveViewController.swift; sourceTree = "<group>"; };
 		893952801C82228F00D35895 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		893952B91C82290000D35895 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 		893952771C820AA400D35895 /* Save */ = {
 			isa = PBXGroup;
 			children = (
-				893952781C820AFB00D35895 /* SaveWindowController.swift */,
 				8939527C1C82224A00D35895 /* SaveViewController.swift */,
 			);
 			path = Save;
@@ -391,7 +388,6 @@
 				893BB5481C67C93C00F26792 /* FileCellView.swift in Sources */,
 				89F0716D1C5AE60500E75780 /* ChooseProjectViewController.swift in Sources */,
 				893952BA1C82290000D35895 /* MainWindowController.swift in Sources */,
-				8939527A1C820AFB00D35895 /* SaveWindowController.swift in Sources */,
 				89F071A41C64246600E75780 /* File.swift in Sources */,
 				89A294141C68441F003B76D6 /* README.md in Sources */,
 				893952C01C822B4500D35895 /* ProjectInfoViewController.swift in Sources */,
