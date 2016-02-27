@@ -126,7 +126,7 @@
 				893952781C820AFB00D35895 /* SaveWindowController.swift */,
 				8939527C1C82224A00D35895 /* SaveViewController.swift */,
 			);
-			name = Save;
+			path = Save;
 			sourceTree = "<group>";
 		};
 		893952BB1C82290B00D35895 /* Choose Project */ = {
@@ -135,7 +135,7 @@
 				89F0716C1C5AE60500E75780 /* ChooseProjectViewController.swift */,
 				89A294171C714E41003B76D6 /* ChooseProjectController+Parser.swift */,
 			);
-			name = "Choose Project";
+			path = "Choose Project";
 			sourceTree = "<group>";
 		};
 		893952BC1C822AFB00D35895 /* Project Info */ = {
@@ -143,7 +143,7 @@
 			children = (
 				893952BF1C822B4500D35895 /* ProjectInfoViewController.swift */,
 			);
-			name = "Project Info";
+			path = "Project Info";
 			sourceTree = "<group>";
 		};
 		893BB5311C66BD4400F26792 /* MainWindow */ = {
@@ -152,6 +152,7 @@
 				893952B91C82290000D35895 /* MainWindowController.swift */,
 				893952BB1C82290B00D35895 /* Choose Project */,
 				893BB5321C66BD4D00F26792 /* Project Details */,
+				893952771C820AA400D35895 /* Save */,
 				893952BC1C822AFB00D35895 /* Project Info */,
 			);
 			name = MainWindow;
@@ -165,9 +166,8 @@
 				893BB5431C67C38C00F26792 /* FileDataSource.swift */,
 				893BB5451C67C3D900F26792 /* TranslationDataSource.swift */,
 				892C2B761C796E9B00CB7E7D /* Cell Views */,
-				893952771C820AA400D35895 /* Save */,
 			);
-			name = "Project Details";
+			path = "Project Details";
 			sourceTree = "<group>";
 		};
 		89F0715E1C5AE60500E75780 = {
@@ -199,7 +199,7 @@
 				89F0716A1C5AE60500E75780 /* AppDelegate.swift */,
 				893952801C82228F00D35895 /* Main.storyboard */,
 				893BB5311C66BD4400F26792 /* MainWindow */,
-				89F071A01C62EA0F00E75780 /* Model */,
+				89F071A01C62EA0F00E75780 /* Models */,
 				89F0716E1C5AE60500E75780 /* Assets.xcassets */,
 				89F071731C5AE60500E75780 /* Info.plist */,
 				893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */,
@@ -225,14 +225,14 @@
 			path = LocalizationsUITests;
 			sourceTree = "<group>";
 		};
-		89F071A01C62EA0F00E75780 /* Model */ = {
+		89F071A01C62EA0F00E75780 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				892C2B741C782BA100CB7E7D /* Region.swift */,
 				89F071A31C64246600E75780 /* File.swift */,
 				89F071A11C62EA2F00E75780 /* Translation.swift */,
 			);
-			name = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
