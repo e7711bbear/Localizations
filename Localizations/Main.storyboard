@@ -372,7 +372,12 @@
                     </connections>
                 </application>
                 <customObject id="jem-St-F3M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="UMi-P6-ZOA" userLabel="AppDelegate" customClass="AppDelegate" customModule="Localizations" customModuleProvider="target"/>
+                <customObject id="UMi-P6-ZOA" userLabel="AppDelegate" customClass="AppDelegate" customModule="Localizations" customModuleProvider="target">
+                    <connections>
+                        <outlet property="newMenuItem" destination="CBz-UI-nEI" id="ms7-Tr-xC9"/>
+                        <outlet property="saveMenuItem" destination="7Ex-9X-qnn" id="Nru-GU-2rj"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="455.5" y="403"/>
         </scene>
@@ -414,7 +419,7 @@
                     </view>
                     <connections>
                         <outlet property="chooseButton" destination="Ndr-K8-IEK" id="btK-8p-1NM"/>
-                        <segue destination="Ag8-AY-zSf" kind="show" identifier="detailsSegue" id="l4J-0Q-07e"/>
+                        <segue destination="Ag8-AY-zSf" kind="show" identifier="detailsSegue" customClass="ATReplacingSegue" customModule="Localizations" customModuleProvider="target" id="l4J-0Q-07e"/>
                     </connections>
                 </viewController>
                 <customObject id="8wF-jl-r45" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -428,8 +433,9 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="rU0-y7-hRM">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
+                        <rect key="contentRect" x="610" y="395" width="480" height="300"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="480" height="300"/>
                         <toolbar key="toolbar" implicitIdentifier="41C476D4-1068-431D-A8E4-7DBE75A81CD0" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="jig-xk-Kq5">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="251E8C91-1536-4DA0-A14F-727E3212AEAD" explicitItemIdentifier="projectInfo" label="Project Info" paletteLabel="Project Info" tag="-1" image="xcode-project_Icon" id="Bpt-h9-b8r">
@@ -437,7 +443,11 @@
                                         <segue destination="vSA-QM-Yec" kind="sheet" id="BhW-ib-Q4i"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="60FD38BE-CB44-4200-BC2A-B0B341DC271A" explicitItemIdentifier="save" label="Save" paletteLabel="Save" tag="-1" image="NSFolder" id="pd2-8c-7mO"/>
+                                <toolbarItem implicitItemIdentifier="60FD38BE-CB44-4200-BC2A-B0B341DC271A" explicitItemIdentifier="save" label="Save" paletteLabel="Save" tag="-1" image="NSFolder" id="pd2-8c-7mO">
+                                    <connections>
+                                        <action selector="save:" target="g4y-L9-yHU" id="69q-J8-knv"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="JgN-Cy-sIZ"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="TU0-f1-xJ9"/>
                             </allowedToolbarItems>
@@ -613,7 +623,7 @@ Gw
                 </viewController>
                 <customObject id="wdx-VB-o2R" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3080.5" y="902"/>
+            <point key="canvasLocation" x="2303.5" y="1116"/>
         </scene>
         <!--Project Info View Controller-->
         <scene sceneID="BTz-GT-jGf">
@@ -771,7 +781,7 @@ Gw
                                                     <rect key="frame" x="1" y="1" width="238" height="616"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="vvA-rT-4tc" id="YGx-mR-Y2D">
+                                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" viewBased="YES" indentationPerLevel="16" outlineTableColumn="vvA-rT-4tc" id="YGx-mR-Y2D">
                                                             <rect key="frame" x="0.0" y="0.0" width="238" height="616"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -896,7 +906,7 @@ Gw
                                         <rect key="frame" x="241" y="0.0" width="645" height="618"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
-                                            <tabView translatesAutoresizingMaskIntoConstraints="NO" id="Oon-SY-ihH">
+                                            <tabView initialItem="bcs-7R-ILX" translatesAutoresizingMaskIntoConstraints="NO" id="Oon-SY-ihH">
                                                 <rect key="frame" x="-7" y="-10" width="659" height="629"/>
                                                 <font key="font" metaFont="system"/>
                                                 <tabViewItems>
@@ -911,7 +921,7 @@ Gw
                                                                         <rect key="frame" x="1" y="1" width="637" height="581"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="70" rowSizeStyle="automatic" viewBased="YES" id="aCc-cn-6da">
+                                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="70" viewBased="YES" id="aCc-cn-6da">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="637" height="581"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -971,6 +981,7 @@ Gw
                                                                                                     <constraint firstItem="S38-aC-DiR" firstAttribute="top" secondItem="uVP-ov-iEG" secondAttribute="bottom" constant="5" id="DGr-th-xAR"/>
                                                                                                     <constraint firstAttribute="trailing" secondItem="OLb-Jp-how" secondAttribute="trailing" constant="5" id="IMo-nk-hpy"/>
                                                                                                     <constraint firstItem="OLb-Jp-how" firstAttribute="leading" secondItem="ezQ-hT-yUd" secondAttribute="leading" constant="5" id="Ihc-Lc-96W"/>
+                                                                                                    <constraint firstAttribute="bottom" secondItem="S38-aC-DiR" secondAttribute="bottom" constant="4" id="Jy5-NM-y3K"/>
                                                                                                     <constraint firstItem="uVP-ov-iEG" firstAttribute="top" secondItem="OLb-Jp-how" secondAttribute="bottom" constant="5" id="M7j-It-gct"/>
                                                                                                     <constraint firstItem="uVP-ov-iEG" firstAttribute="trailing" secondItem="OLb-Jp-how" secondAttribute="trailing" id="bvV-8w-lcu"/>
                                                                                                     <constraint firstItem="S38-aC-DiR" firstAttribute="leading" secondItem="OLb-Jp-how" secondAttribute="leading" id="q3P-hW-MKD"/>
@@ -1010,24 +1021,24 @@ Gw
                                                     </tabViewItem>
                                                     <tabViewItem label="Raw" identifier="2" id="oUb-wN-b1r">
                                                         <view key="view" id="BsF-18-PhA">
-                                                            <rect key="frame" x="10" y="33" width="350" height="380"/>
+                                                            <rect key="frame" x="10" y="33" width="639" height="583"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <scrollView misplaced="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcg-1Z-6jf">
-                                                                    <rect key="frame" x="0.0" y="-5" width="350" height="385"/>
+                                                                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcg-1Z-6jf">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="639" height="583"/>
                                                                     <clipView key="contentView" id="DWP-iV-SNh">
-                                                                        <rect key="frame" x="1" y="1" width="348" height="378"/>
+                                                                        <rect key="frame" x="1" y="1" width="637" height="581"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="nhf-eL-LKE">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="348" height="378"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="637" height="581"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                <size key="minSize" width="348" height="378"/>
-                                                                                <size key="maxSize" width="463" height="10000000"/>
+                                                                                <size key="minSize" width="637" height="581"/>
+                                                                                <size key="maxSize" width="637" height="10000000"/>
                                                                                 <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <size key="minSize" width="348" height="378"/>
-                                                                                <size key="maxSize" width="463" height="10000000"/>
+                                                                                <size key="minSize" width="637" height="581"/>
+                                                                                <size key="maxSize" width="637" height="10000000"/>
                                                                             </textView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1037,7 +1048,7 @@ Gw
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                     </scroller>
                                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1uV-rh-MKa">
-                                                                        <rect key="frame" x="333" y="1" width="16" height="378"/>
+                                                                        <rect key="frame" x="622" y="1" width="16" height="581"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                     </scroller>
                                                                 </scrollView>
@@ -1078,6 +1089,13 @@ Gw
                             <constraint firstAttribute="trailing" secondItem="igW-kw-VsJ" secondAttribute="trailing" id="wy4-UN-AFf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="filesOutlineView" destination="YGx-mR-Y2D" id="zuq-Bi-T0e"/>
+                        <outlet property="rawContentView" destination="nhf-eL-LKE" id="05j-GY-4bj"/>
+                        <outlet property="tabView" destination="Oon-SY-ihH" id="QIw-uF-06M"/>
+                        <outlet property="translationsTableView" destination="aCc-cn-6da" id="kTT-MH-k73"/>
+                        <segue destination="Ana-nO-eCh" kind="sheet" identifier="saveSegue" id="awl-ZG-Eio"/>
+                    </connections>
                 </viewController>
                 <customObject id="Drs-Xr-nNQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

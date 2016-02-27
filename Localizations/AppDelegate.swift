@@ -11,19 +11,14 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-	@IBOutlet var mainWindow: NSWindow!
-	
 	@IBOutlet var newMenuItem: NSMenuItem!
 	@IBOutlet var saveMenuItem: NSMenuItem!
 	
-	var chooseProjectViewController: ChooseProjectViewController!
-	var detailViewController: DetailViewController!
+	var chooseProjectViewController: ChooseProjectViewController?
+	var detailViewController: DetailViewController?
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
-		
-		self.chooseProjectViewController = ChooseProjectViewController(nibName: nil, bundle: nil)
-		self.detailViewController = DetailViewController(nibName: nil, bundle: nil)
-		
+				
 //		let basicAnimator = ATBasicAnimator()
 		
 //		basicAnimator.addSubviewAsFullSize(self.mainWindow.contentView!, subView: self.chooseProjectViewController.view)
@@ -35,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@IBAction func new(sender: AnyObject) {
-		self.chooseProjectViewController.startFresh()
+		self.chooseProjectViewController?.startFresh()
 	}
 	
 }

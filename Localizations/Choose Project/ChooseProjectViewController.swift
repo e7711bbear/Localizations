@@ -70,6 +70,7 @@ class ChooseProjectViewController: NSViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.appDelegate.chooseProjectViewController = self
 	}
 	
 	override var representedObject: AnyObject? {
@@ -134,8 +135,7 @@ class ChooseProjectViewController: NSViewController {
 				self.compareAndCombine()
 				// show detail ui
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
-					self.appDelegate.detailViewController.filesDataSource.buildDatasource((self.pbxprojPath as NSString).stringByDeletingLastPathComponent, devRegion: self.devRegion, knownRegions:self.knownRegions, combinedFiles: self.combinedFiles)
-					self.presentViewController(self.appDelegate.detailViewController, animator: ATBasicAnimator())
+					self.performSegueWithIdentifier("detailsSegue", sender: nil)
 					self.appDelegate.newMenuItem.enabled = true
 					self.appDelegate.saveMenuItem.enabled = true
 					})

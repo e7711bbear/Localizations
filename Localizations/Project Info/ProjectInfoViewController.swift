@@ -10,6 +10,8 @@ import Cocoa
 
 class ProjectInfoViewController: NSViewController {
 
+	let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+	
 	@IBOutlet var projectName: NSTextField!
 	@IBOutlet var rootPath: NSTextField!
 	@IBOutlet var pbxprojPath: NSTextField!
@@ -26,6 +28,18 @@ class ProjectInfoViewController: NSViewController {
 		self.pbxprojPath.stringValue = "None"
 		self.ibFiles.stringValue = "0"
 		self.stringFiles.stringValue = "0"
+	}
+	
+	override func viewWillAppear() {
+		guard self.appDelegate.chooseProjectViewController != nil &&
+		self.appDelegate.chooseProjectViewController!.rootDirectory != nil else {
+			return
+		}
+		self.projectName.stringValue = self.appDelegate.chooseProjectViewController!.rootDirectory.lastPathComponent!
+		self.rootPath.stringValue = self.appDelegate.chooseProjectViewController!.rootDirectory.path!
+		self.pbxprojPath.stringValue = self.appDelegate.chooseProjectViewController!.pbxprojPath
+		self.ibFiles.stringValue = "\(self.appDelegate.chooseProjectViewController!.ibFiles.count)"
+		self.stringFiles.stringValue = "\(self.appDelegate.chooseProjectViewController!.stringFiles.count)"
 	}
     
 }

@@ -24,7 +24,7 @@ class Region: NSObject {
 		var xcodeRegions = [XcodeRegion]()
 		
 		// TODO: improve that list
-		xcodeRegions.append(XcodeRegion(languageCode: "Base", languageName: "Base", lproj: []))
+//		xcodeRegions.append(XcodeRegion(languageCode: "Base", languageName: "Base", lproj: []))
 		xcodeRegions.append(XcodeRegion(languageCode: "af", languageName: "Afrikaans", lproj: []))
 		xcodeRegions.append(XcodeRegion(languageCode: "sq", languageName: "Albanian", lproj: []))
 		xcodeRegions.append(XcodeRegion(languageCode: "ar", languageName: "Arabic", lproj: ["ar"]))

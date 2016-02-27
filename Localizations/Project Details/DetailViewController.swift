@@ -22,19 +22,20 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	
 	@IBOutlet var rawContentView: NSTextView!
 	
-	// Save Outlets - Maybe place in another controller (save?).
-	@IBOutlet var saveWindow: NSWindow!
-	@IBOutlet var saveWindowTableView: NSTableView!
-	@IBOutlet var saveWindowCancelButton: NSButton!
-	@IBOutlet var saveWindowProceedButton: NSButton!
-	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		self.appDelegate.detailViewController = self
 		
 		self.filesOutlineView.setDelegate(self)
 		self.filesOutlineView.setDataSource(self.filesDataSource)
 		self.translationsTableView.setDelegate(self)
 		self.translationsTableView.setDataSource(self.translationsDataSource)
+	}
+	
+	override func viewWillAppear() {
+		self.filesDataSource.buildDatasource((self.appDelegate.chooseProjectViewController!.pbxprojPath as NSString).stringByDeletingLastPathComponent, devRegion: self.appDelegate.chooseProjectViewController!.devRegion, knownRegions:self.appDelegate.chooseProjectViewController!.knownRegions, combinedFiles: self.appDelegate.chooseProjectViewController!.combinedFiles)
+		self.filesOutlineView.reloadData()
 	}
 	
 	// MARK: OutlineView Delegate
@@ -81,11 +82,10 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		}
 	}
 
-	// MARK: TabView Delegate
 	func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
 		self.prepareTranslationsForDisplay()
 	}
-
+	
 	// MARK: - Cell production
 	
 	func produceRegionCell(region: Region) -> RegionCellView {
@@ -113,7 +113,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	
 	func backgroundColorForFileCellView(file: File) -> NSColor {
 		let state = file.state
-		
+	
 		switch state {
 		case .Obselete:
 			return NSColor(calibratedRed: 1.0, green: 0.0, blue: 0.0, alpha: 0.2)

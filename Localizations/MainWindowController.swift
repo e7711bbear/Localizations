@@ -17,7 +17,8 @@ class MainWindowController: NSWindowController {
     }
 
 	@IBAction func save(sender: AnyObject) {
-		//		self.detailViewController.publish()
+		// TODO: Some check here to back up toolbar de/activation
+		self.performSegueWithIdentifier("saveSegue", sender: sender)
 	}
 	
 	@IBAction func projectInfo(sender: AnyObject) {

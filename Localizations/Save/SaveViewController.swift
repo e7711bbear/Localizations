@@ -19,7 +19,8 @@ class SaveViewController: NSViewController {
 	
 	
 	@IBAction func cancel(sender:AnyObject) {
-		self.window?.close()
+		//TODO: Do some check here and cleanup
+		self.dismissController(sender)
 	}
 	
 	@IBAction func proceed(sender: AnyObject) {
@@ -127,13 +128,5 @@ class SaveViewController: NSViewController {
 			NSLog("Error deleting file \(file) - \(error)")
 			// TODO: Error Handling
 		}
-	}
-	
-	func publish() {
-		// TODO: Add here the populating of the tableview.
-		self.appDelegate.mainWindow.beginSheet(self.window!) { (modalResponse) -> Void in
-			
-		}
-	}
-	
+	}	
 }
