@@ -24,9 +24,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		self.mainViewController = MainViewController(nibName: nil, bundle: nil)
 		self.detailViewController = DetailViewController(nibName: nil, bundle: nil)
 		
-		let basicAnimator = ATBasicAnimator()
+//		let basicAnimator = ATBasicAnimator()
 		
-		basicAnimator.addSubviewAsFullSize(self.mainWindow.contentView!, subView: self.mainViewController.view)
+//		basicAnimator.addSubviewAsFullSize(self.mainWindow.contentView!, subView: self.mainViewController.view)
 		
 	}
 
@@ -37,7 +37,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBAction func new(sender: AnyObject) {
 		self.mainViewController.startFresh()
 	}
-	
+
+	// TODO: Move these to the upcoming window controller
+
 	@IBAction func save(sender: AnyObject) {
 		self.detailViewController.publish()
 	}

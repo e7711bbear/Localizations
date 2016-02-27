@@ -24,3 +24,6 @@ This project is completely open source and under the MIT license. So enjoy and h
 
 ## Special Thanks
 [Sebastien Del Grosso](http://sebastiendelgrosso.myportfolio.com) - For the app icon.
+
+## Questions & Contact
+If you have any questions, reach out to me on twitter [@athiercelin](https://twitter.com/athiercelin) or drop an issue on github.
