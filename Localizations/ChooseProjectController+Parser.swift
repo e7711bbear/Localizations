@@ -1,5 +1,5 @@
 //
-//  MainViewController+Parser.swift
+//  ChooseProjectViewController+Parser.swift
 //  Localizations
 //
 //  Created by Arnaud Thiercelin on 2/14/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MainViewController {
+extension ChooseProjectViewController {
 	
 	func parseTranslations(rawContent: String) -> [Translation] {
 		let lines = rawContent.componentsSeparatedByString("\n")

@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  ChooseProjectViewController.swift
 //  Localizations
 //
 //  Created by Arnaud Thiercelin on 1/28/16.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainViewController: NSViewController {
+class ChooseProjectViewController: NSViewController {
 	
 	weak var appDelegate: AppDelegate! = NSApplication.sharedApplication().delegate as! AppDelegate
 	

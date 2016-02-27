@@ -16,17 +16,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet var newMenuItem: NSMenuItem!
 	@IBOutlet var saveMenuItem: NSMenuItem!
 	
-	var mainViewController: MainViewController!
+	var chooseProjectViewController: ChooseProjectViewController!
 	var detailViewController: DetailViewController!
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
 		
-		self.mainViewController = MainViewController(nibName: nil, bundle: nil)
+		self.chooseProjectViewController = ChooseProjectViewController(nibName: nil, bundle: nil)
 		self.detailViewController = DetailViewController(nibName: nil, bundle: nil)
 		
 //		let basicAnimator = ATBasicAnimator()
 		
-//		basicAnimator.addSubviewAsFullSize(self.mainWindow.contentView!, subView: self.mainViewController.view)
+//		basicAnimator.addSubviewAsFullSize(self.mainWindow.contentView!, subView: self.chooseProjectViewController.view)
 		
 	}
 
@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@IBAction func new(sender: AnyObject) {
-		self.mainViewController.startFresh()
+		self.chooseProjectViewController.startFresh()
 	}
 
 	// TODO: Move these to the upcoming window controller

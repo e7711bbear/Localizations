@@ -18,7 +18,7 @@ extension DetailViewController {
 	@IBAction func proceed(sender: AnyObject) {
 		let fileManager = NSFileManager.defaultManager()
 		
-		guard self.appDelegate.mainViewController.rootDirectory != nil else {
+		guard self.appDelegate.chooseProjectViewController.rootDirectory != nil else {
 			// TODO: Error handling here.
 			return
 		}
@@ -28,15 +28,15 @@ extension DetailViewController {
 		var isDirectory: ObjCBool = false
 		
 		// Sandboxing
-		//		self.appDelegate.mainViewController.rootDirectory.startAccessingSecurityScopedResource()
+		//		self.appDelegate.chooseProjectViewController.rootDirectory.startAccessingSecurityScopedResource()
 		
-		if fileManager.fileExistsAtPath(self.appDelegate.mainViewController.rootDirectory!.path!, isDirectory: &isDirectory) {
+		if fileManager.fileExistsAtPath(self.appDelegate.chooseProjectViewController.rootDirectory!.path!, isDirectory: &isDirectory) {
 			if isDirectory {
 				// TODO: Alert here -- about to publish
 				
 				// If yes at alert ->
 				
-				for file in self.appDelegate.mainViewController.combinedFiles {
+				for file in self.appDelegate.chooseProjectViewController.combinedFiles {
 					// FIXME:					here we need to change.
 					switch file.state {
 					case .New:
@@ -52,7 +52,7 @@ extension DetailViewController {
 			}
 		}
 		// Sandboxing
-		// self.appDelegate.mainViewController.rootDirectory.stopAccessingSecurityScopedResource()
+		// self.appDelegate.chooseProjectViewController.rootDirectory.stopAccessingSecurityScopedResource()
 
 	}
 	

@@ -13,6 +13,7 @@
 		8939527A1C820AFB00D35895 /* SaveWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952781C820AFB00D35895 /* SaveWindowController.swift */; };
 		8939527E1C82224A00D35895 /* SaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939527C1C82224A00D35895 /* SaveViewController.swift */; };
 		893952811C82228F00D35895 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893952801C82228F00D35895 /* Main.storyboard */; };
+		893952BA1C82290000D35895 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952B91C82290000D35895 /* MainWindowController.swift */; };
 		893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5331C66BD6700F26792 /* DetailViewController.swift */; };
 		893BB5421C679C0E00F26792 /* ATBasicAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */; };
 		893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5431C67C38C00F26792 /* FileDataSource.swift */; };
@@ -22,9 +23,9 @@
 		89A294131C68441F003B76D6 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 89A294111C68441F003B76D6 /* LICENSE.md */; };
 		89A294141C68441F003B76D6 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 89A294121C68441F003B76D6 /* README.md */; };
 		89A294161C7149ED003B76D6 /* DetailViewController+Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A294151C7149ED003B76D6 /* DetailViewController+Save.swift */; };
-		89A294181C714E41003B76D6 /* MainViewController+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A294171C714E41003B76D6 /* MainViewController+Parser.swift */; };
+		89A294181C714E41003B76D6 /* ChooseProjectController+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A294171C714E41003B76D6 /* ChooseProjectController+Parser.swift */; };
 		89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0716A1C5AE60500E75780 /* AppDelegate.swift */; };
-		89F0716D1C5AE60500E75780 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0716C1C5AE60500E75780 /* MainViewController.swift */; };
+		89F0716D1C5AE60500E75780 /* ChooseProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0716C1C5AE60500E75780 /* ChooseProjectViewController.swift */; };
 		89F0716F1C5AE60500E75780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F0716E1C5AE60500E75780 /* Assets.xcassets */; };
 		89F0717D1C5AE60500E75780 /* LocalizationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0717C1C5AE60500E75780 /* LocalizationsTests.swift */; };
 		89F071881C5AE60500E75780 /* LocalizationsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F071871C5AE60500E75780 /* LocalizationsUITests.swift */; };
@@ -56,6 +57,7 @@
 		893952781C820AFB00D35895 /* SaveWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveWindowController.swift; sourceTree = "<group>"; };
 		8939527C1C82224A00D35895 /* SaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveViewController.swift; sourceTree = "<group>"; };
 		893952801C82228F00D35895 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		893952B91C82290000D35895 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		893BB5331C66BD6700F26792 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATBasicAnimator.swift; sourceTree = "<group>"; };
 		893BB5431C67C38C00F26792 /* FileDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDataSource.swift; sourceTree = "<group>"; };
@@ -65,10 +67,10 @@
 		89A294111C68441F003B76D6 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		89A294121C68441F003B76D6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		89A294151C7149ED003B76D6 /* DetailViewController+Save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailViewController+Save.swift"; sourceTree = "<group>"; };
-		89A294171C714E41003B76D6 /* MainViewController+Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+Parser.swift"; sourceTree = "<group>"; };
+		89A294171C714E41003B76D6 /* ChooseProjectController+Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChooseProjectController+Parser.swift"; sourceTree = "<group>"; };
 		89F071671C5AE60500E75780 /* Localizations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Localizations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F0716A1C5AE60500E75780 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		89F0716C1C5AE60500E75780 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		89F0716C1C5AE60500E75780 /* ChooseProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseProjectViewController.swift; sourceTree = "<group>"; };
 		89F0716E1C5AE60500E75780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89F071731C5AE60500E75780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89F071781C5AE60500E75780 /* LocalizationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,13 +127,23 @@
 			name = Save;
 			sourceTree = "<group>";
 		};
-		893BB5311C66BD4400F26792 /* MainController */ = {
+		893952BB1C82290B00D35895 /* Choose Project */ = {
 			isa = PBXGroup;
 			children = (
-				89F0716C1C5AE60500E75780 /* MainViewController.swift */,
-				89A294171C714E41003B76D6 /* MainViewController+Parser.swift */,
+				89F0716C1C5AE60500E75780 /* ChooseProjectViewController.swift */,
+				89A294171C714E41003B76D6 /* ChooseProjectController+Parser.swift */,
 			);
-			name = MainController;
+			name = "Choose Project";
+			sourceTree = "<group>";
+		};
+		893BB5311C66BD4400F26792 /* MainWindow */ = {
+			isa = PBXGroup;
+			children = (
+				893952B91C82290000D35895 /* MainWindowController.swift */,
+				893952BB1C82290B00D35895 /* Choose Project */,
+				893BB5321C66BD4D00F26792 /* Details */,
+			);
+			name = MainWindow;
 			sourceTree = "<group>";
 		};
 		893BB5321C66BD4D00F26792 /* Details */ = {
@@ -175,8 +187,7 @@
 				892C2B701C78282100CB7E7D /* xcode-project_Icon.icns */,
 				89F0716A1C5AE60500E75780 /* AppDelegate.swift */,
 				893952801C82228F00D35895 /* Main.storyboard */,
-				893BB5311C66BD4400F26792 /* MainController */,
-				893BB5321C66BD4D00F26792 /* Details */,
+				893BB5311C66BD4400F26792 /* MainWindow */,
 				89F071A01C62EA0F00E75780 /* Model */,
 				89F0716E1C5AE60500E75780 /* Assets.xcassets */,
 				89F071731C5AE60500E75780 /* Info.plist */,
@@ -367,7 +378,8 @@
 				892C2B731C782B1C00CB7E7D /* RegionCellView.swift in Sources */,
 				893BB54A1C67C94A00F26792 /* TranslationCellView.swift in Sources */,
 				893BB5481C67C93C00F26792 /* FileCellView.swift in Sources */,
-				89F0716D1C5AE60500E75780 /* MainViewController.swift in Sources */,
+				89F0716D1C5AE60500E75780 /* ChooseProjectViewController.swift in Sources */,
+				893952BA1C82290000D35895 /* MainWindowController.swift in Sources */,
 				8939527A1C820AFB00D35895 /* SaveWindowController.swift in Sources */,
 				89F071A41C64246600E75780 /* File.swift in Sources */,
 				89A294141C68441F003B76D6 /* README.md in Sources */,
@@ -376,7 +388,7 @@
 				893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */,
 				892C2B751C782BA100CB7E7D /* Region.swift in Sources */,
 				8939527E1C82224A00D35895 /* SaveViewController.swift in Sources */,
-				89A294181C714E41003B76D6 /* MainViewController+Parser.swift in Sources */,
+				89A294181C714E41003B76D6 /* ChooseProjectController+Parser.swift in Sources */,
 				89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */,
 				89F071A21C62EA2F00E75780 /* Translation.swift in Sources */,
 				89A294131C68441F003B76D6 /* LICENSE.md in Sources */,
