@@ -11,7 +11,23 @@ You will find Localizations particularly useful when working on a new version of
 The removal of obselete translations strings will save you money in translations costs.
  
 ## How it works
-Starting from a root folder - typically the project folder - it collects existing localizations data, re-generate new data using genstrings and ibtool, compute a diff and upon request, publishes the changes.
+1/ Choose a root folder containing an xcode project, source code (.h, .m and/or .swift files), ui files (.xib and/or .storyboard files) and eventually existing .string files in their *.lproj folders.
+
+2/ Localization dives in the file system to find all of these files and store both their content and locations
+
+3/ It regenerate fresh .strings files using ibtool and genstrings and store the generated files in a cache directory (automatically generated inside /tmp
+
+4/ It compares the existing and the new files and creates a diff
+
+5/ It shows the diff in the detail view
+
+**Important: Before saving changes, you should stash your local changes and work with a fresh commit so you can revert the results eventually**
+
+6/ If you likes the changes, you can review and save them
+
+7/ Localizations will erase, overwrite and create all necessary files and folders.
+
+By default, all brand new files will be created as a development language (picked from the pbxproj) folder.
 
 ## Intentions & License
 When it comes to handle your string files, Xcode has been leaving a void which is yet to be filled.
