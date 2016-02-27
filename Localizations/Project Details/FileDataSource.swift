@@ -35,7 +35,10 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 		return false
 	}
 	
-	func regionWithCode(code: String) -> Region? {
+	func regionWithCode(code: String?) -> Region? {
+		guard code != nil else {
+			return nil
+		}
 		for region in self.regions {
 			if region.code == code {
 				return region
@@ -55,7 +58,7 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 		for file in combinedFiles {
 			if file.folder.characters.count != 0 {
 				// Assign files with their respective region
-				if let region = self.regionWithCode(file.languageCode) {
+				if let region = self.regionWithCode(Region.regionMatchingString(file.languageCode)?.code) {
 					region.files.append(file)
 				} else { 
 					let newRegion = Region.regionMatchingString(file.languageCode)

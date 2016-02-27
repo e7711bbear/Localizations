@@ -90,7 +90,7 @@ class ChooseProjectViewController: NSViewController {
 		self.existingFiles.removeAll()
 		self.freshlyGeneratedFiles.removeAll()
 		self.combinedFiles.removeAll()
-		self.dismissViewController(self.appDelegate.detailViewController)
+		self.dismissViewController(self.appDelegate.detailViewController!)
 		self.appDelegate.newMenuItem.enabled = false
 		self.appDelegate.saveMenuItem.enabled = false
 	}
@@ -455,8 +455,7 @@ class ChooseProjectViewController: NSViewController {
 						let newFile = File()
 
 						newFile.name = element
-						// TODO: it'll be great here to ready the conf of the xcode proj and deduce what is the default language.
-						newFile.folder = "Base.lproj"
+						newFile.folder = "\(self.devRegion).lproj"
 						var fileContent = ""
 						
 						do {
