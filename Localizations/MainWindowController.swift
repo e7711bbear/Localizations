@@ -17,7 +17,7 @@ class MainWindowController: NSWindowController {
     }
 
 	@IBAction func save(sender: AnyObject) {
-		self.detailViewController.publish()
+		//		self.detailViewController.publish()
 	}
 	
 	@IBAction func projectInfo(sender: AnyObject) {

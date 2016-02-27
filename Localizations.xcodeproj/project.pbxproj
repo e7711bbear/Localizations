@@ -14,7 +14,6 @@
 		8939527E1C82224A00D35895 /* SaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939527C1C82224A00D35895 /* SaveViewController.swift */; };
 		893952811C82228F00D35895 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893952801C82228F00D35895 /* Main.storyboard */; };
 		893952BA1C82290000D35895 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952B91C82290000D35895 /* MainWindowController.swift */; };
-		893952BE1C822B3000D35895 /* ProjectInfoWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952BD1C822B3000D35895 /* ProjectInfoWindowController.swift */; };
 		893952C01C822B4500D35895 /* ProjectInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952BF1C822B4500D35895 /* ProjectInfoViewController.swift */; };
 		893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5331C66BD6700F26792 /* DetailViewController.swift */; };
 		893BB5421C679C0E00F26792 /* ATBasicAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */; };
@@ -60,7 +59,6 @@
 		8939527C1C82224A00D35895 /* SaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveViewController.swift; sourceTree = "<group>"; };
 		893952801C82228F00D35895 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		893952B91C82290000D35895 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		893952BD1C822B3000D35895 /* ProjectInfoWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectInfoWindowController.swift; sourceTree = "<group>"; };
 		893952BF1C822B4500D35895 /* ProjectInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewController.swift; sourceTree = "<group>"; };
 		893BB5331C66BD6700F26792 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATBasicAnimator.swift; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 		893952BC1C822AFB00D35895 /* Project Info */ = {
 			isa = PBXGroup;
 			children = (
-				893952BD1C822B3000D35895 /* ProjectInfoWindowController.swift */,
 				893952BF1C822B4500D35895 /* ProjectInfoViewController.swift */,
 			);
 			name = "Project Info";
@@ -401,7 +398,6 @@
 				89A294161C7149ED003B76D6 /* DetailViewController+Save.swift in Sources */,
 				893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */,
 				893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */,
-				893952BE1C822B3000D35895 /* ProjectInfoWindowController.swift in Sources */,
 				892C2B751C782BA100CB7E7D /* Region.swift in Sources */,
 				8939527E1C82224A00D35895 /* SaveViewController.swift in Sources */,
 				89A294181C714E41003B76D6 /* ChooseProjectController+Parser.swift in Sources */,

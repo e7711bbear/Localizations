@@ -428,7 +428,11 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <toolbar key="toolbar" implicitIdentifier="41C476D4-1068-431D-A8E4-7DBE75A81CD0" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="jig-xk-Kq5">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="251E8C91-1536-4DA0-A14F-727E3212AEAD" explicitItemIdentifier="projectInfo" label="Project Info" paletteLabel="Project Info" tag="-1" image="xcode-project_Icon" id="Bpt-h9-b8r"/>
+                                <toolbarItem implicitItemIdentifier="251E8C91-1536-4DA0-A14F-727E3212AEAD" explicitItemIdentifier="projectInfo" label="Project Info" paletteLabel="Project Info" tag="-1" image="xcode-project_Icon" id="Bpt-h9-b8r">
+                                    <connections>
+                                        <segue destination="vSA-QM-Yec" kind="sheet" id="BhW-ib-Q4i"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="60FD38BE-CB44-4200-BC2A-B0B341DC271A" explicitItemIdentifier="save" label="Save" paletteLabel="Save" tag="-1" image="NSFolder" id="pd2-8c-7mO"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="JgN-Cy-sIZ"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="TU0-f1-xJ9"/>
@@ -625,36 +629,140 @@ Gw
             </objects>
             <point key="canvasLocation" x="3080.5" y="902"/>
         </scene>
-        <!--Project Info Window Controller-->
-        <scene sceneID="sj1-Uk-hlE">
-            <objects>
-                <windowController id="sQe-F5-7Ma" userLabel="Project Info Window Controller" customClass="ProjectInfoWindowController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Zq4-jb-uHK">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                    </window>
-                    <connections>
-                        <segue destination="vSA-QM-Yec" kind="relationship" relationship="window.shadowedContentViewController" id="inJ-mo-hKc"/>
-                    </connections>
-                </windowController>
-                <customObject id="zRU-wa-J46" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="553" y="1236"/>
-        </scene>
         <!--Project Info View Controller-->
         <scene sceneID="BTz-GT-jGf">
             <objects>
                 <viewController id="vSA-QM-Yec" customClass="ProjectInfoViewController" customModule="Localizations" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Btf-FN-sxJ">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="533" height="201"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="H5P-bT-wsk">
+                                <rect key="frame" x="18" y="156" width="124" height="25"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Project Name" id="y1M-7W-Utz">
+                                    <font key="font" metaFont="systemThin" size="21"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vDt-J6-sAp">
+                                <rect key="frame" x="18" y="131" width="85" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Root Path:" id="Teb-SA-LlD">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Ajc-DZ-Dk8">
+                                <rect key="frame" x="18" y="106" width="85" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Pbxproj path:" id="DBj-Vl-mso">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="YLE-tJ-Bi3">
+                                <rect key="frame" x="18" y="81" width="85" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="IB Files:" id="Py9-qi-iuM">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="kJO-Mn-u2c">
+                                <rect key="frame" x="18" y="56" width="85" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="String Files:" id="P7O-fR-HcA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ewL-Mi-my6">
+                                <rect key="frame" x="107" y="131" width="408" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="/some/path/to/root/directory/" id="a0m-Wq-4MB">
+                                    <font key="font" metaFont="systemLight" size="13"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="qQV-Wd-ujZ">
+                                <rect key="frame" x="107" y="106" width="408" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="/some/path/to/root/directory/Project.xcodeproj/project.pbxproj" id="Fit-wZ-tHh">
+                                    <font key="font" metaFont="systemLight" size="13"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WZ6-rL-JSw">
+                                <rect key="frame" x="107" y="81" width="408" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="12" id="saa-aG-MB2">
+                                    <font key="font" metaFont="systemLight" size="13"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wlK-rp-E3u">
+                                <rect key="frame" x="107" y="56" width="408" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="34" id="WMd-hF-M37">
+                                    <font key="font" metaFont="systemLight" size="13"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BdM-IR-seh">
+                                <rect key="frame" x="229" y="13" width="75" height="32"/>
+                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zdI-ca-Ipl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="vSA-QM-Yec" id="xN1-9t-X6L"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="qQV-Wd-ujZ" firstAttribute="top" secondItem="ewL-Mi-my6" secondAttribute="bottom" constant="8" id="11L-Bq-IB8"/>
+                            <constraint firstItem="Ajc-DZ-Dk8" firstAttribute="top" secondItem="vDt-J6-sAp" secondAttribute="bottom" constant="8" id="1gL-gZ-tKk"/>
+                            <constraint firstItem="vDt-J6-sAp" firstAttribute="top" secondItem="H5P-bT-wsk" secondAttribute="bottom" constant="8" id="315-y5-fyZ"/>
+                            <constraint firstItem="YLE-tJ-Bi3" firstAttribute="top" secondItem="Ajc-DZ-Dk8" secondAttribute="bottom" constant="8" id="6Xh-sC-1e5"/>
+                            <constraint firstItem="qQV-Wd-ujZ" firstAttribute="trailing" secondItem="ewL-Mi-my6" secondAttribute="trailing" id="A9p-91-bTJ"/>
+                            <constraint firstAttribute="trailing" secondItem="ewL-Mi-my6" secondAttribute="trailing" constant="20" symbolic="YES" id="DZk-E2-dqN"/>
+                            <constraint firstItem="kJO-Mn-u2c" firstAttribute="top" secondItem="YLE-tJ-Bi3" secondAttribute="bottom" constant="8" id="DtH-sA-mxE"/>
+                            <constraint firstItem="H5P-bT-wsk" firstAttribute="leading" secondItem="Btf-FN-sxJ" secondAttribute="leading" constant="20" id="EMx-gf-1tf"/>
+                            <constraint firstItem="WZ6-rL-JSw" firstAttribute="leading" secondItem="ewL-Mi-my6" secondAttribute="leading" id="FJj-3g-WTX"/>
+                            <constraint firstItem="kJO-Mn-u2c" firstAttribute="trailing" secondItem="vDt-J6-sAp" secondAttribute="trailing" id="JUM-gh-36w"/>
+                            <constraint firstItem="Ajc-DZ-Dk8" firstAttribute="leading" secondItem="vDt-J6-sAp" secondAttribute="leading" id="NUM-xl-Z6J"/>
+                            <constraint firstItem="wlK-rp-E3u" firstAttribute="top" secondItem="WZ6-rL-JSw" secondAttribute="bottom" constant="8" id="Nhl-fq-s0x"/>
+                            <constraint firstAttribute="bottom" secondItem="BdM-IR-seh" secondAttribute="bottom" constant="20" id="Nig-uw-10m"/>
+                            <constraint firstItem="vDt-J6-sAp" firstAttribute="leading" secondItem="H5P-bT-wsk" secondAttribute="leading" id="YU1-uU-173"/>
+                            <constraint firstItem="WZ6-rL-JSw" firstAttribute="top" secondItem="qQV-Wd-ujZ" secondAttribute="bottom" constant="8" id="aOR-V1-Ul7"/>
+                            <constraint firstItem="Ajc-DZ-Dk8" firstAttribute="trailing" secondItem="vDt-J6-sAp" secondAttribute="trailing" id="aRe-xB-r82"/>
+                            <constraint firstItem="ewL-Mi-my6" firstAttribute="leading" secondItem="vDt-J6-sAp" secondAttribute="trailing" constant="8" id="cAy-ZM-hfr"/>
+                            <constraint firstItem="wlK-rp-E3u" firstAttribute="trailing" secondItem="ewL-Mi-my6" secondAttribute="trailing" id="cJl-Y8-LeS"/>
+                            <constraint firstItem="BdM-IR-seh" firstAttribute="centerX" secondItem="Btf-FN-sxJ" secondAttribute="centerX" id="coT-Ga-4iv"/>
+                            <constraint firstItem="qQV-Wd-ujZ" firstAttribute="leading" secondItem="ewL-Mi-my6" secondAttribute="leading" id="dIT-Be-iuW"/>
+                            <constraint firstItem="wlK-rp-E3u" firstAttribute="leading" secondItem="ewL-Mi-my6" secondAttribute="leading" id="dYL-ry-NJ4"/>
+                            <constraint firstItem="ewL-Mi-my6" firstAttribute="baseline" secondItem="vDt-J6-sAp" secondAttribute="baseline" id="eOq-tX-TW4"/>
+                            <constraint firstItem="kJO-Mn-u2c" firstAttribute="leading" secondItem="vDt-J6-sAp" secondAttribute="leading" id="evL-Ze-uzu"/>
+                            <constraint firstItem="YLE-tJ-Bi3" firstAttribute="leading" secondItem="vDt-J6-sAp" secondAttribute="leading" id="hsW-zK-12p"/>
+                            <constraint firstItem="YLE-tJ-Bi3" firstAttribute="trailing" secondItem="vDt-J6-sAp" secondAttribute="trailing" id="lW8-Zw-WDX"/>
+                            <constraint firstItem="WZ6-rL-JSw" firstAttribute="trailing" secondItem="ewL-Mi-my6" secondAttribute="trailing" id="nUw-G7-7EB"/>
+                            <constraint firstItem="BdM-IR-seh" firstAttribute="top" secondItem="wlK-rp-E3u" secondAttribute="bottom" constant="15" id="p8o-Yv-G3j"/>
+                            <constraint firstItem="H5P-bT-wsk" firstAttribute="top" secondItem="Btf-FN-sxJ" secondAttribute="top" constant="20" id="ywW-vz-asX"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="closeButton" destination="BdM-IR-seh" id="SdU-LT-xhI"/>
+                        <outlet property="ibFiles" destination="WZ6-rL-JSw" id="Wxi-ei-nN2"/>
+                        <outlet property="pbxprojPath" destination="qQV-Wd-ujZ" id="K62-sj-nfu"/>
+                        <outlet property="projectName" destination="H5P-bT-wsk" id="ian-8s-M6Q"/>
+                        <outlet property="rootPath" destination="ewL-Mi-my6" id="i0z-nD-t4C"/>
+                        <outlet property="stringFiles" destination="wlK-rp-E3u" id="bJU-2P-boD"/>
+                    </connections>
                 </viewController>
                 <customObject id="rzW-pX-9N0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="553" y="1797"/>
+            <point key="canvasLocation" x="552.5" y="1416"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="n5m-qf-f8e">
