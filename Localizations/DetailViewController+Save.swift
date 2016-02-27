@@ -9,6 +9,7 @@
 import Foundation
 
 extension DetailViewController {
+	// TODO: Move this extension into a separate controller since now it has its own window sheet
 	
 	@IBAction func cancel(sender:AnyObject) {
 		self.saveWindow.close()
