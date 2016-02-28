@@ -11,6 +11,11 @@ import Cocoa
 class SaveViewController: NSViewController {
 	let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
 
+	@IBOutlet var changesTableView: NSTableView!
+	
+	@IBOutlet var cancelButton: NSButton!
+	@IBOutlet var proceedButton: NSButton!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -26,7 +31,7 @@ class SaveViewController: NSViewController {
 	@IBAction func proceed(sender: AnyObject) {
 		let fileManager = NSFileManager.defaultManager()
 		
-		guard self.appDelegate.chooseProjectViewController.rootDirectory != nil else {
+		guard self.appDelegate.chooseProjectViewController!.rootDirectory != nil else {
 			// TODO: Error handling here.
 			return
 		}
@@ -38,13 +43,13 @@ class SaveViewController: NSViewController {
 		// Sandboxing
 		//		self.appDelegate.chooseProjectViewController.rootDirectory.startAccessingSecurityScopedResource()
 		
-		if fileManager.fileExistsAtPath(self.appDelegate.chooseProjectViewController.rootDirectory!.path!, isDirectory: &isDirectory) {
+		if fileManager.fileExistsAtPath(self.appDelegate.chooseProjectViewController!.rootDirectory!.path!, isDirectory: &isDirectory) {
 			if isDirectory {
 				// TODO: Alert here -- about to publish
 				
 				// If yes at alert ->
 				
-				for file in self.appDelegate.chooseProjectViewController.combinedFiles {
+				for file in self.appDelegate.chooseProjectViewController!.combinedFiles {
 					// FIXME:					here we need to change.
 					switch file.state {
 					case .New:

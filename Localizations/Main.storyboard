@@ -480,6 +480,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="proceed:" target="Ana-nO-eCh" id="Qjh-Cv-gYx"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fLB-v8-Bx7">
                                 <rect key="frame" x="15" y="13" width="82" height="32"/>
@@ -490,6 +493,9 @@
 Gw
 </string>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="cancel:" target="Ana-nO-eCh" id="SzH-Ba-DnE"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Usg-6y-twG">
                                 <rect key="frame" x="18" y="379" width="154" height="21"/>
@@ -620,6 +626,11 @@ Gw
                             <constraint firstItem="fLB-v8-Bx7" firstAttribute="leading" secondItem="L1W-CC-LeN" secondAttribute="leading" id="qEC-aB-fJS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="fLB-v8-Bx7" id="EaB-qU-kxY"/>
+                        <outlet property="changesTableView" destination="L1W-CC-LeN" id="MA1-ll-gpY"/>
+                        <outlet property="proceedButton" destination="ohj-23-Bfm" id="TvE-VK-rTt"/>
+                    </connections>
                 </viewController>
                 <customObject id="wdx-VB-o2R" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

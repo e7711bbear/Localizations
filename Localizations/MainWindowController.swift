@@ -10,6 +10,8 @@ import Cocoa
 
 class MainWindowController: NSWindowController {
 
+	let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+	
     override func windowDidLoad() {
         super.windowDidLoad()
     
@@ -18,7 +20,7 @@ class MainWindowController: NSWindowController {
 
 	@IBAction func save(sender: AnyObject) {
 		// TODO: Some check here to back up toolbar de/activation
-		self.performSegueWithIdentifier("saveSegue", sender: sender)
+		self.appDelegate.detailViewController?.performSegueWithIdentifier("saveSegue", sender: sender)
 	}
 	
 	@IBAction func projectInfo(sender: AnyObject) {
