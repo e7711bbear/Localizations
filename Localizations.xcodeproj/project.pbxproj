@@ -15,6 +15,8 @@
 		893952BA1C82290000D35895 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952B91C82290000D35895 /* MainWindowController.swift */; };
 		893952C01C822B4500D35895 /* ProjectInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952BF1C822B4500D35895 /* ProjectInfoViewController.swift */; };
 		893952C21C82377800D35895 /* ATReplacingSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952C11C82377800D35895 /* ATReplacingSegue.swift */; };
+		893952C41C83D47C00D35895 /* ChangeStepCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952C31C83D47C00D35895 /* ChangeStepCellView.swift */; };
+		893952C61C83D50000D35895 /* ATStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952C51C83D50000D35895 /* ATStatusView.swift */; };
 		893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5331C66BD6700F26792 /* DetailViewController.swift */; };
 		893BB5421C679C0E00F26792 /* ATBasicAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */; };
 		893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5431C67C38C00F26792 /* FileDataSource.swift */; };
@@ -59,6 +61,8 @@
 		893952B91C82290000D35895 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		893952BF1C822B4500D35895 /* ProjectInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewController.swift; sourceTree = "<group>"; };
 		893952C11C82377800D35895 /* ATReplacingSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATReplacingSegue.swift; sourceTree = "<group>"; };
+		893952C31C83D47C00D35895 /* ChangeStepCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeStepCellView.swift; sourceTree = "<group>"; };
+		893952C51C83D50000D35895 /* ATStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATStatusView.swift; sourceTree = "<group>"; };
 		893BB5331C66BD6700F26792 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATBasicAnimator.swift; sourceTree = "<group>"; };
 		893BB5431C67C38C00F26792 /* FileDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDataSource.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				8939527C1C82224A00D35895 /* SaveViewController.swift */,
+				893952C31C83D47C00D35895 /* ChangeStepCellView.swift */,
+				893952C51C83D50000D35895 /* ATStatusView.swift */,
 			);
 			path = Save;
 			sourceTree = "<group>";
@@ -385,6 +391,7 @@
 				893BB5421C679C0E00F26792 /* ATBasicAnimator.swift in Sources */,
 				892C2B731C782B1C00CB7E7D /* RegionCellView.swift in Sources */,
 				893BB54A1C67C94A00F26792 /* TranslationCellView.swift in Sources */,
+				893952C41C83D47C00D35895 /* ChangeStepCellView.swift in Sources */,
 				893BB5481C67C93C00F26792 /* FileCellView.swift in Sources */,
 				89F0716D1C5AE60500E75780 /* ChooseProjectViewController.swift in Sources */,
 				893952BA1C82290000D35895 /* MainWindowController.swift in Sources */,
@@ -399,6 +406,7 @@
 				89A294181C714E41003B76D6 /* ChooseProjectController+Parser.swift in Sources */,
 				89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */,
 				89F071A21C62EA2F00E75780 /* Translation.swift in Sources */,
+				893952C61C83D50000D35895 /* ATStatusView.swift in Sources */,
 				89A294131C68441F003B76D6 /* LICENSE.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

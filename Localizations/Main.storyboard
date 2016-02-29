@@ -539,7 +539,7 @@ Gw
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="dgd-Qb-wCp">
+                                                        <tableCellView identifier="stepCell" id="dgd-Qb-wCp" customClass="ChangeStepCellView" customModule="Localizations" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="640" height="75"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -559,7 +559,7 @@ Gw
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="2lY-tW-Z56">
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="2lY-tW-Z56" customClass="ATStatusView">
                                                                     <rect key="frame" x="10" y="10" width="55" height="55"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="55" id="Sdu-gJ-uSP"/>
@@ -587,7 +587,11 @@ Gw
                                                                 <constraint firstItem="2lY-tW-Z56" firstAttribute="leading" secondItem="dgd-Qb-wCp" secondAttribute="leading" constant="10" id="t0E-Jh-QMS"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="fileName" destination="Y2s-LE-yqX" id="73U-uu-wu9"/>
+                                                                <outlet property="filePath" destination="e0l-6R-2eM" id="TJu-gC-kjI"/>
+                                                                <outlet property="stepStatus" destination="2lY-tW-Z56" id="lRy-gC-bED"/>
                                                                 <outlet property="textField" destination="Y2s-LE-yqX" id="Vnf-jW-NQF"/>
+                                                                <outlet property="translationsInfo" destination="UYw-Ag-Nk4" id="lSv-Z5-w2t"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
