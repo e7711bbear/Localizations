@@ -8,20 +8,28 @@
 
 import Cocoa
 
-class SaveViewController: NSViewController {
+class SaveViewController: NSViewController, NSTableViewDelegate {
 	let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
 
 	@IBOutlet var changesTableView: NSTableView!
+	var changesTableViewDatasource = ChangeTableViewDataSource()
 	
 	@IBOutlet var cancelButton: NSButton!
 	@IBOutlet var proceedButton: NSButton!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-    }
+
+		self.changesTableView.setDelegate(self)
+		self.changesTableView.setDataSource(self.changesTableViewDatasource)
+	}
 	
+	override func viewWillAppear() {
+		self.changesTableViewDatasource.buildDatasource((self.appDelegate.detailViewController?.filesDataSource.regions)!)
+		self.changesTableView.reloadData()
+	}
 	
+	// MARK: - IB Controls
 	
 	@IBAction func cancel(sender:AnyObject) {
 		//TODO: Do some check here and cleanup
@@ -68,6 +76,8 @@ class SaveViewController: NSViewController {
 		// self.appDelegate.chooseProjectViewController.rootDirectory.stopAccessingSecurityScopedResource()
 		
 	}
+	
+	// MARK: - FileSystem funcs
 	
 	func writableContent(file: File) -> String {
 		var returnableString = ""
@@ -133,5 +143,30 @@ class SaveViewController: NSViewController {
 			NSLog("Error deleting file \(file) - \(error)")
 			// TODO: Error Handling
 		}
-	}	
+	}
+	
+	//MARK: - TableView Delegate
+	
+	func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+		let changeView = tableView.makeViewWithIdentifier("changeCell", owner: self) as! ChangeStepCellView
+		let fileChange = self.changesTableViewDatasource.changes[row]
+		
+		switch fileChange.state {
+		case .New:
+			changeView.stepStatus.state = .New
+		case .Obselete:
+			changeView.stepStatus.state = .Delete
+		case .Edit:
+			changeView.stepStatus.state = .Edit
+		default:
+			changeView.stepStatus.state = .None
+		}
+		
+		changeView.fileName.stringValue = fileChange.name
+		changeView.translationsInfo.stringValue = "\(fileChange.translations.count) Translation Keys"
+		changeView.filePath.stringValue = fileChange.path
+		
+		return changeView
+	}
+	
 }

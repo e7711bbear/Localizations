@@ -519,7 +519,7 @@ Gw
                                     <rect key="frame" x="1" y="1" width="643" height="289"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="75" rowSizeStyle="automatic" viewBased="YES" id="L1W-CC-LeN">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="75" viewBased="YES" id="L1W-CC-LeN">
                                             <rect key="frame" x="0.0" y="0.0" width="643" height="289"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -539,7 +539,7 @@ Gw
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="stepCell" id="dgd-Qb-wCp" customClass="ChangeStepCellView" customModule="Localizations" customModuleProvider="target">
+                                                        <tableCellView identifier="changeCell" id="dgd-Qb-wCp" customClass="ChangeStepCellView" customModule="Localizations" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="640" height="75"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -559,7 +559,7 @@ Gw
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="2lY-tW-Z56" customClass="ATStatusView">
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="2lY-tW-Z56" customClass="ATStatusView" customModule="Localizations" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="10" width="55" height="55"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="55" id="Sdu-gJ-uSP"/>
