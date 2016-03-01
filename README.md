@@ -37,6 +37,7 @@ This project is completely open source and under the MIT license. So enjoy and h
 
 ##Screenshots
 ![Screenshot](https://github.com/athiercelin/Localizations/blob/master/Screenshots/localization-0.1-4.png?raw=true)
+![Screenshot](https://github.com/athiercelin/Localizations/blob/master/Screenshots/localization-0.1-5.png?raw=true)
 
 ## Special Thanks
 [Sebastien Del Grosso](http://sebastiendelgrosso.myportfolio.com) - For the app icon.

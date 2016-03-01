@@ -19,7 +19,11 @@ class ChangeTableViewDataSource: NSObject, NSTableViewDataSource {
 	func buildDatasource(regions: [Region]) {
 		self.changes.removeAll()
 		for region in regions {
-			self.changes.appendContentsOf(region.files)
+			for file in region.files {
+				if file.translations.count > 0 {
+					self.changes.append(file)
+				}
+			}
 		}
 	}
 	

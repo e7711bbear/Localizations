@@ -10,21 +10,23 @@ import Cocoa
 
 class SaveViewController: NSViewController, NSTableViewDelegate {
 	let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-
+	
 	@IBOutlet var changesTableView: NSTableView!
 	var changesTableViewDatasource = ChangeTableViewDataSource()
 	
 	@IBOutlet var cancelButton: NSButton!
 	@IBOutlet var proceedButton: NSButton!
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
 		self.changesTableView.setDelegate(self)
 		self.changesTableView.setDataSource(self.changesTableViewDatasource)
 	}
 	
 	override func viewWillAppear() {
+		self.proceedButton.enabled = true
+		self.cancelButton.title = NSLocalizedString("Cancel", comment: "Cancel button's default title in save sheet")
 		self.changesTableViewDatasource.buildDatasource((self.appDelegate.detailViewController?.filesDataSource.regions)!)
 		self.changesTableView.reloadData()
 	}
@@ -56,22 +58,45 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 				// TODO: Alert here -- about to publish
 				
 				// If yes at alert ->
-				
-				for file in self.appDelegate.chooseProjectViewController!.combinedFiles {
-					// FIXME:					here we need to change.
-					switch file.state {
-					case .New:
-						self.createFile(file)
-					case .Edit:
-						self.editFile(file)
-					case .Obselete:
-						self.deleteFile(file)
-					default:
-						continue
+				dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+					for index in 0..<self.changesTableViewDatasource.changes.count {
+						let file = self.changesTableViewDatasource.changes[index]
+						
+						let cellView = self.changesTableView.viewAtColumn(0, row: index, makeIfNecessary: false) as! ChangeStepCellView
+						
+						cellView.stepStatus.state = .InProgress
+						dispatch_async(dispatch_get_main_queue(), { () -> Void in
+							cellView.stepStatus.setNeedsDisplayInRect(cellView.stepStatus.bounds)
+							cellView.stepStatus.displayIfNeeded()
+						})
+						
+						//TODO: add error handling here and .Error state
+						switch file.state {
+						case .New:
+							self.createFile(file)
+							cellView.stepStatus.state = .Success
+						case .Edit:
+							self.editFile(file)
+							cellView.stepStatus.state = .Success
+						case .Obselete:
+							self.deleteFile(file)
+							cellView.stepStatus.state = .Success
+						default:
+							continue
+						}
+						dispatch_async(dispatch_get_main_queue(), { () -> Void in
+							cellView.stepStatus.setNeedsDisplayInRect(cellView.stepStatus.bounds)
+							cellView.stepStatus.displayIfNeeded()
+						})
 					}
-				}
+					
+				})
+				
 			}
 		}
+		self.proceedButton.enabled = false
+		self.cancelButton.title = NSLocalizedString("Close", comment: "Cancel button's close title in save sheet")
+
 		// Sandboxing
 		// self.appDelegate.chooseProjectViewController.rootDirectory.stopAccessingSecurityScopedResource()
 		

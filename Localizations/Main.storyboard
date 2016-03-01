@@ -566,9 +566,9 @@ Gw
                                                                         <constraint firstAttribute="width" constant="55" id="wMU-bV-ZDz"/>
                                                                     </constraints>
                                                                 </customView>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e0l-6R-2eM">
-                                                                    <rect key="frame" x="73" y="10" width="174" height="17"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="/path/to/file/filename.strings" id="Kyj-Ya-oB1">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="e0l-6R-2eM">
+                                                                    <rect key="frame" x="73" y="11" width="559" height="16"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingHead" sendsActionOnEndEditing="YES" title="/path/to/file/filename.strings" id="Kyj-Ya-oB1">
                                                                         <font key="font" metaFont="systemUltraLight" size="12"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -582,6 +582,7 @@ Gw
                                                                 <constraint firstItem="e0l-6R-2eM" firstAttribute="leading" secondItem="2lY-tW-Z56" secondAttribute="trailing" constant="10" id="K9i-lD-YS1"/>
                                                                 <constraint firstItem="2lY-tW-Z56" firstAttribute="top" secondItem="dgd-Qb-wCp" secondAttribute="top" constant="10" id="UZ2-BQ-0Kw"/>
                                                                 <constraint firstItem="UYw-Ag-Nk4" firstAttribute="leading" secondItem="Y2s-LE-yqX" secondAttribute="leading" id="hvu-71-zb6"/>
+                                                                <constraint firstAttribute="trailing" secondItem="e0l-6R-2eM" secondAttribute="trailing" constant="10" id="iPy-BP-ewr"/>
                                                                 <constraint firstItem="UYw-Ag-Nk4" firstAttribute="top" secondItem="Y2s-LE-yqX" secondAttribute="bottom" constant="2" id="nYo-CI-I98"/>
                                                                 <constraint firstItem="UYw-Ag-Nk4" firstAttribute="leading" secondItem="2lY-tW-Z56" secondAttribute="trailing" constant="10" id="pnK-WD-7OA"/>
                                                                 <constraint firstItem="2lY-tW-Z56" firstAttribute="leading" secondItem="dgd-Qb-wCp" secondAttribute="leading" constant="10" id="t0E-Jh-QMS"/>
