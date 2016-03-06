@@ -34,7 +34,10 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	}
 	
 	override func viewWillAppear() {
-		self.filesDataSource.buildDatasource((self.appDelegate.chooseProjectViewController!.pbxprojPath as NSString).stringByDeletingLastPathComponent, devRegion: self.appDelegate.chooseProjectViewController!.devRegion, knownRegions:self.appDelegate.chooseProjectViewController!.knownRegions, combinedFiles: self.appDelegate.chooseProjectViewController!.combinedFiles)
+		self.filesDataSource.buildDatasource((self.appDelegate.chooseProjectViewController!.xcodeProject.pbxprojPath as NSString).stringByDeletingLastPathComponent,
+			devRegion: self.appDelegate.chooseProjectViewController!.xcodeProject.devRegion,
+			knownRegions:self.appDelegate.chooseProjectViewController!.xcodeProject.knownRegions,
+			combinedFiles: self.appDelegate.chooseProjectViewController!.combinedFiles)
 		self.filesOutlineView.reloadData()
 	}
 	

@@ -53,7 +53,6 @@ class ChooseProjectViewController: NSViewController {
 		}
 	}
 	
-	// TODO: Move this to an xcodefile model
 	lazy var xcodeProject = XcodeProject()
 	
 	lazy var ibFiles = [NSString]()
@@ -69,13 +68,7 @@ class ChooseProjectViewController: NSViewController {
 		super.viewDidLoad()
 		self.appDelegate.chooseProjectViewController = self
 	}
-	
-	override var representedObject: AnyObject? {
-		didSet {
-			// Update the view, if already loaded.
-		}
-	}
-	
+		
 	override func viewDidAppear() {
 	}
 	
