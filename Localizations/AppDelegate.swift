@@ -17,12 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var chooseProjectViewController: ChooseProjectViewController?
 	var detailViewController: DetailViewController?
 	
-	func applicationDidFinishLaunching(aNotification: NSNotification) {
-				
-//		let basicAnimator = ATBasicAnimator()
-		
-//		basicAnimator.addSubviewAsFullSize(self.mainWindow.contentView!, subView: self.chooseProjectViewController.view)
-		
+	func applicationDidFinishLaunching(aNotification: NSNotification) {		
 	}
 
 	func applicationWillTerminate(aNotification: NSNotification) {

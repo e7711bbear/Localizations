@@ -53,11 +53,7 @@ class ChooseProjectViewController: NSViewController {
 		}
 	}
 	
-	// TODO: Move this to an xcodefile model
-	var pbxprojPath = ""
-	var pbxprojContent = ""
-	var devRegion = ""
-	lazy var knownRegions = [String]()
+	lazy var xcodeProject = XcodeProject()
 	
 	lazy var ibFiles = [NSString]()
 	lazy var stringFiles = [NSString]()
@@ -72,13 +68,7 @@ class ChooseProjectViewController: NSViewController {
 		super.viewDidLoad()
 		self.appDelegate.chooseProjectViewController = self
 	}
-	
-	override var representedObject: AnyObject? {
-		didSet {
-			// Update the view, if already loaded.
-		}
-	}
-	
+		
 	override func viewDidAppear() {
 	}
 	
@@ -179,8 +169,8 @@ class ChooseProjectViewController: NSViewController {
 					let stringsRange = element.rangeOfString(".pbxproj")
 					
 					if stringsRange != nil {
-						if self.pbxprojPath == "" {
-							self.pbxprojPath = elementPath
+						if self.xcodeProject.pbxprojPath == "" {
+							self.xcodeProject.pbxprojPath = elementPath
 							self.readPbxproj()
 						} else {
 							NSLog("Error: Found multiple pbxproj - \(elementPath)")
@@ -196,44 +186,44 @@ class ChooseProjectViewController: NSViewController {
 	}
 	
 	func readPbxproj() {
-		self.knownRegions.removeAll()
-		self.devRegion = ""
+		self.xcodeProject.knownRegions.removeAll()
+		self.xcodeProject.devRegion = ""
 		
 		do {
-			self.pbxprojContent = try NSString(contentsOfFile: self.pbxprojPath as String, encoding: NSUTF8StringEncoding) as String
+			self.xcodeProject.pbxprojContent = try NSString(contentsOfFile: self.xcodeProject.pbxprojPath as String, encoding: NSUTF8StringEncoding) as String
 		} catch {
 			do {
-				self.pbxprojContent = try NSString(contentsOfFile: self.pbxprojPath as String, encoding: NSUTF16StringEncoding) as String
+				self.xcodeProject.pbxprojContent = try NSString(contentsOfFile: self.xcodeProject.pbxprojPath as String, encoding: NSUTF16StringEncoding) as String
 			} catch {
 				//TODO: Eventually retry with even more encoding.
 			}
 		}
 		
-		guard self.pbxprojContent != "" else {
-			NSLog("Can't proceed with reading the pbxproj file (\(self.pbxprojPath)), because it's empty.")
+		guard self.xcodeProject.pbxprojContent != "" else {
+			NSLog("Can't proceed with reading the pbxproj file (\(self.xcodeProject.pbxprojPath)), because it's empty.")
 			return
 		}
-		let lines = self.pbxprojContent.componentsSeparatedByString("\n")
+		let lines = self.xcodeProject.pbxprojContent.componentsSeparatedByString("\n")
 		
 		for line in lines {
 			if line.characters.count == 0 {
 				continue
 			}
 			
-			if self.devRegion == "" {
+			if self.xcodeProject.devRegion == "" {
 				let devRegionRange = line.rangeOfString("developmentRegion")
 				
 				if devRegionRange != nil {
 					let foundDevRegion = self.parseDevRegion(line)
 					
 					if foundDevRegion != nil {
-						self.devRegion = foundDevRegion!
+						self.xcodeProject.devRegion = foundDevRegion!
 					} else {
 						// TODO: Recovery here
 					}
 				}
 			}
-			if self.knownRegions.count == 0 {
+			if self.xcodeProject.knownRegions.count == 0 {
 				let knownRegionRange = line.rangeOfString("knownRegions")
 				
 				if knownRegionRange != nil {
@@ -242,7 +232,7 @@ class ChooseProjectViewController: NSViewController {
 					let foundRegions = self.parseKnownRegions(lines, startingIndex: startingIndex!)
 					
 					// TODO: Eventually add here a test on the qty returned.
-					self.knownRegions.appendContentsOf(foundRegions)
+					self.xcodeProject.knownRegions.appendContentsOf(foundRegions)
 				}
 			}
 		}
@@ -455,7 +445,7 @@ class ChooseProjectViewController: NSViewController {
 						let newFile = File()
 
 						newFile.name = element
-						newFile.folder = "\(self.devRegion).lproj"
+						newFile.folder = "\(self.xcodeProject.devRegion).lproj"
 						var fileContent = ""
 						
 						do {
@@ -506,7 +496,7 @@ class ChooseProjectViewController: NSViewController {
 			
 			if found == false {
 				combinedFile.state = .New
-				combinedFile.path = "\(((self.pbxprojPath as NSString).stringByDeletingLastPathComponent as NSString).stringByDeletingLastPathComponent)/\(newFile.folder)/\(newFile.name)"
+				combinedFile.path = "\(((self.xcodeProject.pbxprojPath as NSString).stringByDeletingLastPathComponent as NSString).stringByDeletingLastPathComponent)/\(newFile.folder)/\(newFile.name)"
 
 				// TODO: Make an actual copy here
 				combinedFile.translations = newFile.translations
