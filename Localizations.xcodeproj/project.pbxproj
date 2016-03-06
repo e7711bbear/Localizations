@@ -18,6 +18,7 @@
 		893952C41C83D47C00D35895 /* ChangeStepCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952C31C83D47C00D35895 /* ChangeStepCellView.swift */; };
 		893952C61C83D50000D35895 /* ATStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952C51C83D50000D35895 /* ATStatusView.swift */; };
 		893952C81C83EED900D35895 /* ChangeTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893952C71C83EED900D35895 /* ChangeTableViewDataSource.swift */; };
+		8939530B1C8C7EF600D35895 /* XcodeProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8939530A1C8C7EF600D35895 /* XcodeProject.swift */; };
 		893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5331C66BD6700F26792 /* DetailViewController.swift */; };
 		893BB5421C679C0E00F26792 /* ATBasicAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */; };
 		893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5431C67C38C00F26792 /* FileDataSource.swift */; };
@@ -65,6 +66,7 @@
 		893952C31C83D47C00D35895 /* ChangeStepCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeStepCellView.swift; sourceTree = "<group>"; };
 		893952C51C83D50000D35895 /* ATStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATStatusView.swift; sourceTree = "<group>"; };
 		893952C71C83EED900D35895 /* ChangeTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTableViewDataSource.swift; sourceTree = "<group>"; };
+		8939530A1C8C7EF600D35895 /* XcodeProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XcodeProject.swift; sourceTree = "<group>"; };
 		893BB5331C66BD6700F26792 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATBasicAnimator.swift; sourceTree = "<group>"; };
 		893BB5431C67C38C00F26792 /* FileDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDataSource.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				892C2B741C782BA100CB7E7D /* Region.swift */,
 				89F071A31C64246600E75780 /* File.swift */,
 				89F071A11C62EA2F00E75780 /* Translation.swift */,
+				8939530A1C8C7EF600D35895 /* XcodeProject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				89A294181C714E41003B76D6 /* ChooseProjectController+Parser.swift in Sources */,
 				89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */,
 				89F071A21C62EA2F00E75780 /* Translation.swift in Sources */,
+				8939530B1C8C7EF600D35895 /* XcodeProject.swift in Sources */,
 				893952C61C83D50000D35895 /* ATStatusView.swift in Sources */,
 				89A294131C68441F003B76D6 /* LICENSE.md in Sources */,
 			);
