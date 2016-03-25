@@ -25,13 +25,15 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+	var errorCenter = ErrorCenter()
+	
 	@IBOutlet var newMenuItem: NSMenuItem!
 	@IBOutlet var saveMenuItem: NSMenuItem!
 	
 	var chooseProjectViewController: ChooseProjectViewController?
 	var detailViewController: DetailViewController?
 	
-	func applicationDidFinishLaunching(aNotification: NSNotification) {		
+	func applicationDidFinishLaunching(aNotification: NSNotification) {
 	}
 
 	func applicationWillTerminate(aNotification: NSNotification) {

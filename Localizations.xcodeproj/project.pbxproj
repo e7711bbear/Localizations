@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		892A66411CA5DAC600190F1F /* ErrorCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892A66401CA5DAC600190F1F /* ErrorCenter.swift */; };
 		892C2B711C78282100CB7E7D /* xcode-project_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 892C2B701C78282100CB7E7D /* xcode-project_Icon.icns */; };
 		892C2B731C782B1C00CB7E7D /* RegionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892C2B721C782B1C00CB7E7D /* RegionCellView.swift */; };
 		892C2B751C782BA100CB7E7D /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892C2B741C782BA100CB7E7D /* Region.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		892A66401CA5DAC600190F1F /* ErrorCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCenter.swift; sourceTree = "<group>"; };
 		892C2B701C78282100CB7E7D /* xcode-project_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "xcode-project_Icon.icns"; sourceTree = "<group>"; };
 		892C2B721C782B1C00CB7E7D /* RegionCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionCellView.swift; sourceTree = "<group>"; };
 		892C2B741C782BA100CB7E7D /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
@@ -116,6 +118,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		892A663F1CA5DAB200190F1F /* Centers */ = {
+			isa = PBXGroup;
+			children = (
+				892A66401CA5DAC600190F1F /* ErrorCenter.swift */,
+			);
+			name = Centers;
+			sourceTree = "<group>";
+		};
 		892C2B761C796E9B00CB7E7D /* Cell Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +217,7 @@
 				893952801C82228F00D35895 /* Main.storyboard */,
 				893BB5311C66BD4400F26792 /* MainWindow */,
 				89F071A01C62EA0F00E75780 /* Models */,
+				892A663F1CA5DAB200190F1F /* Centers */,
 				893BB5411C679C0E00F26792 /* ATBasicAnimator.swift */,
 				893952C11C82377800D35895 /* ATReplacingSegue.swift */,
 				89F0716E1C5AE60500E75780 /* Assets.xcassets */,
@@ -400,6 +411,7 @@
 				893BB54A1C67C94A00F26792 /* TranslationCellView.swift in Sources */,
 				893952C41C83D47C00D35895 /* ChangeStepCellView.swift in Sources */,
 				893BB5481C67C93C00F26792 /* FileCellView.swift in Sources */,
+				892A66411CA5DAC600190F1F /* ErrorCenter.swift in Sources */,
 				89F0716D1C5AE60500E75780 /* ChooseProjectViewController.swift in Sources */,
 				893952BA1C82290000D35895 /* MainWindowController.swift in Sources */,
 				89F071A41C64246600E75780 /* File.swift in Sources */,
