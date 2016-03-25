@@ -103,9 +103,7 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 							cellView.stepStatus.displayIfNeeded()
 						})
 					}
-					
 				})
-				
 			}
 		}
 		self.proceedButton.enabled = false

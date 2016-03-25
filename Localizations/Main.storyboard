@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="g4y-L9-yHU">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="g4y-L9-yHU">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -407,24 +407,34 @@
                                     <action selector="chooseXcodeFolder:" target="wVC-6E-25g" id="d1N-rv-ooZ"/>
                                 </connections>
                             </button>
+                            <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="SZC-8v-Jul">
+                                <rect key="frame" x="162" y="148" width="248" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="248" id="56G-MV-HT2"/>
+                                </constraints>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Ndr-K8-IEK" firstAttribute="centerX" secondItem="ktt-bF-HIF" secondAttribute="centerX" id="6zJ-9P-d0z"/>
                             <constraint firstItem="ktt-bF-HIF" firstAttribute="centerX" secondItem="e50-jc-68s" secondAttribute="centerX" id="UwX-b6-6fL"/>
                             <constraint firstItem="ktt-bF-HIF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e50-jc-68s" secondAttribute="leading" constant="150" id="a61-k3-Kmj"/>
                             <constraint firstItem="ktt-bF-HIF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e50-jc-68s" secondAttribute="top" constant="150" id="ai6-MB-k8Q"/>
+                            <constraint firstItem="SZC-8v-Jul" firstAttribute="top" secondItem="ktt-bF-HIF" secondAttribute="bottom" constant="11" id="bke-Zr-3zZ"/>
                             <constraint firstItem="ktt-bF-HIF" firstAttribute="centerY" secondItem="e50-jc-68s" secondAttribute="centerY" constant="-14" id="c8D-b6-zST"/>
                             <constraint firstItem="Ndr-K8-IEK" firstAttribute="top" secondItem="ktt-bF-HIF" secondAttribute="bottom" constant="8" id="mor-Jr-gv8"/>
+                            <constraint firstItem="SZC-8v-Jul" firstAttribute="centerX" secondItem="e50-jc-68s" secondAttribute="centerX" id="shm-nI-N1U"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="chooseButton" destination="Ndr-K8-IEK" id="btK-8p-1NM"/>
+                        <outlet property="chooseLabel" destination="ktt-bF-HIF" id="IHB-Xm-Ahf"/>
+                        <outlet property="progressIndicator" destination="SZC-8v-Jul" id="RuN-HV-Lzq"/>
                         <segue destination="Ag8-AY-zSf" kind="show" identifier="detailsSegue" customClass="ATReplacingSegue" customModule="Localizations" customModuleProvider="target" id="l4J-0Q-07e"/>
                     </connections>
                 </viewController>
                 <customObject id="8wF-jl-r45" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1236.5" y="617"/>
+            <point key="canvasLocation" x="1236.5" y="616.5"/>
         </scene>
         <!--Main Window Controller-->
         <scene sceneID="XwA-lc-CQ0">
@@ -520,7 +530,7 @@ Gw
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="75" viewBased="YES" id="L1W-CC-LeN">
-                                            <rect key="frame" x="0.0" y="0.0" width="643" height="289"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="643" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -798,7 +808,7 @@ Gw
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" viewBased="YES" indentationPerLevel="16" outlineTableColumn="vvA-rT-4tc" id="YGx-mR-Y2D">
-                                                            <rect key="frame" x="0.0" y="0.0" width="238" height="616"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="238" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -938,7 +948,7 @@ Gw
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="70" viewBased="YES" id="aCc-cn-6da">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="637" height="581"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="637" height="0.0"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1051,10 +1061,10 @@ Gw
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <size key="minSize" width="637" height="581"/>
-                                                                                <size key="maxSize" width="637" height="10000000"/>
+                                                                                <size key="maxSize" width="639" height="10000000"/>
                                                                                 <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <size key="minSize" width="637" height="581"/>
-                                                                                <size key="maxSize" width="637" height="10000000"/>
+                                                                                <size key="maxSize" width="639" height="10000000"/>
                                                                             </textView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1120,6 +1130,6 @@ Gw
     </scenes>
     <resources>
         <image name="NSFolder" width="32" height="32"/>
-        <image name="xcode-project_Icon" width="512" height="512"/>
+        <image name="xcode-project_Icon" width="128" height="128"/>
     </resources>
 </document>

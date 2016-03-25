@@ -26,7 +26,9 @@ class ChooseProjectViewController: NSViewController {
 	
 	weak var appDelegate: AppDelegate! = NSApplication.sharedApplication().delegate as! AppDelegate
 	
+	@IBOutlet var chooseLabel: NSTextField!
 	@IBOutlet var chooseButton: NSButton!
+	@IBOutlet var progressIndicator: NSProgressIndicator!
 	
 	var rootDirectory: NSURL!
 
@@ -86,6 +88,7 @@ class ChooseProjectViewController: NSViewController {
 	override func viewDidAppear() {
 	}
 	
+	//MARK: - UI
 	func startFresh() {
 		self.cacheDirectory = nil
 		self.ibFiles.removeAll()
@@ -97,7 +100,34 @@ class ChooseProjectViewController: NSViewController {
 		self.dismissViewController(self.appDelegate.detailViewController!)
 		self.appDelegate.newMenuItem.enabled = false
 		self.appDelegate.saveMenuItem.enabled = false
+		self.disableProgression()
 	}
+	
+	func enableProgression() {
+		self.chooseButton.hidden = true
+		self.progressIndicator.hidden = false
+	}
+	
+	func disableProgression() {
+		self.chooseLabel.stringValue = NSLocalizedString("Choose the root folder of your Xcode project", comment: "Default label above the choose project button")
+		self.chooseButton.hidden = false
+		self.progressIndicator.hidden = true
+	}
+	
+	func startProression(withCurrentValue currentValue: Double = 0.0 , maxValue: Double = 100.0, andMessage message: String) {
+		self.enableProgression()
+		self.progressIndicator.maxValue = maxValue
+		self.progressIndicator.doubleValue = currentValue
+		self.progressIndicator.startAnimation(nil)
+		self.chooseLabel.stringValue = message
+	}
+	
+	func stopProgression() {
+		self.disableProgression()
+		self.progressIndicator.stopAnimation(nil)
+	}
+	
+	//MARK: -
 	
 	@IBAction func chooseXcodeFolder(sender: NSButton) {
 		let openPanel = NSOpenPanel()
@@ -115,6 +145,9 @@ class ChooseProjectViewController: NSViewController {
 				// TODO: Error handling here
 				return
 			}
+			
+			self.startProression(maxValue: 3, andMessage: NSLocalizedString("Looking for localizations Files", comment: "Progression start message"))
+
 			self.rootDirectory = openPanel.URL!
 			// TODO: To be used if and when this app is to be sandboxed.
 			//			self.rootDirectory.startAccessingSecurityScopedResource()
@@ -139,6 +172,7 @@ class ChooseProjectViewController: NSViewController {
 				self.compareAndCombine()
 				// show detail ui
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
+					self.stopProgression()
 					self.performSegueWithIdentifier("detailsSegue", sender: nil)
 					self.appDelegate.newMenuItem.enabled = true
 					self.appDelegate.saveMenuItem.enabled = true
