@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var detailViewController: DetailViewController?
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
+		self.errorCenter.appDelegate = self
 	}
 
 	func applicationWillTerminate(aNotification: NSNotification) {

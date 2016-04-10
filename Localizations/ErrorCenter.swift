@@ -22,10 +22,11 @@ struct Event {
 
 class ErrorCenter: NSObject {
 
-	let appDelegate: AppDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+	var appDelegate: AppDelegate!
 	
 	var errors = [Event]()
 	var warnings = [Event]()
+	
 	
 	
 	func logError(withMessage message: String, andDetails details: String) {
@@ -38,7 +39,7 @@ class ErrorCenter: NSObject {
 	func logWarning(withMessage message: String, andDetails details: String) {
 		// Here is the perfect spot to do additional work with these.
 		// Passing _cmd would be nice too AT - 03-2016
-		NSLog("ERROR: \(message) - \(details)")
+		NSLog("WARNING: \(message) - \(details)")
 		errors.append(Event(message: message, details: details))
 	}
 }
