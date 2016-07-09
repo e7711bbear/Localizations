@@ -37,8 +37,8 @@ class ATReplacingSegue: NSStoryboardSegue {
 			
 			sourceViewController.view.addSubview(destinationViewController.view)
 			destinationController.view.translatesAutoresizingMaskIntoConstraints = false
-			let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview" : destinationViewController.view])
-			let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview" : destinationController.view])
+			let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview" : destinationViewController.view])
+			let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview" : destinationController.view])
 			sourceViewController.view.addConstraints(horizontalConstraints)
 			sourceViewController.view.addConstraints(verticalConstraints)
 		} else {

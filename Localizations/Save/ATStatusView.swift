@@ -88,50 +88,50 @@ class ATStatusView: NSView {
 		//// Text Drawing
 		let textRect = NSMakeRect(33/200*rect.width, 36/200*rect.height, 134/200*rect.width, 129/200*rect.height)
 		let textTextContent = NSString(string: text)
-		let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+		let textStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
 		textStyle.alignment = .center
 		
-		let textFontAttributes = [NSFontAttributeName: NSFont.systemFontOfSize(144/200*rect.width), NSForegroundColorAttributeName: NSColor.white(), NSParagraphStyleAttributeName: textStyle]
+		let textFontAttributes = [NSFontAttributeName: NSFont.systemFont(ofSize: 144/200*rect.width), NSForegroundColorAttributeName: NSColor.white(), NSParagraphStyleAttributeName: textStyle]
 		
-		let textTextHeight: CGFloat = textTextContent.boundingRectWithSize(NSMakeSize(textRect.width, CGFloat.infinity), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textFontAttributes).size.height
+		let textTextHeight: CGFloat = textTextContent.boundingRect(with: NSMakeSize(textRect.width, CGFloat.infinity), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: textFontAttributes).size.height
 		let textTextRect: NSRect = NSMakeRect(textRect.minX, textRect.minY + (textRect.height - textTextHeight) / 2, textRect.width, textTextHeight)
 		NSGraphicsContext.saveGraphicsState()
 		NSRectClip(textRect)
-		textTextContent.drawInRect(NSOffsetRect(textTextRect, 0, 0), withAttributes: textFontAttributes)
+		textTextContent.draw(NSOffsetRect(textTextRect, 0, 0), withAttributes: textFontAttributes)
 		NSGraphicsContext.restoreGraphicsState()
 	}
 	
 	func drawNew(rect: NSRect) {
-		self.drawBackgroundCircle(rect, color: self.newColor)
-		self.drawTextCenteredInRect(rect, text: "✚")
+		self.drawBackgroundCircle(rect: rect, color: self.newColor)
+		self.drawTextCenteredInRect(rect: rect, text: "✚")
 	}
 	
 	func drawEdit(rect: NSRect) {
-		self.drawBackgroundCircle(rect, color: self.editColor)
-		self.drawTextCenteredInRect(rect, text: "✎")
+		self.drawBackgroundCircle(rect: rect, color: self.editColor)
+		self.drawTextCenteredInRect(rect: rect, text: "✎")
 	}
 	
 	func drawDelete(rect: NSRect) {
-		self.drawBackgroundCircle(rect, color: self.deleteColor)
-		self.drawTextCenteredInRect(rect, text: "✖︎")
+		self.drawBackgroundCircle(rect: rect, color: self.deleteColor)
+		self.drawTextCenteredInRect(rect: rect, text: "✖︎")
 	}
 	
 	func drawInProgress(rect: NSRect) {
-		self.drawBackgroundCircle(rect, color: self.inProgressColor)
-		self.drawTextCenteredInRect(rect, text: "❀")
+		self.drawBackgroundCircle(rect: rect, color: self.inProgressColor)
+		self.drawTextCenteredInRect(rect: rect, text: "❀")
 	}
 	
 	func drawSuccess(rect: NSRect) {
-		self.drawBackgroundCircle(rect, color: self.successColor)
-		self.drawTextCenteredInRect(rect, text: "✓")
+		self.drawBackgroundCircle(rect: rect, color: self.successColor)
+		self.drawTextCenteredInRect(rect: rect, text: "✓")
 	}
 	
 	func drawError(rect: NSRect) {
-		self.drawBackgroundCircle(rect, color: self.errorColor)
-		self.drawTextCenteredInRect(rect, text: "💩")
+		self.drawBackgroundCircle(rect: rect, color: self.errorColor)
+		self.drawTextCenteredInRect(rect: rect, text: "💩")
 	}
 	
 	func drawNone(rect: NSRect) {
-		self.drawBackgroundCircle(rect, color: self.noneColor)
+		self.drawBackgroundCircle(rect: rect, color: self.noneColor)
 	}
 }
