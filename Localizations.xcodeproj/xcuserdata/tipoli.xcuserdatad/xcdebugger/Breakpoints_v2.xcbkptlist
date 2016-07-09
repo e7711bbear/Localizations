@@ -47,8 +47,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
             endingLineNumber = "65"
-            landmarkName = "buildDatasource(_:devRegion:knownRegions:combinedFiles:)"
-            landmarkType = "5">
+            landmarkName = "buildDatasource(projectRoot:devRegion:knownRegions:combinedFiles:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

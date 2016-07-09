@@ -24,7 +24,7 @@ import Cocoa
 
 class ChooseProjectViewController: NSViewController {
 	
-	weak var appDelegate: AppDelegate! = NSApplication.sharedApplication().delegate as! AppDelegate
+	weak var appDelegate: AppDelegate! = NSApplication.shared().delegate as! AppDelegate
 	
 	@IBOutlet var chooseLabel: NSTextField!
 	@IBOutlet var chooseButton: NSButton!
@@ -42,25 +42,25 @@ class ChooseProjectViewController: NSViewController {
 				let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 				let randomFolderName = NSMutableString(capacity: size)
 				for _ in 0..<size {
-					randomFolderName.appendFormat("%c", letters.characterAtIndex(Int(arc4random_uniform(UInt32(letters.length)))))
+					randomFolderName.appendFormat("%c", letters.character(at: Int(arc4random_uniform(UInt32(letters.length)))))
 				}
 				
 				_cacheDirectory = "/tmp/\(randomFolderName)"
 				
 				// Make Folder if not already existing
-				let fileManager = NSFileManager.defaultManager()
+				let fileManager = FileManager.default
 				
 				// TODO: handle errors other than "can't create because already there"
-				try! fileManager.createDirectoryAtPath(_cacheDirectory! as String, withIntermediateDirectories: true, attributes: nil)
+				try! fileManager.createDirectory(atPath: _cacheDirectory! as String, withIntermediateDirectories: true, attributes: nil)
 			}
 			return _cacheDirectory
 		}
 		set {
 			if newValue == nil && _cacheDirectory != nil {
-				let fileManager = NSFileManager.defaultManager()
+				let fileManager = FileManager.default
 				
 				do {
-					try fileManager.removeItemAtPath(_cacheDirectory! as String)
+					try fileManager.removeItem(atPath: _cacheDirectory! as String)
 				} catch {
 					NSLog("Failed to trash the cache directory \(_cacheDirectory)")
 				}
@@ -98,20 +98,20 @@ class ChooseProjectViewController: NSViewController {
 		self.freshlyGeneratedFiles.removeAll()
 		self.combinedFiles.removeAll()
 		self.dismissViewController(self.appDelegate.detailViewController!)
-		self.appDelegate.newMenuItem.enabled = false
-		self.appDelegate.saveMenuItem.enabled = false
+		self.appDelegate.newMenuItem.isEnabled = false
+		self.appDelegate.saveMenuItem.isEnabled = false
 		self.disableProgression()
 	}
 	
 	func enableProgression() {
-		self.chooseButton.hidden = true
-		self.progressIndicator.hidden = false
+		self.chooseButton.isHidden = true
+		self.progressIndicator.isHidden = false
 	}
 	
 	func disableProgression() {
 		self.chooseLabel.stringValue = NSLocalizedString("Choose the root folder of your Xcode project", comment: "Default label above the choose project button")
-		self.chooseButton.hidden = false
-		self.progressIndicator.hidden = true
+		self.chooseButton.isHidden = false
+		self.progressIndicator.isHidden = true
 	}
 	
 	func startProression(withCurrentValue currentValue: Double = 0.0 , maxValue: Double = 100.0, andMessage message: String) {
@@ -141,27 +141,27 @@ class ChooseProjectViewController: NSViewController {
 		let returnValue = openPanel.runModal()
 		
 		if returnValue == NSModalResponseOK {
-			guard openPanel.URL != nil else {
+			guard openPanel.url != nil else {
 				// TODO: Error handling here
 				return
 			}
 			
 			self.startProression(maxValue: 3, andMessage: NSLocalizedString("Looking for localizations Files", comment: "Progression start message"))
 
-			self.rootDirectory = openPanel.URL!
+			self.rootDirectory = openPanel.url!
 			// TODO: To be used if and when this app is to be sandboxed.
 			//			self.rootDirectory.startAccessingSecurityScopedResource()
 			
 			//			do {
 			//				try self.rootDirectory.bookmarkDataWithOptions(NSURLBookmarkCreationOptions.SecurityScopeAllowOnlyReadAccess, includingResourceValuesForKeys: nil, relativeToURL: nil)
 			
-			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { [unowned self] () -> Void in
+			DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosUserInitiated).async(execute:  { [unowned self] () -> Void in
 				
 				// Find the xcode pbxproj.
-				self.findPbxproj(self.rootDirectory!.path!)
+				self.findPbxproj(startPath: self.rootDirectory!.path!)
 				
 				// Browsing the existing files
-				self.findStringFiles(self.rootDirectory!.path!)
+				self.findStringFiles(startPath: self.rootDirectory!.path!)
 				self.sortFoundStringFiles()
 				
 				// Get fresh generation of files
@@ -171,11 +171,11 @@ class ChooseProjectViewController: NSViewController {
 				
 				self.compareAndCombine()
 				// show detail ui
-				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
+				DispatchQueue.main.async(execute: { [unowned self] () -> Void in
 					self.stopProgression()
-					self.performSegueWithIdentifier("detailsSegue", sender: nil)
-					self.appDelegate.newMenuItem.enabled = true
-					self.appDelegate.saveMenuItem.enabled = true
+					self.performSegue(withIdentifier: "detailsSegue", sender: nil)
+					self.appDelegate.newMenuItem.isEnabled = true
+					self.appDelegate.saveMenuItem.isEnabled = true
 					})
 				})
 			//			} catch {
@@ -187,10 +187,10 @@ class ChooseProjectViewController: NSViewController {
 	// MARK: - Methods collecting existing localization data from .string files.
 	
 	func findPbxproj(startPath: NSString) {
-		let fileManager = NSFileManager.defaultManager()
+		let fileManager = FileManager.default
 		
 		do {
-			let content = try fileManager.contentsOfDirectoryAtPath(startPath as String)
+			let content = try fileManager.contentsOfDirectory(atPath: startPath as String)
 			
 			for element in content {
 				let elementPath = startPath.stringByAppendingPathComponent(element)

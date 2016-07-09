@@ -37,33 +37,33 @@ class ATStatusView: NSView {
 	var state: State = .None
 	
 	var newColor = NSColor(calibratedRed: 0, green: 0.871, blue: 0, alpha: 1)
-	var editColor = NSColor.yellowColor()
+	var editColor = NSColor.yellow()
 	var deleteColor = NSColor(calibratedRed: 0.871, green: 0, blue: 0, alpha: 1)
 	var inProgressColor = NSColor(calibratedRed: 0, green: 0, blue: 0.871, alpha: 1)
-	var successColor = NSColor.greenColor()
-	var errorColor = NSColor.redColor()
-	var noneColor = NSColor.lightGrayColor()
+	var successColor = NSColor.green()
+	var errorColor = NSColor.red()
+	var noneColor = NSColor.lightGray()
 	
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
-		self.drawDashedFrame(dirtyRect)
+		self.drawDashedFrame(rect: dirtyRect)
 
 		switch self.state {
 		case .New:
-			self.drawNew(dirtyRect)
+			self.drawNew(rect: dirtyRect)
 		case .Edit:
-			self.drawEdit(dirtyRect)
+			self.drawEdit(rect: dirtyRect)
 		case .Delete:
-			self.drawDelete(dirtyRect)
+			self.drawDelete(rect: dirtyRect)
 		case .InProgress:
-			self.drawInProgress(dirtyRect)
+			self.drawInProgress(rect: dirtyRect)
 		case .Success:
-			self.drawSuccess(dirtyRect)
+			self.drawSuccess(rect: dirtyRect)
 		case .Error:
-			self.drawError(dirtyRect)
+			self.drawError(rect: dirtyRect)
 		case .None:
-			self.drawNone(dirtyRect)
+			self.drawNone(rect: dirtyRect)
 		}
 	}
 	
@@ -71,7 +71,7 @@ class ATStatusView: NSView {
 	// canvas in paintcode. - AT 02/2016
 	func drawDashedFrame(rect: NSRect) {
 		let framePath = NSBezierPath(ovalInRect: NSMakeRect(3/200*rect.width, 3/200*rect.height, 194/200*rect.width, 194/200*rect.height))
-		NSColor.lightGrayColor().setStroke()
+		NSColor.lightGray().setStroke()
 		framePath.lineWidth = 5/200*rect.width
 		framePath.setLineDash([10/200*rect.width, 4/200*rect.width], count: 2, phase: 0)
 		framePath.stroke()
@@ -89,9 +89,9 @@ class ATStatusView: NSView {
 		let textRect = NSMakeRect(33/200*rect.width, 36/200*rect.height, 134/200*rect.width, 129/200*rect.height)
 		let textTextContent = NSString(string: text)
 		let textStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-		textStyle.alignment = .Center
+		textStyle.alignment = .center
 		
-		let textFontAttributes = [NSFontAttributeName: NSFont.systemFontOfSize(144/200*rect.width), NSForegroundColorAttributeName: NSColor.whiteColor(), NSParagraphStyleAttributeName: textStyle]
+		let textFontAttributes = [NSFontAttributeName: NSFont.systemFontOfSize(144/200*rect.width), NSForegroundColorAttributeName: NSColor.white(), NSParagraphStyleAttributeName: textStyle]
 		
 		let textTextHeight: CGFloat = textTextContent.boundingRectWithSize(NSMakeSize(textRect.width, CGFloat.infinity), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textFontAttributes).size.height
 		let textTextRect: NSRect = NSMakeRect(textRect.minX, textRect.minY + (textRect.height - textTextHeight) / 2, textRect.width, textTextHeight)

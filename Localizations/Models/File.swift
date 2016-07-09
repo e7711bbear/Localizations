@@ -39,7 +39,7 @@ class File: NSObject {
 
 	var languageCode: String {
 		get {
-			let folderParts = folder.componentsSeparatedByString(".")
+			let folderParts = folder.components(separatedBy: ".")
 			
 			if folderParts.count > 0 {
 				return folderParts[0]
