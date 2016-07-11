@@ -186,7 +186,9 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		
 		self.translationsDataSource.translations.removeAll()
 		self.translationsDataSource.translations.append(contentsOf: selectedFile.translations)
-		self.translationsTableView.performSelector(onMainThread: #selector(NSTableView.reloadData), with: nil, waitUntilDone: true)
+
+		let reloadDataSelector = #selector(NSTableView.reloadData)
+		self.translationsTableView.performSelector(onMainThread: reloadDataSelector, with: nil, waitUntilDone: true)
 		
 		self.rawContentView.string = selectedFile.rawContent
 	}

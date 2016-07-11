@@ -214,7 +214,7 @@ class ChooseProjectViewController: NSViewController {
 				}
 				else // files - we are only interested in localizations files.
 				{
-					let stringsRange = element.rangeOfString(".pbxproj")
+					let stringsRange = element.range(of: ".pbxproj")
 					
 					if stringsRange != nil {
 						if self.xcodeProject.pbxprojPath == "" {
@@ -251,7 +251,7 @@ class ChooseProjectViewController: NSViewController {
 			NSLog("Can't proceed with reading the pbxproj file (\(self.xcodeProject.pbxprojPath)), because it's empty.")
 			return
 		}
-		let lines = self.xcodeProject.pbxprojContent.componentsSeparatedByString("\n")
+		let lines = self.xcodeProject.pbxprojContent.components(separatedBy: "\n")
 		
 		for line in lines {
 			if line.characters.count == 0 {
@@ -259,10 +259,10 @@ class ChooseProjectViewController: NSViewController {
 			}
 			
 			if self.xcodeProject.devRegion == "" {
-				let devRegionRange = line.rangeOfString("developmentRegion")
+				let devRegionRange = line.range(of: "developmentRegion")
 				
 				if devRegionRange != nil {
-					let foundDevRegion = self.parseDevRegion(line)
+					let foundDevRegion = self.parseDevRegion(line: line)
 					
 					if foundDevRegion != nil {
 						self.xcodeProject.devRegion = foundDevRegion!
@@ -272,22 +272,22 @@ class ChooseProjectViewController: NSViewController {
 				}
 			}
 			if self.xcodeProject.knownRegions.count == 0 {
-				let knownRegionRange = line.rangeOfString("knownRegions")
+				let knownRegionRange = line.range(of: "knownRegions")
 				
 				if knownRegionRange != nil {
-					let startingIndex =	lines.indexOf(line)
+					let startingIndex =	lines.index(of: line)
 					
-					let foundRegions = self.parseKnownRegions(lines, startingIndex: startingIndex!)
+					let foundRegions = self.parseKnownRegions(lines: lines, startingIndex: startingIndex!)
 					
 					// TODO: Eventually add here a test on the qty returned.
-					self.xcodeProject.knownRegions.appendContentsOf(foundRegions)
+					self.xcodeProject.knownRegions.append(contentsOf: foundRegions)
 				}
 			}
 		}
 	}
 	
 	func parseDevRegion(line: String) -> String? {
-		let lineParts = line.componentsSeparatedByString("=")
+		let lineParts = line.components(separatedBy: "=")
 		var cleanedString = lineParts[1].stringByReplacingOccurrencesOfString(" ", withString: "")
 		cleanedString = cleanedString.stringByReplacingOccurrencesOfString(";", withString: "")
 		
@@ -487,7 +487,7 @@ class ChooseProjectViewController: NSViewController {
 				fileManager.fileExists(atPath: elementPath, isDirectory: &isDirectory)
 				
 				if !isDirectory {
-					let stringsRange = element.rangeOfString(".strings")
+					let stringsRange = element.range(of: ".strings")
 					if stringsRange != nil {
 						// files - we are only interested in localizations files.
 						let newFile = File()

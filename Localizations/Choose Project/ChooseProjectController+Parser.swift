@@ -58,7 +58,8 @@ extension ChooseProjectViewController {
 		var value = ""
 		
 		for index in 0..<line.lengthOfBytes(using: String.Encoding.utf8) {
-			let character = line[line.startIndex.advancedBy(index)]
+			let newIndex = line.index(line.startIndex, offsetBy: index)
+			let character = line[newIndex]
 			
 			if character == "\\" {
 				if !ignoreNextCharacter {

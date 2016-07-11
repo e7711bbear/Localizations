@@ -70,7 +70,7 @@ class ATStatusView: NSView {
 	// The reason for the "/200" is because these drawing were made in a 200x200 
 	// canvas in paintcode. - AT 02/2016
 	func drawDashedFrame(rect: NSRect) {
-		let framePath = NSBezierPath(ovalInRect: NSMakeRect(3/200*rect.width, 3/200*rect.height, 194/200*rect.width, 194/200*rect.height))
+		let framePath = NSBezierPath(ovalIn: NSMakeRect(3/200*rect.width, 3/200*rect.height, 194/200*rect.width, 194/200*rect.height))
 		NSColor.lightGray().setStroke()
 		framePath.lineWidth = 5/200*rect.width
 		framePath.setLineDash([10/200*rect.width, 4/200*rect.width], count: 2, phase: 0)
@@ -79,7 +79,7 @@ class ATStatusView: NSView {
 	}
 	
 	func drawBackgroundCircle(rect: NSRect, color: NSColor) {
-		let backgroundCirclePath = NSBezierPath(ovalInRect: NSMakeRect(7/200*rect.width, 7/200*rect.height, 186/200*rect.width, 186/200*rect.height))
+		let backgroundCirclePath = NSBezierPath(ovalIn: NSMakeRect(7/200*rect.width, 7/200*rect.height, 186/200*rect.width, 186/200*rect.height))
 		color.setFill()
 		backgroundCirclePath.fill()
 	}
@@ -97,7 +97,7 @@ class ATStatusView: NSView {
 		let textTextRect: NSRect = NSMakeRect(textRect.minX, textRect.minY + (textRect.height - textTextHeight) / 2, textRect.width, textTextHeight)
 		NSGraphicsContext.saveGraphicsState()
 		NSRectClip(textRect)
-		textTextContent.draw(NSOffsetRect(textTextRect, 0, 0), withAttributes: textFontAttributes)
+		textTextContent.draw(in: NSOffsetRect(textTextRect, 0, 0), withAttributes: textFontAttributes)
 		NSGraphicsContext.restoreGraphicsState()
 	}
 	
