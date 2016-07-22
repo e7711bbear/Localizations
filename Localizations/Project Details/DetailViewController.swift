@@ -24,7 +24,7 @@ import Cocoa
 
 class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDelegate, NSOutlineViewDelegate {
 
-	weak var appDelegate: AppDelegate! = NSApplication.sharedApplication().delegate as! AppDelegate
+	weak var appDelegate: AppDelegate! = NSApplication.shared().delegate as! AppDelegate
 
 	@IBOutlet var filesOutlineView: NSOutlineView!
 	var filesDataSource = FileDataSource()
@@ -41,14 +41,14 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		
 		self.appDelegate.detailViewController = self
 		
-		self.filesOutlineView.setDelegate(self)
-		self.filesOutlineView.setDataSource(self.filesDataSource)
-		self.translationsTableView.setDelegate(self)
-		self.translationsTableView.setDataSource(self.translationsDataSource)
+		self.filesOutlineView.delegate = self
+		self.filesOutlineView.dataSource = self.filesDataSource
+		self.translationsTableView.delegate = self
+		self.translationsTableView.dataSource = self.translationsDataSource
 	}
 	
 	override func viewWillAppear() {
-		self.filesDataSource.buildDatasource((self.appDelegate.chooseProjectViewController!.xcodeProject.pbxprojPath as NSString).stringByDeletingLastPathComponent,
+		self.filesDataSource.buildDatasource(projectRoot: (self.appDelegate.chooseProjectViewController!.xcodeProject.pbxprojPath as NSString).deletingLastPathComponent,
 			devRegion: self.appDelegate.chooseProjectViewController!.xcodeProject.devRegion,
 			knownRegions:self.appDelegate.chooseProjectViewController!.xcodeProject.knownRegions,
 			combinedFiles: self.appDelegate.chooseProjectViewController!.combinedFiles)
@@ -56,26 +56,26 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	}
 	
 	// MARK: OutlineView Delegate
-	func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
+	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
 		if item is Region {
-			return self.produceRegionCell(item as! Region)
+			return self.produceRegionCell(region: item as! Region)
 		} else if item is File {
-			return self.produceFileCell(item as! File)
+			return self.produceFileCell(file: item as! File)
 		}
 		// We should never end here.
 		return nil
 	}
 	
-	func outlineView(outlineView: NSOutlineView, didAddRowView rowView: NSTableRowView, forRow row: Int) {
+	func outlineView(_ outlineView: NSOutlineView, didAdd rowView: NSTableRowView, forRow row: Int) {
 		switch outlineView {
 		case self.filesOutlineView:
-			let item = self.filesOutlineView.itemAtRow(row)
+			let item = self.filesOutlineView.item(atRow: row)
 			
 			switch item {
 			case is Region:
-				rowView.backgroundColor = self.backgroundColorForRegionCellView(item as! Region)
+				rowView.backgroundColor = self.backgroundColorForRegionCellView(region: item as! Region)
 			case is File:
-				rowView.backgroundColor = self.backgroundColorForFileCellView(item as! File)
+				rowView.backgroundColor = self.backgroundColorForFileCellView(file: item as! File)
 			default:
 				break
 			}
@@ -85,28 +85,28 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		}
 	}
 	
-	func outlineViewSelectionDidChange(notification: NSNotification) {
+	func outlineViewSelectionDidChange(_ notification: Notification) {
 		self.prepareTranslationsForDisplay()
 	}
 	
 	// MARK: TableView Delegate
-	func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		switch tableView {
 		case self.translationsTableView:
-			return self.produceTranslationCell(row)
+			return self.produceTranslationCell(row: row)
 		default:
 			return nil
 		}
 	}
 
-	func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
+	func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
 		self.prepareTranslationsForDisplay()
 	}
 	
 	// MARK: - Cell production
 	
 	func produceRegionCell(region: Region) -> RegionCellView {
-		let rowView = self.filesOutlineView.makeViewWithIdentifier("regionCell", owner: self) as! RegionCellView
+		let rowView = self.filesOutlineView.make(withIdentifier: "regionCell", owner: self) as! RegionCellView
 		
 		rowView.name.stringValue = region.label
 		rowView.code.stringValue = region.code
@@ -120,7 +120,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 
 	
 	func produceFileCell(file: File) -> FileCellView {
-		let rowView = self.filesOutlineView.makeViewWithIdentifier("fileCell", owner: self) as! FileCellView
+		let rowView = self.filesOutlineView.make(withIdentifier: "fileCell", owner: self) as! FileCellView
 		
 		rowView.fileName.stringValue = file.name
 		rowView.folder.stringValue = file.folder
@@ -141,28 +141,28 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		default:
 			break
 		}
-		return NSColor.whiteColor()
+		return NSColor.white()
 	}
 	
 	func produceTranslationCell(row: Int) -> TranslationCellView {
-		let rowView = self.translationsTableView.makeViewWithIdentifier("translationCell", owner: self) as! TranslationCellView
+		let rowView = self.translationsTableView.make(withIdentifier: "translationCell", owner: self) as! TranslationCellView
 		
-		rowView.key.stringValue = self.translationsDataSource.key(row)
-		rowView.value.stringValue = self.translationsDataSource.value(row)
-		rowView.comments.stringValue = self.translationsDataSource.comments(row)
+		rowView.key.stringValue = self.translationsDataSource.key(row: row)
+		rowView.value.stringValue = self.translationsDataSource.value(row: row)
+		rowView.comments.stringValue = self.translationsDataSource.comments(row: row)
 		
-		let state = self.translationsDataSource.state(row)
+		let state = self.translationsDataSource.state(row: row)
 		
 		// TODO: Replace this below with something a little more sexy.
 		rowView.wantsLayer = true
 		
 		switch state {
 		case .Obselete:
-			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 0.0, blue: 0.0, alpha: 0.2).CGColor
+			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 0.0, blue: 0.0, alpha: 0.2).cgColor
 		case .New:
-			rowView.layer?.backgroundColor = NSColor(calibratedRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.2).CGColor
+			rowView.layer?.backgroundColor = NSColor(calibratedRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.2).cgColor
 		case .Edit:
-			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 1.0, blue: 0.0, alpha: 0.2).CGColor // yellow
+			rowView.layer?.backgroundColor = NSColor(calibratedRed: 1.0, green: 1.0, blue: 0.0, alpha: 0.2).cgColor // yellow
 		default:
 			rowView.layer?.backgroundColor = nil
 		}
@@ -177,7 +177,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 			return
 		}
 		
-		let selectedItem = self.filesOutlineView.itemAtRow(fileSelectedIndex)
+		let selectedItem = self.filesOutlineView.item(atRow: fileSelectedIndex)
 		
 		guard selectedItem is File else {
 			return
@@ -185,8 +185,12 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		let selectedFile = selectedItem as! File
 		
 		self.translationsDataSource.translations.removeAll()
-		self.translationsDataSource.translations.appendContentsOf(selectedFile.translations)
-		self.translationsTableView.performSelectorOnMainThread("reloadData", withObject: nil, waitUntilDone: true)
+		self.translationsDataSource.translations.append(contentsOf: selectedFile.translations)
+
+		
+		DispatchQueue.main.async { 
+			self.translationsTableView.reloadData()
+		}
 		
 		self.rawContentView.string = selectedFile.rawContent
 	}

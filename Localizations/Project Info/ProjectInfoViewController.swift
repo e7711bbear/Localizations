@@ -24,7 +24,7 @@ import Cocoa
 
 class ProjectInfoViewController: NSViewController {
 
-	let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+	let appDelegate = NSApplication.shared().delegate as! AppDelegate
 	
 	@IBOutlet var projectName: NSTextField!
 	@IBOutlet var rootPath: NSTextField!
