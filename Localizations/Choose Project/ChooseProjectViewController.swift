@@ -205,7 +205,7 @@ class ChooseProjectViewController: NSViewController {
 					
 					// Skipping Hidden Folders
 					let dotRange = element.range(of: ".")
-					if dotRange != nil && dotRange!.first! == element.startIndex {
+					if dotRange != nil && dotRange!.lowerBound == element.startIndex {
 						continue
 					}
 					
@@ -288,8 +288,8 @@ class ChooseProjectViewController: NSViewController {
 	
 	func parseDevRegion(line: String) -> String? {
 		let lineParts = line.components(separatedBy: "=")
-		var cleanedString = lineParts[1].stringByReplacingOccurrencesOfString(" ", withString: "")
-		cleanedString = cleanedString.stringByReplacingOccurrencesOfString(";", withString: "")
+		var cleanedString = lineParts[1].replacingOccurrences(of: " ", with: "")
+		cleanedString = cleanedString.replacingOccurrences(of: ";", with: "")
 		
 		return cleanedString
 	}
@@ -300,10 +300,10 @@ class ChooseProjectViewController: NSViewController {
 		for index in startingIndex+1..<lines.count {
 			let line = lines[index]
 			
-			if line.rangeOfString(");") == nil { // we are in a line of a region
-				var cleanedLine = line.stringByReplacingOccurrencesOfString(" ", withString: "")
-				cleanedLine = cleanedLine.stringByReplacingOccurrencesOfString("\t", withString: "")
-				cleanedLine = cleanedLine.stringByReplacingOccurrencesOfString(",", withString: "")
+			if line.range(of:");") == nil { // we are in a line of a region
+				var cleanedLine = line.replacingOccurrences(of: " ", with: "")
+				cleanedLine = cleanedLine.replacingOccurrences(of: "\t", with: "")
+				cleanedLine = cleanedLine.replacingOccurrences(of: ",", with: "")
 				
 				foundRegions.append(cleanedLine)
 			} else {
@@ -334,8 +334,8 @@ class ChooseProjectViewController: NSViewController {
 					}
 					
 					// Skipping Hidden Folders
-					let dotRange = element.rangeOfString(".")
-					if dotRange != nil && dotRange!.first! == element.startIndex {
+					let dotRange = element.range(of: ".")
+					if dotRange != nil && dotRange!.lowerBound == element.startIndex {
 						continue
 					}
 					
@@ -344,7 +344,7 @@ class ChooseProjectViewController: NSViewController {
 				}
 				else // files - we are only interested in localizations files.
 				{
-					let stringsRange = element.rangeOfString(".strings")
+					let stringsRange = element.range(of: ".strings")
 					
 					if stringsRange != nil && self.stringFiles.contains(elementPath) == false {
 						self.stringFiles.append(elementPath)
@@ -407,7 +407,8 @@ class ChooseProjectViewController: NSViewController {
 		
 		NSLog("Running: \(commandString)")
 		
-		system(commandString)
+		// TODO: replace with NSTask
+		//		system(commandString)
 	}
 	
 	func generateFreshFilesWithIBTool() {
@@ -420,13 +421,14 @@ class ChooseProjectViewController: NSViewController {
 		for filePath in self.ibFiles {
 			let pathExtension = filePath.pathExtension
 			let fileName = filePath.lastPathComponent
-			let stringFileName = fileName.stringByReplacingOccurrencesOfString(pathExtension, withString: "strings")
+			let stringFileName = fileName.replacingOccurrences(of: pathExtension, with: "strings")
 			
 			let commandString = "ibtool --generate-strings-file \"\(self.cacheDirectory)/\(stringFileName)\" \"\(filePath)\""
 			
 			NSLog("Running: \(commandString)")
 
-			system(commandString)
+			// TODO: replace with NSTask
+			//			system(commandString)
 		}
 	}
 	
@@ -449,8 +451,8 @@ class ChooseProjectViewController: NSViewController {
 					}
 					
 					// Skipping Hidden Folders
-					let dotRange = element.rangeOfString(".")
-					if dotRange != nil && dotRange!.first! == element.startIndex {
+					let dotRange = element.range(of: ".")
+					if dotRange != nil && dotRange!.lowerBound == element.startIndex {
 						continue
 					}
 					
@@ -459,8 +461,8 @@ class ChooseProjectViewController: NSViewController {
 				}
 				else // files - we are only interested in localizations files.
 				{
-					let xibRange = element.rangeOfString(".xib")
-					let storyboardRange = element.rangeOfString(".storyboard")
+					let xibRange = element.range(of: ".xib")
+					let storyboardRange = element.range(of: ".storyboard")
 					
 					if (xibRange != nil || storyboardRange != nil) &&
 						self.ibFiles.contains(elementPath) == false {
