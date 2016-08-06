@@ -155,7 +155,7 @@ class ChooseProjectViewController: NSViewController {
 			//			do {
 			//				try self.rootDirectory.bookmarkDataWithOptions(NSURLBookmarkCreationOptions.SecurityScopeAllowOnlyReadAccess, includingResourceValuesForKeys: nil, relativeToURL: nil)
 			
-			DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosUserInitiated).async(execute:  { [unowned self] () -> Void in
+			DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async(execute:  { [unowned self] () -> Void in
 				
 				// Find the xcode pbxproj.
 				self.findPbxproj(startPath: self.rootDirectory!.path!)
@@ -197,7 +197,7 @@ class ChooseProjectViewController: NSViewController {
 				var isDirectory: ObjCBool = false
 				
 				fileManager.fileExists(atPath: elementPath, isDirectory: &isDirectory)
-				if isDirectory {
+				if isDirectory.boolValue {
 					// Skipping Directories that can't be open
 					if !fileManager.isExecutableFile(atPath: elementPath) {
 						continue
@@ -327,7 +327,7 @@ class ChooseProjectViewController: NSViewController {
 				var isDirectory: ObjCBool = false
 				
 				fileManager.fileExists(atPath: elementPath, isDirectory: &isDirectory)
-				if isDirectory {
+				if isDirectory.boolValue {
 					// Skipping Directories that can't be open
 					if !fileManager.isExecutableFile(atPath: elementPath) {
 						continue
@@ -444,7 +444,7 @@ class ChooseProjectViewController: NSViewController {
 				var isDirectory: ObjCBool = false
 				
 				fileManager.fileExists(atPath: elementPath, isDirectory: &isDirectory)
-				if isDirectory {
+				if isDirectory.boolValue {
 					// Skipping Directories that can't be open
 					if !fileManager.isExecutableFile(atPath: elementPath) {
 						continue
@@ -488,7 +488,7 @@ class ChooseProjectViewController: NSViewController {
 				
 				fileManager.fileExists(atPath: elementPath, isDirectory: &isDirectory)
 				
-				if !isDirectory {
+				if !isDirectory.boolValue {
 					let stringsRange = element.range(of: ".strings")
 					if stringsRange != nil {
 						// files - we are only interested in localizations files.

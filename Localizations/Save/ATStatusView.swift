@@ -37,12 +37,12 @@ class ATStatusView: NSView {
 	var state: State = .None
 	
 	var newColor = NSColor(calibratedRed: 0, green: 0.871, blue: 0, alpha: 1)
-	var editColor = NSColor.yellow()
+	var editColor = NSColor.yellow
 	var deleteColor = NSColor(calibratedRed: 0.871, green: 0, blue: 0, alpha: 1)
 	var inProgressColor = NSColor(calibratedRed: 0, green: 0, blue: 0.871, alpha: 1)
-	var successColor = NSColor.green()
-	var errorColor = NSColor.red()
-	var noneColor = NSColor.lightGray()
+	var successColor = NSColor.green
+	var errorColor = NSColor.red
+	var noneColor = NSColor.lightGray
 	
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -71,7 +71,7 @@ class ATStatusView: NSView {
 	// canvas in paintcode. - AT 02/2016
 	func drawDashedFrame(rect: NSRect) {
 		let framePath = NSBezierPath(ovalIn: NSMakeRect(3/200*rect.width, 3/200*rect.height, 194/200*rect.width, 194/200*rect.height))
-		NSColor.lightGray().setStroke()
+		NSColor.lightGray.setStroke()
 		framePath.lineWidth = 5/200*rect.width
 		framePath.setLineDash([10/200*rect.width, 4/200*rect.width], count: 2, phase: 0)
 		framePath.stroke()
@@ -91,7 +91,7 @@ class ATStatusView: NSView {
 		let textStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
 		textStyle.alignment = .center
 		
-		let textFontAttributes = [NSFontAttributeName: NSFont.systemFont(ofSize: 144/200*rect.width), NSForegroundColorAttributeName: NSColor.white(), NSParagraphStyleAttributeName: textStyle]
+		let textFontAttributes = [NSFontAttributeName: NSFont.systemFont(ofSize: 144/200*rect.width), NSForegroundColorAttributeName: NSColor.white, NSParagraphStyleAttributeName: textStyle]
 		
 		let textTextHeight: CGFloat = textTextContent.boundingRect(with: NSMakeSize(textRect.width, CGFloat.infinity), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: textFontAttributes).size.height
 		let textTextRect: NSRect = NSMakeRect(textRect.minX, textRect.minY + (textRect.height - textTextHeight) / 2, textRect.width, textTextHeight)

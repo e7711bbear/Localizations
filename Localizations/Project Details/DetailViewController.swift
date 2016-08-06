@@ -141,7 +141,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 		default:
 			break
 		}
-		return NSColor.white()
+		return NSColor.white
 	}
 	
 	func produceTranslationCell(row: Int) -> TranslationCellView {

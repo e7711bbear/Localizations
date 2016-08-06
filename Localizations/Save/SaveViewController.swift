@@ -68,11 +68,11 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 		//		self.appDelegate.chooseProjectViewController.rootDirectory.startAccessingSecurityScopedResource()
 		
 		if fileManager.fileExists(atPath: self.appDelegate.chooseProjectViewController!.rootDirectory!.path!, isDirectory: &isDirectory) {
-			if isDirectory {
+			if isDirectory.boolValue {
 				// TODO: Alert here -- about to publish
 				
 				// If yes at alert ->
-				DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosUserInitiated).async(execute: { () -> Void in
+				DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async(execute: { () -> Void in
 					for index in 0..<self.changesTableViewDatasource.changes.count {
 						let file = self.changesTableViewDatasource.changes[index]
 						
