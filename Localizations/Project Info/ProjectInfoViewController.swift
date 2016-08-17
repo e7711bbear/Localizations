@@ -49,8 +49,8 @@ class ProjectInfoViewController: NSViewController {
 		self.appDelegate.chooseProjectViewController!.rootDirectory != nil else {
 			return
 		}
-		self.projectName.stringValue = self.appDelegate.chooseProjectViewController!.rootDirectory.lastPathComponent!
-		self.rootPath.stringValue = self.appDelegate.chooseProjectViewController!.rootDirectory.path!
+		self.projectName.stringValue = self.appDelegate.chooseProjectViewController!.rootDirectory.lastPathComponent
+		self.rootPath.stringValue = self.appDelegate.chooseProjectViewController!.rootDirectory.path
 		self.pbxprojPath.stringValue = self.appDelegate.chooseProjectViewController!.xcodeProject.pbxprojPath
 		self.ibFiles.stringValue = "\(self.appDelegate.chooseProjectViewController!.ibFiles.count)"
 		self.stringFiles.stringValue = "\(self.appDelegate.chooseProjectViewController!.stringFiles.count)"

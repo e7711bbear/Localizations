@@ -67,7 +67,7 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 		// Sandboxing
 		//		self.appDelegate.chooseProjectViewController.rootDirectory.startAccessingSecurityScopedResource()
 		
-		if fileManager.fileExists(atPath: self.appDelegate.chooseProjectViewController!.rootDirectory!.path!, isDirectory: &isDirectory) {
+		if fileManager.fileExists(atPath: self.appDelegate.chooseProjectViewController!.rootDirectory!.path, isDirectory: &isDirectory) {
 			if isDirectory.boolValue {
 				// TODO: Alert here -- about to publish
 				
