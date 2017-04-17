@@ -1,4 +1,4 @@
-#Localizations 0.2
+# Localizations 0.2
 
 Localizations is an OS X app that manages your Xcode project localization files (.strings).
 
@@ -35,7 +35,7 @@ My intentions with this app are to fill this void and, by making it open source,
 
 This project is completely open source and under the MIT license. So enjoy and have fun. For full details please see license.md
 
-##Screenshots
+## Screenshots
 ![Screenshot](https://github.com/athiercelin/Localizations/blob/master/Screenshots/localization-0.1-4.png?raw=true)
 ![Screenshot](https://github.com/athiercelin/Localizations/blob/master/Screenshots/localization-0.1-5.png?raw=true)
 
