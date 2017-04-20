@@ -22,5 +22,5 @@ If you want to fix a bug or add a new feature, please follow this process:
 **In any cases, make sure your code has been tested thorougly**
 
 
-#Thanks
+# Thanks
 I really appreciate all contributions, I made this tool because many in my surrounding needed it and I hope Localizations will belong to all of us.
