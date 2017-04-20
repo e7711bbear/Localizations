@@ -26,8 +26,6 @@
 		893BB5461C67C3D900F26792 /* TranslationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5451C67C3D900F26792 /* TranslationDataSource.swift */; };
 		893BB5481C67C93C00F26792 /* FileCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5471C67C93C00F26792 /* FileCellView.swift */; };
 		893BB54A1C67C94A00F26792 /* TranslationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BB5491C67C94A00F26792 /* TranslationCellView.swift */; };
-		89A294131C68441F003B76D6 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 89A294111C68441F003B76D6 /* LICENSE.md */; };
-		89A294141C68441F003B76D6 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 89A294121C68441F003B76D6 /* README.md */; };
 		89A294181C714E41003B76D6 /* ChooseProjectController+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A294171C714E41003B76D6 /* ChooseProjectController+Parser.swift */; };
 		89F0716B1C5AE60500E75780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0716A1C5AE60500E75780 /* AppDelegate.swift */; };
 		89F0716D1C5AE60500E75780 /* ChooseProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0716C1C5AE60500E75780 /* ChooseProjectViewController.swift */; };
@@ -319,7 +317,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Arnaud Thiercelin";
 				TargetAttributes = {
 					89F071661C5AE60500E75780 = {
@@ -418,7 +416,6 @@
 				89F0716D1C5AE60500E75780 /* ChooseProjectViewController.swift in Sources */,
 				893952BA1C82290000D35895 /* MainWindowController.swift in Sources */,
 				89F071A41C64246600E75780 /* File.swift in Sources */,
-				89A294141C68441F003B76D6 /* README.md in Sources */,
 				893952C01C822B4500D35895 /* ProjectInfoViewController.swift in Sources */,
 				893BB5441C67C38C00F26792 /* FileDataSource.swift in Sources */,
 				893BB5351C66BD6700F26792 /* DetailViewController.swift in Sources */,
@@ -430,7 +427,6 @@
 				89F071A21C62EA2F00E75780 /* Translation.swift in Sources */,
 				8939530B1C8C7EF600D35895 /* XcodeProject.swift in Sources */,
 				893952C61C83D50000D35895 /* ATStatusView.swift in Sources */,
-				89A294131C68441F003B76D6 /* LICENSE.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,8 +475,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -523,8 +521,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -543,6 +543,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};

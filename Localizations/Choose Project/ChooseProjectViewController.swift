@@ -62,7 +62,7 @@ class ChooseProjectViewController: NSViewController {
 				do {
 					try fileManager.removeItem(atPath: _cacheDirectory! as String)
 				} catch {
-					NSLog("Failed to trash the cache directory \(_cacheDirectory)")
+					NSLog("Failed to trash the cache directory \(String(describing: _cacheDirectory))")
 				}
 			}
 			self._cacheDirectory = newValue

@@ -56,7 +56,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	}
 	
 	// MARK: OutlineView Delegate
-	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
+	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
 		if item is Region {
 			return self.produceRegionCell(region: item as! Region)
 		} else if item is File {

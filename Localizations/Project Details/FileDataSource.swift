@@ -26,7 +26,7 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 	
 	var regions = [Region]()
 	
-	func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
 		if item == nil {
 			return self.regions.count
 		} else {
@@ -34,7 +34,7 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 		}
 	}
 	
-	func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
 		if item == nil {
 			return self.regions[index]
 		} else {
@@ -42,7 +42,7 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 		}
 	}
 	
-	func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
 		if item is Region {
 			return true
 		}
