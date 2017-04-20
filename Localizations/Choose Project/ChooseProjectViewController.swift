@@ -24,17 +24,17 @@ import Cocoa
 
 class ChooseProjectViewController: NSViewController {
 	
-	weak var appDelegate: AppDelegate! = NSApplication.sharedApplication().delegate as! AppDelegate
+	weak var appDelegate: AppDelegate! = NSApplication.shared().delegate as! AppDelegate
 	
 	@IBOutlet var chooseLabel: NSTextField!
 	@IBOutlet var chooseButton: NSButton!
 	@IBOutlet var progressIndicator: NSProgressIndicator!
 	
-	var rootDirectory: NSURL!
+	var rootDirectory: URL!
 
-	private var _cacheDirectory: NSString?
+	private var _cacheDirectory: String?
 	
-	var cacheDirectory: NSString! {
+	var cacheDirectory: String! {
 		get {
 			if _cacheDirectory == nil {
 				// Randomize
@@ -42,27 +42,27 @@ class ChooseProjectViewController: NSViewController {
 				let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 				let randomFolderName = NSMutableString(capacity: size)
 				for _ in 0..<size {
-					randomFolderName.appendFormat("%c", letters.characterAtIndex(Int(arc4random_uniform(UInt32(letters.length)))))
+					randomFolderName.appendFormat("%c", letters.character(at: Int(arc4random_uniform(UInt32(letters.length)))))
 				}
 				
 				_cacheDirectory = "/tmp/\(randomFolderName)"
 				
 				// Make Folder if not already existing
-				let fileManager = NSFileManager.defaultManager()
+				let fileManager = FileManager.default
 				
 				// TODO: handle errors other than "can't create because already there"
-				try! fileManager.createDirectoryAtPath(_cacheDirectory! as String, withIntermediateDirectories: true, attributes: nil)
+				try! fileManager.createDirectory(atPath: _cacheDirectory! as String, withIntermediateDirectories: true, attributes: nil)
 			}
 			return _cacheDirectory
 		}
 		set {
 			if newValue == nil && _cacheDirectory != nil {
-				let fileManager = NSFileManager.defaultManager()
+				let fileManager = FileManager.default
 				
 				do {
-					try fileManager.removeItemAtPath(_cacheDirectory! as String)
+					try fileManager.removeItem(atPath: _cacheDirectory! as String)
 				} catch {
-					NSLog("Failed to trash the cache directory \(_cacheDirectory)")
+					NSLog("Failed to trash the cache directory \(String(describing: _cacheDirectory))")
 				}
 			}
 			self._cacheDirectory = newValue
@@ -98,20 +98,20 @@ class ChooseProjectViewController: NSViewController {
 		self.freshlyGeneratedFiles.removeAll()
 		self.combinedFiles.removeAll()
 		self.dismissViewController(self.appDelegate.detailViewController!)
-		self.appDelegate.newMenuItem.enabled = false
-		self.appDelegate.saveMenuItem.enabled = false
+		self.appDelegate.newMenuItem.isEnabled = false
+		self.appDelegate.saveMenuItem.isEnabled = false
 		self.disableProgression()
 	}
 	
 	func enableProgression() {
-		self.chooseButton.hidden = true
-		self.progressIndicator.hidden = false
+		self.chooseButton.isHidden = true
+		self.progressIndicator.isHidden = false
 	}
 	
 	func disableProgression() {
 		self.chooseLabel.stringValue = NSLocalizedString("Choose the root folder of your Xcode project", comment: "Default label above the choose project button")
-		self.chooseButton.hidden = false
-		self.progressIndicator.hidden = true
+		self.chooseButton.isHidden = false
+		self.progressIndicator.isHidden = true
 	}
 	
 	func startProression(withCurrentValue currentValue: Double = 0.0 , maxValue: Double = 100.0, andMessage message: String) {
@@ -141,27 +141,27 @@ class ChooseProjectViewController: NSViewController {
 		let returnValue = openPanel.runModal()
 		
 		if returnValue == NSModalResponseOK {
-			guard openPanel.URL != nil else {
+			guard openPanel.url != nil else {
 				// TODO: Error handling here
 				return
 			}
 			
 			self.startProression(maxValue: 3, andMessage: NSLocalizedString("Looking for localizations Files", comment: "Progression start message"))
 
-			self.rootDirectory = openPanel.URL!
+			self.rootDirectory = openPanel.url!
 			// TODO: To be used if and when this app is to be sandboxed.
 			//			self.rootDirectory.startAccessingSecurityScopedResource()
 			
 			//			do {
 			//				try self.rootDirectory.bookmarkDataWithOptions(NSURLBookmarkCreationOptions.SecurityScopeAllowOnlyReadAccess, includingResourceValuesForKeys: nil, relativeToURL: nil)
 			
-			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { [unowned self] () -> Void in
+			DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async(execute:  { [unowned self] () -> Void in
 				
 				// Find the xcode pbxproj.
-				self.findPbxproj(self.rootDirectory!.path!)
+				self.findPbxproj(startPath: self.rootDirectory!.path as NSString)
 				
 				// Browsing the existing files
-				self.findStringFiles(self.rootDirectory!.path!)
+				self.findStringFiles(startPath: self.rootDirectory!.path as NSString)
 				self.sortFoundStringFiles()
 				
 				// Get fresh generation of files
@@ -171,11 +171,11 @@ class ChooseProjectViewController: NSViewController {
 				
 				self.compareAndCombine()
 				// show detail ui
-				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
+				DispatchQueue.main.async(execute: { [unowned self] () -> Void in
 					self.stopProgression()
-					self.performSegueWithIdentifier("detailsSegue", sender: nil)
-					self.appDelegate.newMenuItem.enabled = true
-					self.appDelegate.saveMenuItem.enabled = true
+					self.performSegue(withIdentifier: "detailsSegue", sender: nil)
+					self.appDelegate.newMenuItem.isEnabled = true
+					self.appDelegate.saveMenuItem.isEnabled = true
 					})
 				})
 			//			} catch {
@@ -187,34 +187,34 @@ class ChooseProjectViewController: NSViewController {
 	// MARK: - Methods collecting existing localization data from .string files.
 	
 	func findPbxproj(startPath: NSString) {
-		let fileManager = NSFileManager.defaultManager()
+		let fileManager = FileManager.default
 		
 		do {
-			let content = try fileManager.contentsOfDirectoryAtPath(startPath as String)
+			let content = try fileManager.contentsOfDirectory(atPath: startPath as String)
 			
 			for element in content {
-				let elementPath = startPath.stringByAppendingPathComponent(element)
+				let elementPath = startPath.appendingPathComponent(element)
 				var isDirectory: ObjCBool = false
 				
-				fileManager.fileExistsAtPath(elementPath, isDirectory: &isDirectory)
-				if isDirectory {
+				fileManager.fileExists(atPath: elementPath, isDirectory: &isDirectory)
+				if isDirectory.boolValue {
 					// Skipping Directories that can't be open
-					if !fileManager.isExecutableFileAtPath(elementPath) {
+					if !fileManager.isExecutableFile(atPath: elementPath) {
 						continue
 					}
 					
 					// Skipping Hidden Folders
-					let dotRange = element.rangeOfString(".")
-					if dotRange != nil && dotRange!.first! == element.startIndex {
+					let dotRange = element.range(of: ".")
+					if dotRange != nil && dotRange!.lowerBound == element.startIndex {
 						continue
 					}
 					
 					// We open the folder and continue the process.
-					self.findPbxproj(elementPath)
+					self.findPbxproj(startPath: elementPath as NSString)
 				}
 				else // files - we are only interested in localizations files.
 				{
-					let stringsRange = element.rangeOfString(".pbxproj")
+					let stringsRange = element.range(of: ".pbxproj")
 					
 					if stringsRange != nil {
 						if self.xcodeProject.pbxprojPath == "" {
@@ -238,10 +238,10 @@ class ChooseProjectViewController: NSViewController {
 		self.xcodeProject.devRegion = ""
 		
 		do {
-			self.xcodeProject.pbxprojContent = try NSString(contentsOfFile: self.xcodeProject.pbxprojPath as String, encoding: NSUTF8StringEncoding) as String
+			self.xcodeProject.pbxprojContent = try NSString(contentsOfFile: self.xcodeProject.pbxprojPath as String, encoding: String.Encoding.utf8.rawValue) as String
 		} catch {
 			do {
-				self.xcodeProject.pbxprojContent = try NSString(contentsOfFile: self.xcodeProject.pbxprojPath as String, encoding: NSUTF16StringEncoding) as String
+				self.xcodeProject.pbxprojContent = try NSString(contentsOfFile: self.xcodeProject.pbxprojPath as String, encoding: String.Encoding.utf16.rawValue) as String
 			} catch {
 				//TODO: Eventually retry with even more encoding.
 			}
@@ -251,7 +251,7 @@ class ChooseProjectViewController: NSViewController {
 			NSLog("Can't proceed with reading the pbxproj file (\(self.xcodeProject.pbxprojPath)), because it's empty.")
 			return
 		}
-		let lines = self.xcodeProject.pbxprojContent.componentsSeparatedByString("\n")
+		let lines = self.xcodeProject.pbxprojContent.components(separatedBy: "\n")
 		
 		for line in lines {
 			if line.characters.count == 0 {
@@ -259,10 +259,10 @@ class ChooseProjectViewController: NSViewController {
 			}
 			
 			if self.xcodeProject.devRegion == "" {
-				let devRegionRange = line.rangeOfString("developmentRegion")
+				let devRegionRange = line.range(of: "developmentRegion")
 				
 				if devRegionRange != nil {
-					let foundDevRegion = self.parseDevRegion(line)
+					let foundDevRegion = self.parseDevRegion(line: line)
 					
 					if foundDevRegion != nil {
 						self.xcodeProject.devRegion = foundDevRegion!
@@ -272,24 +272,24 @@ class ChooseProjectViewController: NSViewController {
 				}
 			}
 			if self.xcodeProject.knownRegions.count == 0 {
-				let knownRegionRange = line.rangeOfString("knownRegions")
+				let knownRegionRange = line.range(of: "knownRegions")
 				
 				if knownRegionRange != nil {
-					let startingIndex =	lines.indexOf(line)
+					let startingIndex =	lines.index(of: line)
 					
-					let foundRegions = self.parseKnownRegions(lines, startingIndex: startingIndex!)
+					let foundRegions = self.parseKnownRegions(lines: lines, startingIndex: startingIndex!)
 					
 					// TODO: Eventually add here a test on the qty returned.
-					self.xcodeProject.knownRegions.appendContentsOf(foundRegions)
+					self.xcodeProject.knownRegions.append(contentsOf: foundRegions)
 				}
 			}
 		}
 	}
 	
 	func parseDevRegion(line: String) -> String? {
-		let lineParts = line.componentsSeparatedByString("=")
-		var cleanedString = lineParts[1].stringByReplacingOccurrencesOfString(" ", withString: "")
-		cleanedString = cleanedString.stringByReplacingOccurrencesOfString(";", withString: "")
+		let lineParts = line.components(separatedBy: "=")
+		var cleanedString = lineParts[1].replacingOccurrences(of: " ", with: "")
+		cleanedString = cleanedString.replacingOccurrences(of: ";", with: "")
 		
 		return cleanedString
 	}
@@ -300,10 +300,10 @@ class ChooseProjectViewController: NSViewController {
 		for index in startingIndex+1..<lines.count {
 			let line = lines[index]
 			
-			if line.rangeOfString(");") == nil { // we are in a line of a region
-				var cleanedLine = line.stringByReplacingOccurrencesOfString(" ", withString: "")
-				cleanedLine = cleanedLine.stringByReplacingOccurrencesOfString("\t", withString: "")
-				cleanedLine = cleanedLine.stringByReplacingOccurrencesOfString(",", withString: "")
+			if line.range(of:");") == nil { // we are in a line of a region
+				var cleanedLine = line.replacingOccurrences(of: " ", with: "")
+				cleanedLine = cleanedLine.replacingOccurrences(of: "\t", with: "")
+				cleanedLine = cleanedLine.replacingOccurrences(of: ",", with: "")
 				
 				foundRegions.append(cleanedLine)
 			} else {
@@ -318,36 +318,36 @@ class ChooseProjectViewController: NSViewController {
 	func findStringFiles(startPath: NSString) {
 		//NOTE: Could be replaced by fts_open from libc (man)
 		
-		let fileManager = NSFileManager.defaultManager()
+		let fileManager = FileManager.default
 		do {
-			let content = try fileManager.contentsOfDirectoryAtPath(startPath as String)
+			let content = try fileManager.contentsOfDirectory(atPath: startPath as String)
 			
 			for element in content {
-				let elementPath = startPath.stringByAppendingPathComponent(element)
+				let elementPath = startPath.appendingPathComponent(element)
 				var isDirectory: ObjCBool = false
 				
-				fileManager.fileExistsAtPath(elementPath, isDirectory: &isDirectory)
-				if isDirectory {
+				fileManager.fileExists(atPath: elementPath, isDirectory: &isDirectory)
+				if isDirectory.boolValue {
 					// Skipping Directories that can't be open
-					if !fileManager.isExecutableFileAtPath(elementPath) {
+					if !fileManager.isExecutableFile(atPath: elementPath) {
 						continue
 					}
 					
 					// Skipping Hidden Folders
-					let dotRange = element.rangeOfString(".")
-					if dotRange != nil && dotRange!.first! == element.startIndex {
+					let dotRange = element.range(of: ".")
+					if dotRange != nil && dotRange!.lowerBound == element.startIndex {
 						continue
 					}
 					
 					// We open the folder and continue the process.
-					self.findStringFiles(elementPath)
+					self.findStringFiles(startPath: elementPath as NSString)
 				}
 				else // files - we are only interested in localizations files.
 				{
-					let stringsRange = element.rangeOfString(".strings")
+					let stringsRange = element.range(of: ".strings")
 					
-					if stringsRange != nil && self.stringFiles.contains(elementPath) == false {
-						self.stringFiles.append(elementPath)
+					if stringsRange != nil && self.stringFiles.contains(elementPath as NSString) == false {
+						self.stringFiles.append(elementPath as NSString)
 					}
 				}
 			}
@@ -370,10 +370,10 @@ class ChooseProjectViewController: NSViewController {
 			var fileContent = ""
 			
 			do {
-				fileContent = try NSString(contentsOfFile: path as String, encoding: NSUTF8StringEncoding) as String
+				fileContent = try NSString(contentsOfFile: path as String, encoding: String.Encoding.utf8.rawValue) as String
 			} catch {
 				do {
-					fileContent = try NSString(contentsOfFile: path as String, encoding: NSUTF16StringEncoding) as String
+					fileContent = try NSString(contentsOfFile: path as String, encoding: String.Encoding.utf16.rawValue) as String
 				} catch {
 					//TODO: Eventually retry with even more encoding.
 				}
@@ -384,18 +384,18 @@ class ChooseProjectViewController: NSViewController {
 			newFile.path = path as String
 			newFile.folder = folder
 			newFile.rawContent = fileContent
-			newFile.translations = self.parseTranslations(newFile.rawContent)
+			newFile.translations = self.parseTranslations(rawContent: newFile.rawContent)
 			var localizationIsAlreadyRegistered = false
 			
 			for localization in self.localizations {
-				if localization.isEqualToString(folder) {
+				if localization.isEqual(to: folder) {
 					localizationIsAlreadyRegistered = true
 					break
 				}
 			}
 			
 			if localizationIsAlreadyRegistered == false {
-				self.localizations.append(folder)
+				self.localizations.append(folder as NSString)
 			}
 			self.existingFiles.append(newFile)
 		}
@@ -403,11 +403,12 @@ class ChooseProjectViewController: NSViewController {
 	
 	// MARK: - Methods building fresh localization data from source
 	func generateFreshFilesUsingGenstrings() {
-		let commandString = "/usr/bin/genstrings -o \"\(self.cacheDirectory)\" `find \"\(self.rootDirectory.path!)\" -name '*.[hm]' -o -name '*.swift'`"
+		let commandString = "/usr/bin/genstrings -o \"\(self.cacheDirectory)\" `find \"\(self.rootDirectory.path)\" -name '*.[hm]' -o -name '*.swift'`"
 		
 		NSLog("Running: \(commandString)")
 		
-		system(commandString)
+		// TODO: replace with NSTask
+		//		system(commandString)
 	}
 	
 	func generateFreshFilesWithIBTool() {
@@ -415,56 +416,57 @@ class ChooseProjectViewController: NSViewController {
 		// ibtool --generate-strings-file MainMenu.strings MainMenu.xib
 		
 		self.ibFiles.removeAll()
-		self.findAllIBFiles(self.rootDirectory.path!)
+		self.findAllIBFiles(startPath: self.rootDirectory.path as NSString)
 		
 		for filePath in self.ibFiles {
 			let pathExtension = filePath.pathExtension
 			let fileName = filePath.lastPathComponent
-			let stringFileName = fileName.stringByReplacingOccurrencesOfString(pathExtension, withString: "strings")
+			let stringFileName = fileName.replacingOccurrences(of: pathExtension, with: "strings")
 			
 			let commandString = "ibtool --generate-strings-file \"\(self.cacheDirectory)/\(stringFileName)\" \"\(filePath)\""
 			
 			NSLog("Running: \(commandString)")
 
-			system(commandString)
+			// TODO: replace with NSTask
+			//			system(commandString)
 		}
 	}
 	
 	func findAllIBFiles(startPath: NSString) {
 		//NOTE: Could be replaced by fts_open from libc (man)
 		
-		let fileManager = NSFileManager.defaultManager()
+		let fileManager = FileManager.default
 		do {
-			let content = try fileManager.contentsOfDirectoryAtPath(startPath as String)
+			let content = try fileManager.contentsOfDirectory(atPath: startPath as String)
 			
 			for element in content {
-				let elementPath = startPath.stringByAppendingPathComponent(element)
+				let elementPath = startPath.appendingPathComponent(element)
 				var isDirectory: ObjCBool = false
 				
-				fileManager.fileExistsAtPath(elementPath, isDirectory: &isDirectory)
-				if isDirectory {
+				fileManager.fileExists(atPath: elementPath, isDirectory: &isDirectory)
+				if isDirectory.boolValue {
 					// Skipping Directories that can't be open
-					if !fileManager.isExecutableFileAtPath(elementPath) {
+					if !fileManager.isExecutableFile(atPath: elementPath) {
 						continue
 					}
 					
 					// Skipping Hidden Folders
-					let dotRange = element.rangeOfString(".")
-					if dotRange != nil && dotRange!.first! == element.startIndex {
+					let dotRange = element.range(of: ".")
+					if dotRange != nil && dotRange!.lowerBound == element.startIndex {
 						continue
 					}
 					
 					// We "open" the folder and continue the process.
-					self.findAllIBFiles(elementPath)
+					self.findAllIBFiles(startPath: elementPath as NSString)
 				}
 				else // files - we are only interested in localizations files.
 				{
-					let xibRange = element.rangeOfString(".xib")
-					let storyboardRange = element.rangeOfString(".storyboard")
+					let xibRange = element.range(of: ".xib")
+					let storyboardRange = element.range(of: ".storyboard")
 					
 					if (xibRange != nil || storyboardRange != nil) &&
-						self.ibFiles.contains(elementPath) == false {
-						self.ibFiles.append(elementPath)
+						self.ibFiles.contains(elementPath as NSString) == false {
+						self.ibFiles.append(elementPath as NSString)
 					}
 				}
 			}
@@ -476,18 +478,20 @@ class ChooseProjectViewController: NSViewController {
 	func produceFreshListOfStringFiles() {
 		self.freshlyGeneratedFiles.removeAll()
 		
-		let fileManager = NSFileManager.defaultManager()
+		let fileManager = FileManager.default
 		do {
-			let content = try fileManager.contentsOfDirectoryAtPath(self.cacheDirectory as String)
+			let content = try fileManager.contentsOfDirectory(atPath: self.cacheDirectory as String)
 			
 			for element in content {
-				let elementPath = cacheDirectory.stringByAppendingPathComponent(element)
+				let cacheDirectoryNSString = cacheDirectory as NSString
+				
+				let elementPath = cacheDirectoryNSString.appendingPathComponent(element)
 				var isDirectory:ObjCBool = false
 				
-				fileManager.fileExistsAtPath(elementPath, isDirectory: &isDirectory)
+				fileManager.fileExists(atPath: elementPath, isDirectory: &isDirectory)
 				
-				if !isDirectory {
-					let stringsRange = element.rangeOfString(".strings")
+				if !isDirectory.boolValue {
+					let stringsRange = element.range(of: ".strings")
 					if stringsRange != nil {
 						// files - we are only interested in localizations files.
 						let newFile = File()
@@ -497,17 +501,17 @@ class ChooseProjectViewController: NSViewController {
 						var fileContent = ""
 						
 						do {
-							fileContent = try NSString(contentsOfFile: elementPath, encoding: NSUTF8StringEncoding) as String
+							fileContent = try NSString(contentsOfFile: elementPath, encoding: String.Encoding.utf8.rawValue) as String
 						} catch {
 							do {
-								fileContent = try NSString(contentsOfFile: elementPath, encoding: NSUTF16StringEncoding) as String
+								fileContent = try NSString(contentsOfFile: elementPath, encoding: String.Encoding.utf16.rawValue) as String
 							} catch {
 								//TODO: Eventually retry with even more encoding.
 							}
 						}
 						
 						newFile.rawContent = fileContent
-						newFile.translations = self.parseTranslations(fileContent)
+						newFile.translations = self.parseTranslations(rawContent: fileContent)
 						self.freshlyGeneratedFiles.append(newFile)
 					}
 				}
@@ -544,7 +548,7 @@ class ChooseProjectViewController: NSViewController {
 			
 			if found == false {
 				combinedFile.state = .New
-				combinedFile.path = "\(((self.xcodeProject.pbxprojPath as NSString).stringByDeletingLastPathComponent as NSString).stringByDeletingLastPathComponent)/\(newFile.folder)/\(newFile.name)"
+				combinedFile.path = "\(((self.xcodeProject.pbxprojPath as NSString).deletingLastPathComponent as NSString).deletingLastPathComponent)/\(newFile.folder)/\(newFile.name)"
 
 				// TODO: Make an actual copy here
 				combinedFile.translations = newFile.translations

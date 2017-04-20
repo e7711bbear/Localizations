@@ -25,7 +25,7 @@ import Foundation
 extension ChooseProjectViewController {
 	
 	func parseTranslations(rawContent: String) -> [Translation] {
-		let lines = rawContent.componentsSeparatedByString("\n")
+		let lines = rawContent.components(separatedBy: "\n")
 		var translations = [Translation]()
 		var comments = ""
 		
@@ -34,10 +34,10 @@ extension ChooseProjectViewController {
 				continue
 			}
 			if line.characters.first !=  "\"" { // Comment line or blank lines
-				comments.appendContentsOf(line)
-				comments.appendContentsOf("\n")
+				comments.append(line)
+				comments.append("\n")
 			} else { // line with key
-				let translation = self.splitStringLine(line)
+				let translation = self.splitStringLine(line: line)
 				
 				translation.comments = comments
 				translations.append(translation)
@@ -57,8 +57,9 @@ extension ChooseProjectViewController {
 		var key = ""
 		var value = ""
 		
-		for index in 0..<line.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) {
-			let character = line[line.startIndex.advancedBy(index)]
+		for index in 0..<line.lengthOfBytes(using: String.Encoding.utf8) {
+			let newIndex = line.index(line.startIndex, offsetBy: index)
+			let character = line[newIndex]
 			
 			if character == "\\" {
 				if !ignoreNextCharacter {

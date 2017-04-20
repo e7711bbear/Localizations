@@ -23,7 +23,7 @@
 import Cocoa
 
 class SaveViewController: NSViewController, NSTableViewDelegate {
-	let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+	let appDelegate = NSApplication.shared().delegate as! AppDelegate
 	
 	@IBOutlet var changesTableView: NSTableView!
 	var changesTableViewDatasource = ChangeTableViewDataSource()
@@ -34,14 +34,14 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.changesTableView.setDelegate(self)
-		self.changesTableView.setDataSource(self.changesTableViewDatasource)
+		self.changesTableView.delegate = self
+		self.changesTableView.dataSource = self.changesTableViewDatasource
 	}
 	
 	override func viewWillAppear() {
-		self.proceedButton.enabled = true
+		self.proceedButton.isEnabled = true
 		self.cancelButton.title = NSLocalizedString("Cancel", comment: "Cancel button's default title in save sheet")
-		self.changesTableViewDatasource.buildDatasource((self.appDelegate.detailViewController?.filesDataSource.regions)!)
+		self.changesTableViewDatasource.buildDatasource(regions: (self.appDelegate.detailViewController?.filesDataSource.regions)!)
 		self.changesTableView.reloadData()
 	}
 	
@@ -49,11 +49,11 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 	
 	@IBAction func cancel(sender:AnyObject) {
 		//TODO: Do some check here and cleanup
-		self.dismissController(sender)
+		self.dismiss(sender)
 	}
 	
 	@IBAction func proceed(sender: AnyObject) {
-		let fileManager = NSFileManager.defaultManager()
+		let fileManager = FileManager.default
 		
 		guard self.appDelegate.chooseProjectViewController!.rootDirectory != nil else {
 			// TODO: Error handling here.
@@ -67,46 +67,46 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 		// Sandboxing
 		//		self.appDelegate.chooseProjectViewController.rootDirectory.startAccessingSecurityScopedResource()
 		
-		if fileManager.fileExistsAtPath(self.appDelegate.chooseProjectViewController!.rootDirectory!.path!, isDirectory: &isDirectory) {
-			if isDirectory {
+		if fileManager.fileExists(atPath: self.appDelegate.chooseProjectViewController!.rootDirectory!.path, isDirectory: &isDirectory) {
+			if isDirectory.boolValue {
 				// TODO: Alert here -- about to publish
 				
 				// If yes at alert ->
-				dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+				DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async(execute: { () -> Void in
 					for index in 0..<self.changesTableViewDatasource.changes.count {
 						let file = self.changesTableViewDatasource.changes[index]
 						
-						let cellView = self.changesTableView.viewAtColumn(0, row: index, makeIfNecessary: false) as! ChangeStepCellView
+						let cellView = self.changesTableView.view(atColumn: 0, row: index, makeIfNecessary: false) as! ChangeStepCellView
 						
 						cellView.stepStatus.state = .InProgress
-						dispatch_async(dispatch_get_main_queue(), { () -> Void in
-							cellView.stepStatus.setNeedsDisplayInRect(cellView.stepStatus.bounds)
+						DispatchQueue.main.async(execute: { () -> Void in
+							cellView.stepStatus.setNeedsDisplay(cellView.stepStatus.bounds)
 							cellView.stepStatus.displayIfNeeded()
 						})
 						
 						//TODO: add error handling here and .Error state
 						switch file.state {
 						case .New:
-							self.createFile(file)
+							self.createFile(file: file)
 							cellView.stepStatus.state = .Success
 						case .Edit:
-							self.editFile(file)
+							self.editFile(file: file)
 							cellView.stepStatus.state = .Success
 						case .Obselete:
-							self.deleteFile(file)
+							self.deleteFile(file: file)
 							cellView.stepStatus.state = .Success
 						default:
 							continue
 						}
-						dispatch_async(dispatch_get_main_queue(), { () -> Void in
-							cellView.stepStatus.setNeedsDisplayInRect(cellView.stepStatus.bounds)
+						DispatchQueue.main.async(execute: { () -> Void in
+							cellView.stepStatus.setNeedsDisplay(cellView.stepStatus.bounds)
 							cellView.stepStatus.displayIfNeeded()
 						})
 					}
 				})
 			}
 		}
-		self.proceedButton.enabled = false
+		self.proceedButton.isEnabled = false
 		self.cancelButton.title = NSLocalizedString("Close", comment: "Cancel button's close title in save sheet")
 
 		// Sandboxing
@@ -139,16 +139,16 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 	}
 	
 	func createFile(file: File) {
-		let fileContent = self.writableContent(file)
+		let fileContent = self.writableContent(file: file)
 		do {
 			#if DEBUG
 				NSLog("Creating file at \(file.path)")
 			#endif
-			let fileManager = NSFileManager.defaultManager()
-			try fileManager.createDirectoryAtPath((file.path as NSString).stringByDeletingLastPathComponent,
+			let fileManager = FileManager.default
+			try fileManager.createDirectory(atPath: (file.path as NSString).deletingLastPathComponent,
 				withIntermediateDirectories: true,
 				attributes: nil)
-			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
+			try fileContent.write(toFile: file.path, atomically: true, encoding: String.Encoding.utf8)
 		} catch {
 			NSLog("Error creating file \(file) - \(error)")
 			// TODO: Error handling
@@ -156,12 +156,12 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 	}
 	
 	func editFile(file: File) {
-		let fileContent = self.writableContent(file)
+		let fileContent = self.writableContent(file: file)
 		do {
 			#if DEBUG
 				NSLog("Editing file at \(file.path)")
 			#endif
-			try fileContent.writeToFile(file.path, atomically: true, encoding: NSUTF8StringEncoding)
+			try fileContent.write(toFile: file.path, atomically: true, encoding: String.Encoding.utf8)
 		} catch {
 			NSLog("Error editing file \(file) - \(error)")
 			// TODO: Error handling
@@ -169,13 +169,13 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 	}
 	
 	func deleteFile(file: File) {
-		let fileManager = NSFileManager.defaultManager()
+		let fileManager = FileManager.default
 		
 		do {
 			#if DEBUG
 				NSLog("Deleting file at \(file.path)")
 			#endif
-			try fileManager.removeItemAtPath(file.path)
+			try fileManager.removeItem(atPath: file.path)
 		} catch {
 			NSLog("Error deleting file \(file) - \(error)")
 			// TODO: Error Handling
@@ -184,8 +184,8 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 	
 	//MARK: - TableView Delegate
 	
-	func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		let changeView = tableView.makeViewWithIdentifier("changeCell", owner: self) as! ChangeStepCellView
+	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+		let changeView = tableView.make(withIdentifier: "changeCell", owner: self) as! ChangeStepCellView
 		let fileChange = self.changesTableViewDatasource.changes[row]
 		
 		switch fileChange.state {

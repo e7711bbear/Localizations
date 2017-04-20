@@ -28,26 +28,26 @@ class ATBasicAnimator: NSObject, NSViewControllerPresentationAnimator {
 		subView.translatesAutoresizingMaskIntoConstraints = false
 		
 		containingView.addSubview(subView)
-		let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[view]-0-|",
-			options: .DirectionLeadingToTrailing,
+		let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|",
+			options: .directionLeadingToTrailing,
 			metrics: nil,
 			views: ["view" : subView])
-		let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[view]-0-|",
-			options: .DirectionLeadingToTrailing,
+		let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|",
+			options: .directionLeadingToTrailing,
 			metrics: nil,
 			views: ["view" : subView])
 		containingView.addConstraints(horizontalConstraints)
 		containingView.addConstraints(verticalConstraints)
 	}
 	
-	func animatePresentationOfViewController(viewController: NSViewController, fromViewController: NSViewController) {
+	func animatePresentation(of viewController: NSViewController, from fromViewController: NSViewController) {
 		let fromView = fromViewController.view
 		let view = viewController.view
 		
-		self.addSubviewAsFullSize(fromView, subView: view)
+		self.addSubviewAsFullSize(containingView: fromView, subView: view)
 	}
 	
-	func animateDismissalOfViewController(viewController: NSViewController, fromViewController: NSViewController) {
-		viewController.view.removeFromSuperview()
-	}	
+	func animateDismissal(of viewController: NSViewController, from fromViewController: NSViewController) {
+		
+	}
 }

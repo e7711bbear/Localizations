@@ -24,7 +24,7 @@ import Cocoa
 
 class ProjectInfoViewController: NSViewController {
 
-	let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+	let appDelegate = NSApplication.shared().delegate as! AppDelegate
 	
 	@IBOutlet var projectName: NSTextField!
 	@IBOutlet var rootPath: NSTextField!
@@ -49,8 +49,8 @@ class ProjectInfoViewController: NSViewController {
 		self.appDelegate.chooseProjectViewController!.rootDirectory != nil else {
 			return
 		}
-		self.projectName.stringValue = self.appDelegate.chooseProjectViewController!.rootDirectory.lastPathComponent!
-		self.rootPath.stringValue = self.appDelegate.chooseProjectViewController!.rootDirectory.path!
+		self.projectName.stringValue = self.appDelegate.chooseProjectViewController!.rootDirectory.lastPathComponent
+		self.rootPath.stringValue = self.appDelegate.chooseProjectViewController!.rootDirectory.path
 		self.pbxprojPath.stringValue = self.appDelegate.chooseProjectViewController!.xcodeProject.pbxprojPath
 		self.ibFiles.stringValue = "\(self.appDelegate.chooseProjectViewController!.ibFiles.count)"
 		self.stringFiles.stringValue = "\(self.appDelegate.chooseProjectViewController!.stringFiles.count)"

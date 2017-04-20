@@ -26,7 +26,7 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 	
 	var regions = [Region]()
 	
-	func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
 		if item == nil {
 			return self.regions.count
 		} else {
@@ -34,7 +34,7 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 		}
 	}
 	
-	func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
 		if item == nil {
 			return self.regions[index]
 		} else {
@@ -42,7 +42,7 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 		}
 	}
 	
-	func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
 		if item is Region {
 			return true
 		}
@@ -64,7 +64,7 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 	func buildDatasource(projectRoot: String, devRegion: String, knownRegions: [String], combinedFiles: [File]) {
 		// Build regions based on devRegion & knownRegions
 		for knownRegion in knownRegions {
-			if let matchingRegion = Region.regionMatchingString(knownRegion) {
+			if let matchingRegion = Region.regionMatchingString(string: knownRegion) {
 				self.regions.append(matchingRegion)
 			}
 		}
@@ -72,10 +72,10 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 		for file in combinedFiles {
 			if file.folder.characters.count != 0 {
 				// Assign files with their respective region
-				if let region = self.regionWithCode(Region.regionMatchingString(file.languageCode)?.code) {
+				if let region = self.regionWithCode(code: Region.regionMatchingString(string: file.languageCode)?.code) {
 					region.files.append(file)
 				} else { 
-					let newRegion = Region.regionMatchingString(file.languageCode)
+					let newRegion = Region.regionMatchingString(string: file.languageCode)
 					
 					if newRegion != nil {
 						newRegion!.files.append(file)
