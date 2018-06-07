@@ -24,7 +24,7 @@ import Cocoa
 
 class ChooseProjectViewController: NSViewController {
 	
-	weak var appDelegate: AppDelegate! = NSApplication.shared().delegate as! AppDelegate
+	let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
 	
 	@IBOutlet var chooseLabel: NSTextField!
 	@IBOutlet var chooseButton: NSButton!
@@ -53,7 +53,7 @@ class ChooseProjectViewController: NSViewController {
 				// TODO: handle errors other than "can't create because already there"
 				try! fileManager.createDirectory(atPath: _cacheDirectory! as String, withIntermediateDirectories: true, attributes: nil)
 			}
-			return _cacheDirectory
+			return _cacheDirectory!
 		}
 		set {
 			if newValue == nil && _cacheDirectory != nil {
@@ -97,7 +97,7 @@ class ChooseProjectViewController: NSViewController {
 		self.existingFiles.removeAll()
 		self.freshlyGeneratedFiles.removeAll()
 		self.combinedFiles.removeAll()
-		self.dismissViewController(self.appDelegate.detailViewController!)
+		self.dismiss(self.appDelegate.detailViewController!)
 		self.appDelegate.newMenuItem.isEnabled = false
 		self.appDelegate.saveMenuItem.isEnabled = false
 		self.disableProgression()
@@ -138,9 +138,9 @@ class ChooseProjectViewController: NSViewController {
 		openPanel.message = NSLocalizedString("Choose a directory", comment: "Open Panel Message to choose the xcode root directory")
 		openPanel.title = NSLocalizedString("Please choose a directory containing your Xcode project.", comment: "Open Panel Title to choose the xcode root directory")
 		
-		let returnValue = openPanel.runModal()
+		let returnValue = convertFromNSApplicationModalResponse(openPanel.runModal())
 		
-		if returnValue == NSModalResponseOK {
+		if returnValue == convertFromNSApplicationModalResponse(NSApplication.ModalResponse.OK) {
 			guard openPanel.url != nil else {
 				// TODO: Error handling here
 				return
@@ -254,7 +254,7 @@ class ChooseProjectViewController: NSViewController {
 		let lines = self.xcodeProject.pbxprojContent.components(separatedBy: "\n")
 		
 		for line in lines {
-			if line.characters.count == 0 {
+			if line.count == 0 {
 				continue
 			}
 			
@@ -403,7 +403,8 @@ class ChooseProjectViewController: NSViewController {
 	
 	// MARK: - Methods building fresh localization data from source
 	func generateFreshFilesUsingGenstrings() {
-		let commandString = "/usr/bin/genstrings -o \"\(self.cacheDirectory)\" `find \"\(self.rootDirectory.path)\" -name '*.[hm]' -o -name '*.swift'`"
+		// TODO: Improve the default value system for these paths.
+		let commandString = "/usr/bin/genstrings -o \"\(self.cacheDirectory ?? "/tmp")\" `find \"\(self.rootDirectory.path)\" -name '*.[hm]' -o -name '*.swift'`"
 		
 		NSLog("Running: \(commandString)")
 		
@@ -423,7 +424,8 @@ class ChooseProjectViewController: NSViewController {
 			let fileName = filePath.lastPathComponent
 			let stringFileName = fileName.replacingOccurrences(of: pathExtension, with: "strings")
 			
-			let commandString = "ibtool --generate-strings-file \"\(self.cacheDirectory)/\(stringFileName)\" \"\(filePath)\""
+			// TODO: Improve the default value system for these paths.
+			let commandString = "ibtool --generate-strings-file \"\(self.cacheDirectory ?? "/tmp")/\(stringFileName)\" \"\(filePath)\""
 			
 			NSLog("Running: \(commandString)")
 
@@ -641,3 +643,8 @@ class ChooseProjectViewController: NSViewController {
 	}
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSApplicationModalResponse(_ input: NSApplication.ModalResponse) -> Int {
+	return input.rawValue
+}

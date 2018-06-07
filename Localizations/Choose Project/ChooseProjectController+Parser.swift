@@ -30,10 +30,10 @@ extension ChooseProjectViewController {
 		var comments = ""
 		
 		for line in lines {
-			if line.characters.count == 0 {
+			if line.count == 0 {
 				continue
 			}
-			if line.characters.first !=  "\"" { // Comment line or blank lines
+			if line.first !=  "\"" { // Comment line or blank lines
 				comments.append(line)
 				comments.append("\n")
 			} else { // line with key

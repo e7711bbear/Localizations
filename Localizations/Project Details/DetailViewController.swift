@@ -24,7 +24,7 @@ import Cocoa
 
 class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDelegate, NSOutlineViewDelegate {
 
-	weak var appDelegate: AppDelegate! = NSApplication.shared().delegate as! AppDelegate
+	let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
 
 	@IBOutlet var filesOutlineView: NSOutlineView!
 	var filesDataSource = FileDataSource()
@@ -106,7 +106,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	// MARK: - Cell production
 	
 	func produceRegionCell(region: Region) -> RegionCellView {
-		let rowView = self.filesOutlineView.make(withIdentifier: "regionCell", owner: self) as! RegionCellView
+		let rowView = self.filesOutlineView.makeView(withIdentifier: convertToNSUserInterfaceItemIdentifier("regionCell"), owner: self) as! RegionCellView
 		
 		rowView.name.stringValue = region.label
 		rowView.code.stringValue = region.code
@@ -120,7 +120,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 
 	
 	func produceFileCell(file: File) -> FileCellView {
-		let rowView = self.filesOutlineView.make(withIdentifier: "fileCell", owner: self) as! FileCellView
+		let rowView = self.filesOutlineView.makeView(withIdentifier: convertToNSUserInterfaceItemIdentifier("fileCell"), owner: self) as! FileCellView
 		
 		rowView.fileName.stringValue = file.name
 		rowView.folder.stringValue = file.folder
@@ -145,7 +145,7 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	}
 	
 	func produceTranslationCell(row: Int) -> TranslationCellView {
-		let rowView = self.translationsTableView.make(withIdentifier: "translationCell", owner: self) as! TranslationCellView
+		let rowView = self.translationsTableView.makeView(withIdentifier: convertToNSUserInterfaceItemIdentifier("translationCell"), owner: self) as! TranslationCellView
 		
 		rowView.key.stringValue = self.translationsDataSource.key(row: row)
 		rowView.value.stringValue = self.translationsDataSource.value(row: row)
@@ -196,4 +196,9 @@ class DetailViewController: NSViewController, NSTableViewDelegate, NSTabViewDele
 	}
 	
 	
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSUserInterfaceItemIdentifier(_ input: String) -> NSUserInterfaceItemIdentifier {
+	return NSUserInterfaceItemIdentifier(rawValue: input)
 }

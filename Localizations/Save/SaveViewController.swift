@@ -23,7 +23,7 @@
 import Cocoa
 
 class SaveViewController: NSViewController, NSTableViewDelegate {
-	let appDelegate = NSApplication.shared().delegate as! AppDelegate
+	let appDelegate = NSApplication.shared.delegate as! AppDelegate
 	
 	@IBOutlet var changesTableView: NSTableView!
 	var changesTableViewDatasource = ChangeTableViewDataSource()
@@ -185,7 +185,7 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 	//MARK: - TableView Delegate
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		let changeView = tableView.make(withIdentifier: "changeCell", owner: self) as! ChangeStepCellView
+		let changeView = tableView.makeView(withIdentifier: convertToNSUserInterfaceItemIdentifier("changeCell"), owner: self) as! ChangeStepCellView
 		let fileChange = self.changesTableViewDatasource.changes[row]
 		
 		switch fileChange.state {
@@ -206,4 +206,9 @@ class SaveViewController: NSViewController, NSTableViewDelegate {
 		return changeView
 	}
 	
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSUserInterfaceItemIdentifier(_ input: String) -> NSUserInterfaceItemIdentifier {
+	return NSUserInterfaceItemIdentifier(rawValue: input)
 }

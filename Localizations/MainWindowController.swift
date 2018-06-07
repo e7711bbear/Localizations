@@ -24,7 +24,7 @@ import Cocoa
 
 class MainWindowController: NSWindowController {
 
-	let appDelegate = NSApplication.shared().delegate as! AppDelegate
+	let appDelegate = NSApplication.shared.delegate as! AppDelegate
 	
     override func windowDidLoad() {
         super.windowDidLoad()

@@ -88,16 +88,16 @@ class ATStatusView: NSView {
 		//// Text Drawing
 		let textRect = NSMakeRect(33/200*rect.width, 36/200*rect.height, 134/200*rect.width, 129/200*rect.height)
 		let textTextContent = NSString(string: text)
-		let textStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+		let textStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
 		textStyle.alignment = .center
 		
-		let textFontAttributes = [NSFontAttributeName: NSFont.systemFont(ofSize: 144/200*rect.width), NSForegroundColorAttributeName: NSColor.white, NSParagraphStyleAttributeName: textStyle]
+		let textFontAttributes = [convertFromNSAttributedStringKey(NSAttributedString.Key.font): NSFont.systemFont(ofSize: 144/200*rect.width), convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): NSColor.white, convertFromNSAttributedStringKey(NSAttributedString.Key.paragraphStyle): textStyle]
 		
-		let textTextHeight: CGFloat = textTextContent.boundingRect(with: NSMakeSize(textRect.width, CGFloat.infinity), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: textFontAttributes).size.height
+		let textTextHeight: CGFloat = textTextContent.boundingRect(with: NSMakeSize(textRect.width, CGFloat.infinity), options: NSString.DrawingOptions.usesLineFragmentOrigin, attributes: convertToOptionalNSAttributedStringKeyDictionary(textFontAttributes)).size.height
 		let textTextRect: NSRect = NSMakeRect(textRect.minX, textRect.minY + (textRect.height - textTextHeight) / 2, textRect.width, textTextHeight)
 		NSGraphicsContext.saveGraphicsState()
-		NSRectClip(textRect)
-		textTextContent.draw(in: NSOffsetRect(textTextRect, 0, 0), withAttributes: textFontAttributes)
+		__NSRectClip(textRect)
+		textTextContent.draw(in: NSOffsetRect(textTextRect, 0, 0), withAttributes: convertToOptionalNSAttributedStringKeyDictionary(textFontAttributes))
 		NSGraphicsContext.restoreGraphicsState()
 	}
 	
@@ -134,4 +134,15 @@ class ATStatusView: NSView {
 	func drawNone(rect: NSRect) {
 		self.drawBackgroundCircle(rect: rect, color: self.noneColor)
 	}
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

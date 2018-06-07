@@ -70,7 +70,7 @@ class FileDataSource: NSObject, NSOutlineViewDataSource {
 		}
 		
 		for file in combinedFiles {
-			if file.folder.characters.count != 0 {
+			if file.folder.count != 0 {
 				// Assign files with their respective region
 				if let region = self.regionWithCode(code: Region.regionMatchingString(string: file.languageCode)?.code) {
 					region.files.append(file)
